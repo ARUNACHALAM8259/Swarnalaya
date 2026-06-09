@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swarnalaya - Gold & Silver Rate History</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .history-container {
+        width: 100%;
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 15px;
+      }
+      .history-card {
+        background: #ffffff;
+        border: 1.5px solid rgba(197, 160, 89, 0.2);
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
+      }
+      .history-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+      }
+      .history-header h1 {
+        font-size: 24px;
+        color: #111111;
+        margin: 0;
+        letter-spacing: 0.5px;
+      }
+      .back-home-btn {
+        font-size: 14px;
+        font-weight: 600;
+        color: #1a5f4a;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.2s ease;
+      }
+      .back-home-btn:hover {
+        color: #c5a059;
+      }
+      .history-table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+      }
+      .history-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+      .history-table th, .history-table td {
+        padding: 14px 18px;
+        text-align: left;
+        border-bottom: 1px solid #eeeeee;
+        white-space: nowrap;
+      }
+      .history-table th {
+        background-color: #fafaf8;
+        font-weight: 700;
+        color: #222222;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .history-table td {
+        color: #444444;
+        font-size: 14px;
+      }
+      .history-table tr:hover {
+        background-color: #fafaf8;
+      }
+      .change-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-weight: 700;
+        font-size: 12px;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      .change-indicator.up {
+        background: rgba(46, 125, 50, 0.1);
+        color: #2e7d32;
+      }
+      .change-indicator.down {
+        background: rgba(198, 40, 40, 0.1);
+        color: #c62828;
+      }
+      .change-indicator.flat {
+        background: rgba(100, 116, 139, 0.1);
+        color: #64748b;
+      }
+      .no-data-msg {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-container">
+        <!-- Logo -->
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="logo.png" alt="Swarnalaya Logo" class="logo" />
+          </a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <div class="search-bar">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search jewelry..."
+            />
+            <button class="search-icon"><i class="fas fa-search"></i></button>
+          </div>
+          <div class="live-rates-ticker" id="liveRatesTicker">
+            <div class="ticker-pulse-dot"></div>
+            <div class="ticker-text-wrapper">
+              <div class="ticker-text" id="tickerText">Loading rates...</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Icons -->
+        <div class="header-right">
+          <a href="home.html">
+            <img src="home.png" id="home-btn" alt="Home" class="header-icon" />
+          </a>
+          <img src="heart.png" alt="Wishlist" class="header-icon" />
+          <img src="shopping-bag.png" alt="Cart" class="header-icon" />
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="history-container">
+        <div class="history-card">
+          <div class="history-header">
+            <h1>Gold & Silver Rate History</h1>
+            <a href="index.html" class="back-home-btn"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
+          </div>
+
+          <div class="history-table-wrapper">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Update Date/Time</th>
+                  <th>22K Gold (per g)</th>
+                  <th>22K Change</th>
+                  <th>18K Gold (per g)</th>
+                  <th>18K Change</th>
+                  <th>Silver (per g)</th>
+                  <th>Silver Change</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody">
+                <tr>
+                  <td colspan="7" class="no-data-msg">Loading history logs...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col brand-col">
+          <img src="logo.png" alt="Swarnalaya Logo" class="footer-logo" />
+          <p class="brand-desc">
+            Swarnalaya Premium Jewelry - Handcrafted gold, diamond, and silver collections since March 2025.
+          </p>
+        </div>
+        <div class="footer-col links-col">
+          <h3>Useful Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Homepage</a></li>
+            <li><a href="tryon">Virtual Try-On</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch("/api/rates/history")
+          .then(res => res.json())
+          .then(data => {
+            const tbody = document.getElementById("historyTableBody");
+            if (!data || data.length === 0) {
+              tbody.innerHTML = '<tr><td colspan="7" class="no-data-msg">No rate history recorded in the database yet.</td></tr>';
+              return;
+            }
+
+            tbody.innerHTML = '';
+            // Display history (newest first)
+            data.reverse().forEach(row => {
+              const tr = document.createElement("tr");
+
+              const formatVal = (val) => "₹" + parseFloat(val).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+              const formatChange = (chg) => {
+                const num = parseFloat(chg);
+                if (num > 0) return `<span class="change-indicator up"><i class="fas fa-caret-up"></i> +₹${num.toFixed(2)}</span>`;
+                if (num < 0) return `<span class="change-indicator down"><i class="fas fa-caret-down"></i> -₹${Math.abs(num).toFixed(2)}</span>`;
+                return `<span class="change-indicator flat">₹0.00</span>`;
+              };
+
+              tr.innerHTML = `
+                <td><strong>${row.timeKey}</strong></td>
+                <td>${formatVal(row.gold22K)}</td>
+                <td>${formatChange(row.change22K)}</td>
+                <td>${formatVal(row.gold18K)}</td>
+                <td>${formatChange(row.change18K)}</td>
+                <td>${formatVal(row.silver)}</td>
+                <td>${formatChange(row.changeSilver)}</td>
+              `;
+              tbody.appendChild(tr);
+            });
+          })
+          .catch(err => {
+            console.error("Error fetching rate history:", err);
+            document.getElementById("historyTableBody").innerHTML = '<tr><td colspan="7" class="no-data-msg" style="color:red;">Error loading rate history from server.</td></tr>';
+          });
+      });
+    </script>
+  </body>
+</html>

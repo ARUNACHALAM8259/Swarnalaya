@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Dashboard - Swarnalaya</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #1a5f4a;
+        --secondary-color: #f4d464;
+        --accent-gold: #c5a059;
+        --text-dark: #1a1a1a;
+        --text-light: #666;
+        --bg-light: #fdfdfb;
+        --border-color: #f0e9df;
+        --shadow: 0 10px 30px rgba(26, 95, 74, 0.05);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        min-height: 100vh;
+      }
+
+      /* Dashboard Header Styling */
+      .dash-header {
+        background-color: #ffffff;
+        border-bottom: 2px solid var(--secondary-color);
+        padding: 15px 30px;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .dash-header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .dash-logo-img {
+        height: 55px;
+        object-fit: contain;
+      }
+
+      .dash-user-panel {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .dash-user-info {
+        text-align: right;
+      }
+
+      .dash-phone {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--primary-color);
+      }
+
+      .dash-role {
+        font-size: 12px;
+        color: var(--text-light);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .logout-btn {
+        background-color: transparent;
+        color: var(--text-dark);
+        border: 1px solid var(--text-light);
+        border-radius: 20px;
+        padding: 8px 18px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+
+      .logout-btn:hover {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        border-color: var(--primary-color);
+      }
+
+      /* Main Layout */
+      .dash-content {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      /* Welcome banner with gold gradient */
+      .welcome-banner {
+        background: linear-gradient(135deg, var(--primary-color) 0%, #104434 100%);
+        border-left: 5px solid var(--secondary-color);
+        border-radius: 12px;
+        padding: 30px;
+        color: #ffffff;
+        margin-bottom: 40px;
+        box-shadow: var(--shadow);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .welcome-text h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--secondary-color);
+      }
+
+      .welcome-text p {
+        font-size: 15px;
+        opacity: 0.9;
+        line-height: 1.4;
+      }
+
+      .membership-badge {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--secondary-color);
+        border-radius: 25px;
+        padding: 10px 22px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        backdrop-filter: blur(5px);
+      }
+
+      .membership-badge i {
+        color: var(--secondary-color);
+        font-size: 18px;
+      }
+
+      .membership-badge span {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      /* Grid of Scheme Cards */
+      .schemes-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 25px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .schemes-title i {
+        color: var(--accent-gold);
+      }
+
+      .schemes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+      }
+
+      .scheme-card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        padding: 25px;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .scheme-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(26, 95, 74, 0.08);
+        border-color: var(--accent-gold);
+      }
+
+      .scheme-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .scheme-title-wrapper h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 4px;
+      }
+
+      .scheme-status {
+        background-color: #e6f4ea;
+        color: #137333;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 12px;
+        text-transform: uppercase;
+      }
+
+      .scheme-amount-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+
+      .amount-box {
+        flex: 1;
+      }
+
+      .amount-label {
+        font-size: 11px;
+        color: var(--text-light);
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+
+      .amount-val {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+
+      /* Premium gold progress bar */
+      .progress-container {
+        margin-bottom: 20px;
+      }
+
+      .progress-bar-bg {
+        height: 8px;
+        background-color: #f1ebd9;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent-gold) 0%, var(--secondary-color) 100%);
+        border-radius: 4px;
+        transition: width 1s ease-out;
+      }
+
+      .progress-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--text-light);
+        margin-top: 6px;
+        font-weight: 500;
+      }
+
+      .scheme-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--border-color);
+        padding-top: 15px;
+        font-size: 13px;
+      }
+
+      .next-payment-date {
+        color: var(--text-light);
+      }
+
+      .next-payment-date strong {
+        color: var(--text-dark);
+      }
+
+      .pay-now-btn {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      .pay-now-btn:hover {
+        background-color: #104434;
+      }
+
+      @media (max-width: 768px) {
+        .dash-header {
+          padding: 15px 20px;
+        }
+
+        .welcome-banner {
+          padding: 20px;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .welcome-text h1 {
+          font-size: 24px;
+        }
+
+        .schemes-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="dash-header">
+      <div class="dash-header-container">
+        <a href="index.html">
+          <img src="logo.png" alt="Swarnalaya Logo" class="dash-logo-img" />
+        </a>
+        <div class="dash-user-panel">
+          <div class="dash-user-info">
+            <div class="dash-phone" id="userPhoneDisplay">+91 0000000000</div>
+            <div class="dash-role" id="userAuthMethod">Gold Club Member</div>
+          </div>
+          <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dash-content">
+      <!-- Welcome Banner -->
+      <div class="welcome-banner">
+        <div class="welcome-text">
+          <h1 id="welcomeTitle">Welcome to Swarnalaya!</h1>
+          <p>Adorn your life with gold of the finest quality and savings schemes designed to fit your goals.</p>
+        </div>
+        <div class="membership-badge">
+          <i class="fas fa-crown"></i>
+          <span>GOLDEN CLUB</span>
+        </div>
+      </div>
+
+      <!-- Schemes Section -->
+      <div class="schemes-title">
+        <i class="fas fa-gem"></i>
+        <h2>My Active Savings Schemes</h2>
+      </div>
+
+      <div class="schemes-grid" id="schemesGrid">
+        <!-- Swarna Vruthi Scheme Card -->
+        <div class="scheme-card">
+          <div class="scheme-header">
+            <div class="scheme-title-wrapper">
+              <h3>Swarna Vruthi</h3>
+              <p style="font-size: 12px; color: var(--text-light);">Gold Accumulation Scheme</p>
+            </div>
+            <span class="scheme-status">Active</span>
+          </div>
+          <div class="scheme-amount-info">
+            <div class="amount-box">
+              <p class="amount-label">Gold Saved</p>
+              <p class="amount-val">8.500 g</p>
+            </div>
+            <div class="amount-box" style="text-align: right;">
+              <p class="amount-label">Monthly Inst.</p>
+              <p class="amount-val">₹5,000</p>
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 70%;"></div>
+            </div>
+            <div class="progress-labels">
+              <span>7 months saved</span>
+              <span>11 Months Term</span>
+            </div>
+          </div>
+          <div class="scheme-footer">
+            <div class="next-payment-date">Next Pay: <strong>10 Jun 2026</strong></div>
+            <button class="pay-now-btn">Pay Instalment</button>
+          </div>
+        </div>
+
+        <!-- Kanagha Vruthi Scheme Card -->
+        <div class="scheme-card">
+          <div class="scheme-header">
+            <div class="scheme-title-wrapper">
+              <h3>Kanagha Vruthi</h3>
+              <p style="font-size: 12px; color: var(--text-light);">Gold Coin Purchase Scheme</p>
+            </div>
+            <span class="scheme-status">Active</span>
+          </div>
+          <div class="scheme-amount-info">
+            <div class="amount-box">
+              <p class="amount-label">Total Saved</p>
+              <p class="amount-val">₹30,000</p>
+            </div>
+            <div class="amount-box" style="text-align: right;">
+              <p class="amount-label">Monthly Inst.</p>
+              <p class="amount-val">₹3,000</p>
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 90%;"></div>
+            </div>
+            <div class="progress-labels">
+              <span>10 months saved</span>
+              <span>11 Months Term</span>
+            </div>
+          </div>
+          <div class="scheme-footer">
+            <div class="next-payment-date">Next Pay: <strong>15 Jun 2026</strong></div>
+            <button class="pay-now-btn" style="background-color: #104434;" disabled>Paid</button>
+          </div>
+        </div>
+
+        <!-- Thanaa Vruthi Scheme Card -->
+        <div class="scheme-card">
+          <div class="scheme-header">
+            <div class="scheme-title-wrapper">
+              <h3>Thanaa Vruthi</h3>
+              <p style="font-size: 12px; color: var(--text-light);">Jewellery Purchase Scheme</p>
+            </div>
+            <span class="scheme-status">Active</span>
+          </div>
+          <div class="scheme-amount-info">
+            <div class="amount-box">
+              <p class="amount-label">Total Saved</p>
+              <p class="amount-val">₹10,000</p>
+            </div>
+            <div class="amount-box" style="text-align: right;">
+              <p class="amount-label">Monthly Inst.</p>
+              <p class="amount-val">₹2,000</p>
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 45%;"></div>
+            </div>
+            <div class="progress-labels">
+              <span>5 months saved</span>
+              <span>11 Months Term</span>
+            </div>
+          </div>
+          <div class="scheme-footer">
+            <div class="next-payment-date">Next Pay: <strong>12 Jun 2026</strong></div>
+            <button class="pay-now-btn">Pay Instalment</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Check current session state synchronously on load
+      const sessionData = localStorage.getItem("swarnalaya_auth_user");
+      if (!sessionData) {
+        window.location.href = "login";
+      }
+
+      const user = JSON.parse(sessionData);
+      
+      // Display credentials in panel
+      let displayName = user.email || user.phone || "User";
+      if (displayName.endsWith("@swarnalaya.com")) {
+        displayName = displayName.split("@")[0];
+      }
+      document.getElementById("userPhoneDisplay").textContent = displayName;
+      document.getElementById("userAuthMethod").textContent = "Gold Club Member";
+      
+      // Set dynamic welcome text
+      document.getElementById("welcomeTitle").textContent = "Welcome back to Swarnalaya!";
+
+      // Handle Logout action
+      document.getElementById("logoutBtn").addEventListener("click", function() {
+        localStorage.removeItem("swarnalaya_auth_user");
+        window.location.href = "login";
+      });
+    </script>
+  </body>
+</html>

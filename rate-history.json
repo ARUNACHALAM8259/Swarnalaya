@@ -1,0 +1,32 @@
+[
+  {
+    "timeKey": "09:30 pm (Live)",
+    "timestamp": "2026-06-08T16:00:01.283Z",
+    "gold22K": 14203,
+    "gold18K": 11630,
+    "silver": 249.38,
+    "change22K": -11,
+    "change18K": -8,
+    "changeSilver": -0.45
+  },
+  {
+    "timeKey": "08/06/2026 Morning 09:36 AM",
+    "timestamp": "2026-06-08T16:13:27.216Z",
+    "gold22K": 14070,
+    "gold18K": 11795,
+    "silver": 270,
+    "change22K": -130,
+    "change18K": -115,
+    "changeSilver": 0
+  },
+  {
+    "timeKey": "09/06/2026 Morning 09:45 AM",
+    "timestamp": "2026-06-09T04:48:06.666Z",
+    "gold22K": 14200,
+    "gold18K": 11920,
+    "silver": 270,
+    "change22K": 130,
+    "change18K": 125,
+    "changeSilver": 0
+  }
+]

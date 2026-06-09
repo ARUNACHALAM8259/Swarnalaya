@@ -1,0 +1,142 @@
+[
+  {
+    "userKey": "test.customer@gmail.com",
+    "activityType": "register",
+    "details": "New customer registered. Email: test.customer@gmail.com, Phone: 9988776655",
+    "page": "test-login.html",
+    "timestamp": "2026-06-08T18:09:41.916Z"
+  },
+  {
+    "userKey": "test.customer@gmail.com",
+    "activityType": "login",
+    "details": "User logged in",
+    "page": "test-login.html",
+    "timestamp": "2026-06-08T18:09:41.954Z"
+  },
+  {
+    "userKey": "test.customer@gmail.com",
+    "activityType": "wishlist",
+    "details": "Added Classic Gold Necklace to wishlist",
+    "page": "all-jewellery.html",
+    "timestamp": "2026-06-08T18:09:41.959Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "login",
+    "details": "User logged in",
+    "page": "login.html",
+    "timestamp": "2026-06-08T18:12:31.939Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "register",
+    "details": "New customer registered. Email: arunachalamjayakumar2005@gmail.com, Phone: 7603882099",
+    "page": "login.html",
+    "timestamp": "2026-06-08T18:14:08.523Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "login",
+    "details": "User logged in",
+    "page": "login.html",
+    "timestamp": "2026-06-08T18:14:37.008Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "login",
+    "details": "User logged in",
+    "page": "login.html",
+    "timestamp": "2026-06-08T18:15:06.121Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "login",
+    "details": "User logged in",
+    "page": "login.html",
+    "timestamp": "2026-06-08T18:29:25.696Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "login",
+    "details": "User logged in",
+    "page": "login.html",
+    "timestamp": "2026-06-09T02:33:09.596Z"
+  },
+  {
+    "userKey": "test@example.com",
+    "activityType": "register",
+    "details": "New customer registered via MSG91 OTP. Phone: 9999999999",
+    "page": "login.html",
+    "timestamp": "2026-06-09T03:38:11.260Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-09T03:48:19.134Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-09T03:49:28.831Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-09T03:52:45.467Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Diamond Ring (diamond-ring.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-09T03:53:14.190Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Diamond Ring (diamond-ring.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-09T03:53:14.200Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-09T03:53:16.894Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-09T03:53:16.904Z"
+  },
+  {
+    "userKey": "tokenuser@example.com",
+    "activityType": "register",
+    "details": "New customer registered via MSG91 token. Phone: 7777777777",
+    "page": "login.html",
+    "timestamp": "2026-06-09T04:48:58.444Z"
+  },
+  {
+    "userKey": "tokenuser@example.com",
+    "activityType": "register",
+    "details": "New customer registered via MSG91 token. Phone: 7777777777",
+    "page": "login.html",
+    "timestamp": "2026-06-09T04:50:50.843Z"
+  },
+  {
+    "userKey": "tokenuser@example.com",
+    "activityType": "register",
+    "details": "New customer registered via MSG91 token. Phone: 7777777777",
+    "page": "login.html",
+    "timestamp": "2026-06-09T05:42:06.452Z"
+  }
+]

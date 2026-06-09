@@ -1,0 +1,26 @@
+{
+  "gold22K": {
+    "price": 14200,
+    "change": 130,
+    "direction": "up"
+  },
+  "gold18K": {
+    "price": 11920,
+    "change": 125,
+    "direction": "up"
+  },
+  "silver": {
+    "price": 270,
+    "change": 0,
+    "direction": "flat"
+  },
+  "gold24K": {
+    "price": 15492,
+    "change": 142,
+    "direction": "up"
+  },
+  "lastUpdated": "2026-06-09T05:18:47.615Z",
+  "updateSource": "MJDTA",
+  "updatetimeText": "09/06/2026 Morning 09:45 AM",
+  "status": "success"
+}

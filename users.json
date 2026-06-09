@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Test Customer",
+    "mobile": "9988776655",
+    "email": "test.customer@gmail.com",
+    "registeredAt": "2026-06-08T18:09:41.913Z"
+  },
+  {
+    "name": "Arunachalam. J",
+    "mobile": "7603882099",
+    "email": "arunachalamjayakumar2005@gmail.com",
+    "registeredAt": "2026-06-08T18:14:08.521Z"
+  },
+  {
+    "name": "Test User",
+    "mobile": "9999999999",
+    "email": "test@example.com",
+    "registeredAt": "2026-06-09T03:38:11.258Z"
+  },
+  {
+    "name": "Verified Token User",
+    "mobile": "7777777777",
+    "email": "tokenuser@example.com",
+    "registeredAt": "2026-06-09T04:48:58.440Z"
+  }
+]

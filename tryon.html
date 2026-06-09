@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Try-On - Swarnalaya</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-container">
+        <!-- Logo (Left Side) -->
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="logo.png" alt="Swarnalaya Logo" class="logo" />
+          </a>
+        </div>
+
+        <!-- Search Bar with Icons (Right Side) -->
+        <div class="search-container">
+          <div class="search-bar">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search jewelry..."
+            />
+            <button class="search-icon">
+              <i class="fas fa-search"></i>
+            </button>
+            <button class="camera-icon">
+              <i class="fas fa-camera"></i>
+            </button>
+            <button class="mic-icon">
+              <i class="fas fa-microphone"></i>
+            </button>
+          </div>
+          <div class="live-rates-ticker" id="liveRatesTicker">
+            <div class="ticker-pulse-dot"></div>
+            <div class="ticker-text-wrapper">
+              <div class="ticker-text" id="tickerText">Loading rates...</div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Side Icons -->
+        <div class="header-right">
+          <a href="home.html">
+            <img src="home.png" id="home-btn" alt="Home" class="header-icon" />
+          </a>
+          <img src="heart.png" alt="Wishlist" class="header-icon" />
+          <div class="user-profile-menu">
+            <img src="user-avatar.png" alt="Profile" class="header-icon user-avatar-btn" />
+            <div class="profile-dropdown-menu">
+              <a href="login" class="dropdown-item" id="loginSignupBtn">Login/Signup</a>
+              <a href="contact" class="dropdown-item">Contact Us</a>
+            </div>
+          </div>
+          <img src="shopping-bag.png" alt="Cart" class="header-icon" />
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="tryon-page-container">
+        <!-- 1. Hero Banner with Loop Video and Text Overlay -->
+        <div class="tryon-hero">
+          <div class="tryon-hero-video-wrapper">
+            <video id="tryonHeroVideo" autoplay loop muted playsinline>
+              <source src="assets/tryon-hero-video.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <!-- Custom Sound Control Button -->
+            <button id="tryonVolumeToggle" class="tryon-sound-btn" onclick="toggleHeroVolume()" title="Unmute video">
+              <i class="fas fa-volume-mute"></i>
+            </button>
+          </div>
+          <div class="tryon-hero-image-wrapper">
+            <img src="tryon-banner-pink-new.jpg?v=1" alt="Swarnalaya Try-On Explore Now" class="tryon-hero-img" />
+          </div>
+        </div>
+        
+        <!-- 1.5 Interactive Collections Explorer -->
+        <div class="tryon-explorer-container">
+          <div class="tryon-explorer-card">
+            
+            <!-- Column 1: Jewellery -->
+            <div class="explorer-col jewellery-col active" id="exp-jewellery">
+              <div class="explorer-header" onclick="toggleExplorerColumn('jewellery')">
+                <span class="explorer-title">JEWELLERY</span>
+                <span class="explorer-toggle-icon"><i class="fas fa-minus"></i></span>
+              </div>
+              <div class="explorer-content">
+                <div class="sub-columns-grid">
+                  <div class="sub-column">
+                    <a href="chains" target="_blank">CHAIN</a>
+                    <a href="#" onclick="filterExplorerCatalog('NECKLACE', 'necklaces', event)">NECKLACE</a>
+                    <a href="#" onclick="filterExplorerCatalog('BANGLES', 'necklaces', event)">BANGLES</a>
+                    <a href="#" onclick="filterExplorerCatalog('BRACELETS', 'necklaces', event)">BRACELETS</a>
+                    <a href="#" onclick="filterExplorerCatalog('NOSE STUDS', 'earrings', event)">NOSE STUDS</a>
+                    <a href="#" onclick="filterExplorerCatalog('CHOKER SET', 'necklaces', event)">CHOKER SET</a>
+                    <a href="#" onclick="filterExplorerCatalog('DAILY WEAR', 'necklaces', event)">DAILY WEAR</a>
+                    <a href="#" onclick="filterExplorerCatalog('VADDANAM', 'necklaces', event)">VADDANAM</a>
+                  </div>
+                  <div class="sub-column">
+                    <a href="#" onclick="filterExplorerCatalog('JEWELLERY SET', 'necklaces', event)">JEWELLERY SET</a>
+                    <a href="#" onclick="filterExplorerCatalog('RINGS', 'rings', event)">RINGS</a>
+                    <a href="#" onclick="filterExplorerCatalog('EARRINGS', 'earrings', event)">EARRINGS</a>
+                    <a href="#" onclick="filterExplorerCatalog('PENDANT', 'pendants', event)">PENDANT</a>
+                    <a href="#" onclick="filterExplorerCatalog('ANKLETS', 'earrings', event)">ANKLETS</a>
+                    <a href="#" onclick="filterExplorerCatalog('PEARL', 'earrings', event)">PEARL</a>
+                    <a href="#" onclick="filterExplorerCatalog('STUDS', 'earrings', event)">STUDS</a>
+                    <a href="#" onclick="filterExplorerCatalog('MOTI SET', 'necklaces', event)">MOTI SET</a>
+                  </div>
+                  <div class="sub-column">
+                    <a href="#" onclick="filterExplorerCatalog('JHUMKA', 'earrings', event)">JHUMKA</a>
+                    <a href="#" onclick="filterExplorerCatalog('LOCKET', 'pendants', event)">LOCKET</a>
+                    <a href="#" onclick="filterExplorerCatalog('HARAM', 'necklaces', event)">HARAM</a>
+                    <a href="#" onclick="filterExplorerCatalog('KADA', 'necklaces', event)">KADA</a>
+                    <a href="#" onclick="filterExplorerCatalog('PAYAL', 'earrings', event)">PAYAL</a>
+                    <a href="#" onclick="filterExplorerCatalog('SECOND STUD', 'earrings', event)">SECOND STUD</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2: Metals -->
+            <div class="explorer-col" id="exp-metals">
+              <div class="explorer-header" onclick="toggleExplorerColumn('metals')">
+                <span class="explorer-title">METALS</span>
+                <span class="explorer-toggle-icon"><i class="fas fa-plus"></i></span>
+              </div>
+              <div class="explorer-content">
+                <div class="single-column-list">
+                  <a href="#" onclick="filterExplorerCatalog('GOLD', 'necklaces', event)">GOLD</a>
+                  <a href="#" onclick="filterExplorerCatalog('DIAMOND', 'rings', event)">DIAMOND</a>
+                  <a href="#" onclick="filterExplorerCatalog('SILVER', 'rings', event)">SILVER</a>
+                  <a href="#" onclick="filterExplorerCatalog('PLATINUM', 'rings', event)">PLATINUM</a>
+                  <a href="#" onclick="filterExplorerCatalog('GEMSTONE', 'pendants', event)">GEMSTONE</a>
+                  <a href="#" onclick="filterExplorerCatalog('WHITE GOLD', 'rings', event)">WHITE GOLD</a>
+                  <a href="#" onclick="filterExplorerCatalog('ROSE GOLD', 'rings', event)">ROSE GOLD</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 3: Wedding -->
+            <div class="explorer-col" id="exp-wedding">
+              <div class="explorer-header" onclick="toggleExplorerColumn('wedding')">
+                <span class="explorer-title">WEDDING</span>
+                <span class="explorer-toggle-icon"><i class="fas fa-plus"></i></span>
+              </div>
+              <div class="explorer-content">
+                <div class="single-column-list">
+                  <a href="#" onclick="filterExplorerCatalog('BRIDAL SET', 'necklaces', event)">BRIDAL SET</a>
+                  <a href="#" onclick="filterExplorerCatalog('MANGALSUTRA', 'necklaces', event)">MANGALSUTRA</a>
+                  <a href="#" onclick="filterExplorerCatalog('COUPLE RINGS', 'rings', event)">COUPLE RINGS</a>
+                  <a href="#" onclick="filterExplorerCatalog('ENGAGEMENT RINGS', 'rings', event)">ENGAGEMENT RINGS</a>
+                  <a href="#" onclick="filterExplorerCatalog('BRIDAL NATH', 'earrings', event)">BRIDAL NATH</a>
+                  <a href="#" onclick="filterExplorerCatalog('MAANG TIKKA', 'earrings', event)">MAANG TIKKA</a>
+                  <a href="#" onclick="filterExplorerCatalog('ANNIVERSARY', 'rings', event)">ANNIVERSARY</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 4: For -->
+            <div class="explorer-col" id="exp-for">
+              <div class="explorer-header" onclick="toggleExplorerColumn('for')">
+                <span class="explorer-title">FOR</span>
+                <span class="explorer-toggle-icon"><i class="fas fa-plus"></i></span>
+              </div>
+              <div class="explorer-content">
+                <div class="single-column-list">
+                  <a href="#" onclick="filterExplorerCatalog('BABY', 'earrings', event)">BABY</a>
+                  <a href="#" onclick="filterExplorerCatalog('KIDS', 'earrings', event)">KIDS</a>
+                  <a href="#" onclick="filterExplorerCatalog('GIRLS', 'earrings', event)">GIRLS</a>
+                  <a href="#" onclick="filterExplorerCatalog('BOYS', 'rings', event)">BOYS</a>
+                  <a href="#" onclick="filterExplorerCatalog('MEN', 'rings', event)">MEN</a>
+                  <a href="#" onclick="filterExplorerCatalog('WOMEN', 'necklaces', event)">WOMEN</a>
+                  <a href="#" onclick="filterExplorerCatalog('BRIDE', 'necklaces', event)">BRIDE</a>
+                  <a href="#" onclick="filterExplorerCatalog('GROOM', 'rings', event)">GROOM</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 5: Others -->
+            <div class="explorer-col" id="exp-others">
+              <div class="explorer-header" onclick="toggleExplorerColumn('others')">
+                <span class="explorer-title">OTHERS</span>
+                <span class="explorer-toggle-icon"><i class="fas fa-plus"></i></span>
+              </div>
+              <div class="explorer-content">
+                <div class="single-column-list">
+                  <a href="#" onclick="filterExplorerCatalog('ANTIQUE', 'necklaces', event)">ANTIQUE</a>
+                  <a href="#" onclick="filterExplorerCatalog('TRADITIONAL', 'necklaces', event)">TRADITIONAL</a>
+                  <a href="#" onclick="filterExplorerCatalog('NAVARATNA', 'pendants', event)">NAVARATNA</a>
+                  <a href="#" onclick="filterExplorerCatalog('TEMPLE JEWELLERY', 'necklaces', event)">TEMPLE JEWELLERY</a>
+                  <a href="#" onclick="filterExplorerCatalog('LAKSHMI JEWELLERY', 'necklaces', event)">LAKSHMI JEWELLERY</a>
+                  <a href="#" onclick="filterExplorerCatalog('NAME RINGS', 'rings', event)">NAME RINGS</a>
+                  <a href="#" onclick="filterExplorerCatalog('GOLD COIN', 'rings', event)">GOLD COIN</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. Try-On Workspace below the banner -->
+        <div class="tryon-workspace-inline">
+          <!-- Workspace (Left Column) -->
+          <div class="tryon-workspace">
+            <div class="tryon-canvas-container" id="tryonCanvasContainer">
+              <!-- Background Model image or Webcam video stream -->
+              <img id="tryonBgImage" class="tryon-bg-media" src="tryon-model-face.png" alt="Try-On Background" />
+              <video id="tryonVideo" class="tryon-bg-media" autoplay playsinline style="display: none;"></video>
+              
+              <!-- Draggable overlay item -->
+              <div id="tryonOverlayWrapper" class="tryon-overlay-wrapper">
+                <img id="tryonOverlayItem" src="gold-necklace.jpg" alt="Try-On Item" />
+              </div>
+            </div>
+            
+            <!-- Controls under canvas -->
+            <div class="tryon-controls-row">
+              <button class="tryon-action-btn" id="tryonCamBtn" onclick="toggleTryOnCamera()">
+                <i class="fas fa-camera"></i> Use Live Camera
+              </button>
+              <label class="tryon-action-btn" id="tryonUploadLabel">
+                <i class="fas fa-upload"></i> Upload Photo
+                <input type="file" id="tryonUploadInput" accept="image/*" style="display: none;" onchange="handleTryOnUpload(event)" />
+              </label>
+              <button class="tryon-action-btn tryon-btn-danger" onclick="resetTryOnOverlay()">
+                <i class="fas fa-undo"></i> Reset Position
+              </button>
+            </div>
+            
+            <!-- Fine-tune controls -->
+            <div class="tryon-sliders-panel">
+              <div class="tryon-slider-group">
+                <label><i class="fas fa-expand-arrows-alt"></i> Size Scale</label>
+                <input type="range" id="tryonScaleSlider" min="0.2" max="2.5" step="0.01" value="1.0" oninput="updateTryOnTransform()" />
+              </div>
+              <div class="tryon-slider-group">
+                <label><i class="fas fa-sync-alt"></i> Rotate</label>
+                <input type="range" id="tryonRotateSlider" min="-180" max="180" step="1" value="0" oninput="updateTryOnTransform()" />
+              </div>
+            </div>
+          </div>
+          
+          <!-- Catalog Selector (Right Column) -->
+          <div class="tryon-catalog">
+            <div class="tryon-tabs">
+              <button class="tryon-tab-btn active" onclick="switchTryOnCategory('necklaces', this)">Necklaces</button>
+              <button class="tryon-tab-btn" onclick="switchTryOnCategory('earrings', this)">Earrings</button>
+              <button class="tryon-tab-btn" onclick="switchTryOnCategory('rings', this)">Rings</button>
+              <button class="tryon-tab-btn" onclick="switchTryOnCategory('pendants', this)">Pendants</button>
+            </div>
+            
+            <div class="tryon-products-grid" id="tryonProductsGrid">
+              <!-- Loaded dynamically via JavaScript -->
+            </div>
+            
+            <div class="tryon-footer-actions">
+              <button class="tryon-download-btn" onclick="captureTryOnSnapshot()">
+                <i class="fas fa-download"></i> Download Snapshot
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Brand Column -->
+        <div class="footer-col brand-col">
+          <img src="logo.png" alt="Swarnalaya Logo" class="footer-logo" />
+          <p class="brand-desc">
+            Swarnalaya, Founded in March 2025 is built on a foundation of trust that spans five generations. We honor the "old world" commitment to quality—where every setting is secure and every stone is hand-selected—while embracing the "new world" of sustainable sourcing and avant-garde style.
+          </p>
+        </div>
+
+        <!-- Useful Links Column -->
+        <div class="footer-col links-col">
+          <h3>Useful Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">My Account</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Cancellation & Refund Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Us Column -->
+        <div class="footer-col contact-col" id="contact-col">
+          <h3>Contact Us</h3>
+          <ul class="contact-details">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>791C, PJN Road,<br>Villupuram-605 602</span>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>+91 9837371616</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>info@swarnalaya.com</span>
+            </li>
+          </ul>
+          <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <!-- QR Scanner and App Download Column -->
+        <div class="footer-col apps-col">
+          <div class="qr-container">
+            <img src="qr-code.png" alt="QR Scanner" class="qr-image" />
+          </div>
+          <div class="download-badges">
+            <!-- App Store Badge -->
+            <a href="#" class="download-badge">
+              <svg class="badge-svg" viewBox="0 0 135 40" width="125" height="38">
+                <rect width="135" height="40" rx="6" fill="#000" stroke="#a6a6a6" stroke-width="0.5"/>
+                <path d="M20.5 13.8c-.1-2 1.6-3 1.7-3.1-1-.7-2.1-1-2.4-1-.8-.1-1.6.4-2 .4s-1.1-.4-1.8-.4c-.9 0-1.8.5-2.2 1.3-1 1.7-.3 4.2.7 5.6.5.7 1 1.5 1.7 1.4.7-.1 1-.5 1.8-.5s1.1.4 1.8.4c.7 0 1.2-.7 1.6-1.3.5-.7.7-1.4.7-1.4-.1 0-1.7-.6-1.8-2.5z M18.4 8.9c.4-.5.6-1.1.5-1.7-.5 0-1.1.3-1.5.8-.3.4-.6 1-.5 1.6.6 0 1.1-.2 1.5-.7z" fill="#fff" />
+                <text x="32" y="15" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="7" font-weight="500">Download on the</text>
+                <text x="32" y="27" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">App Store</text>
+              </svg>
+            </a>
+            <!-- Google Play Badge -->
+            <a href="#" class="download-badge">
+              <svg class="badge-svg" viewBox="0 0 135 40" width="125" height="38">
+                <rect width="135" height="40" rx="6" fill="#000" stroke="#a6a6a6" stroke-width="0.5"/>
+                <g transform="translate(12, 10) scale(0.8)">
+                  <path d="M 0 2.5 L 0 22.5 L 10.5 12.5 Z" fill="#00e5ff" />
+                  <path d="M 0 2.5 L 10.5 12.5 L 15.5 7.5 Z" fill="#ff3d00" />
+                  <path d="M 10.5 12.5 L 15.5 17.5 L 15.5 7.5 Z" fill="#ffc107" />
+                  <path d="M 0 22.5 L 15.5 17.5 L 10.5 12.5 Z" fill="#4caf50" />
+                </g>
+                <text x="32" y="15" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="7" font-weight="500">GET IT ON</text>
+                <text x="32" y="27" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">Google Play</text>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

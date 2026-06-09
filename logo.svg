@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8000/ -->
+<html lang="en" style="scroll-behavior: smooth;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarnalaya - Premium Jewelry</title>
+    <link rel="stylesheet" href="./logo_files/styles.css">
+    <link rel="stylesheet" href="./logo_files/all.min.css">
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-container">
+        <!-- Logo (Left Side) -->
+        <div class="logo-container">
+          <img src="./logo_files/logo.svg" alt="Swarnalaya Logo" class="logo">
+        </div>
+
+        <!-- Search Bar with Icons (Right Side) -->
+        <div class="search-container">
+          <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search jewelry...">
+            <button class="search-icon">
+              <i class="fas fa-search"></i>
+            </button>
+            <button class="camera-icon">
+              <i class="fas fa-camera"></i>
+            </button>
+            <button class="mic-icon">
+              <i class="fas fa-microphone"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="http://localhost:8000/#" class="nav-link">
+              <i class="fas fa-star"></i>
+              <span>All Jewellery</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="http://localhost:8000/#" class="nav-link">
+              <i class="fas fa-gem"></i>
+              <span>Gold</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="http://localhost:8000/#" class="nav-link">
+              <i class="fas fa-diamond"></i>
+              <span>Diamond</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="http://localhost:8000/#" class="nav-link">
+              <svg class="custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M6 9c0-1.65 1.35-3 3-3s3 1.35 3 3v6c0 1.65-1.35 3-3 3s-3-1.35-3-3v-6zm6 0c0-1.65 1.35-3 3-3s3 1.35 3 3v6c0 1.65-1.35 3-3 3s-3-1.35-3-3v-6z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+              <span>Earrings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="http://localhost:8000/#" class="nav-link">
+              <svg class="custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="8"></circle>
+                <path d="M12 6v12M6 12h12" stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+              <span>Rings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="http://localhost:8000/#" class="nav-link">
+              <i class="fas fa-glasses"></i>
+              <span>Daily Wear</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="http://localhost:8000/#" class="nav-link">
+              <svg class="custom-icon" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="2"></circle>
+                <circle cx="12" cy="5" r="1.5"></circle>
+                <circle cx="5" cy="12" r="1.5"></circle>
+                <circle cx="19" cy="12" r="1.5"></circle>
+                <circle cx="12" cy="19" r="1.5"></circle>
+              </svg>
+              <span>Gemstone</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="http://localhost:8000/#" class="nav-link">
+              <i class="fas fa-ring"></i>
+              <span>Wedding</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="http://localhost:8000/#" class="nav-link">
+              <i class="fas fa-gift"></i>
+              <span>Gifting</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="http://localhost:8000/#" class="nav-link">
+              <i class="fas fa-ellipsis-h"></i>
+              <span>More</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <section class="hero">
+        <h1>Welcome to Swarnalaya</h1>
+        <p>
+          Discover our exclusive collection of Gold, Silver, Diamond &amp; Platinum
+          jewelry
+        </p>
+      </section>
+
+      <!-- Featured Products Section -->
+      <section class="featured-products">
+        <div class="section-header">
+          <h2>Featured Collections</h2>
+          <p>Handpicked jewelry for every occasion</p>
+        </div>
+
+        <div class="products-grid">
+          <!-- Gold Collection -->
+          <div class="product-card">
+            <div class="product-image">
+              <i class="fas fa-crown"></i>
+            </div>
+            <div class="product-info">
+              <h3>Gold Necklace</h3>
+              <p class="category">Gold Collection</p>
+              <p class="description">22K Pure Gold with intricate designs</p>
+              <div class="product-footer">
+                <span class="price">₹45,000</span>
+                <button class="add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Diamond Collection -->
+          <div class="product-card">
+            <div class="product-image">
+              <i class="fas fa-diamond"></i>
+            </div>
+            <div class="product-info">
+              <h3>Diamond Ring</h3>
+              <p class="category">Diamond Collection</p>
+              <p class="description">VS1 clarity certified diamond ring</p>
+              <div class="product-footer">
+                <span class="price">₹85,000</span>
+                <button class="add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Earrings -->
+          <div class="product-card">
+            <div class="product-image">
+              <i class="fas fa-circle-dot"></i>
+            </div>
+            <div class="product-info">
+              <h3>Pearl Earrings</h3>
+              <p class="category">Earrings</p>
+              <p class="description">Elegant pearl studs with gold settings</p>
+              <div class="product-footer">
+                <span class="price">₹28,000</span>
+                <button class="add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wedding Collection -->
+          <div class="product-card">
+            <div class="product-image">
+              <i class="fas fa-ring"></i>
+            </div>
+            <div class="product-info">
+              <h3>Bridal Set</h3>
+              <p class="category">Wedding Collection</p>
+              <p class="description">
+                Complete bridal jewelry set with matching designs
+              </p>
+              <div class="product-footer">
+                <span class="price">₹1,25,000</span>
+                <button class="add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Silver Collection -->
+          <div class="product-card">
+            <div class="product-image">
+              <i class="fas fa-coins"></i>
+            </div>
+            <div class="product-info">
+              <h3>Silver Bracelet</h3>
+              <p class="category">Silver Collection</p>
+              <p class="description">
+                Hallmarked 925 sterling silver with design
+              </p>
+              <div class="product-footer">
+                <span class="price">₹12,000</span>
+                <button class="add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gemstone Collection -->
+          <div class="product-card">
+            <div class="product-image">
+              <i class="fas fa-gem"></i>
+            </div>
+            <div class="product-info">
+              <h3>Ruby Pendant</h3>
+              <p class="category">Gemstone Collection</p>
+              <p class="description">
+                Natural ruby with certification &amp; gold chain
+              </p>
+              <div class="product-footer">
+                <span class="price">₹55,000</span>
+                <button class="add-to-cart">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="view-all">
+          <a href="http://localhost:8000/#" class="btn-primary">View All Collections</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="./logo_files/script.js.download"></script>
+  
+
+</body></html>

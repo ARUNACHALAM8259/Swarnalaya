@@ -1,0 +1,89 @@
+// Search functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.querySelector(".search-input");
+  const cameraBtn = document.querySelector(".camera-icon");
+  const micBtn = document.querySelector(".mic-icon");
+  const searchBtn = document.querySelector(".search-icon");
+
+  // Search button functionality
+  searchBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if (query) {
+      console.log("Searching for:", query);
+      // Add search functionality here
+    }
+  });
+
+  // Enter key to search
+  searchInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      searchBtn.click();
+    }
+  });
+
+  // Camera icon functionality (future implementation)
+  cameraBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    console.log("Camera search clicked");
+    // Add camera/image search functionality here
+  });
+
+  // Microphone icon functionality (future implementation)
+  micBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    console.log("Voice search clicked");
+    // Add voice search functionality here
+  });
+
+  // Navigation menu items
+  const navLinks = document.querySelectorAll(".nav-link");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const category = this.querySelector("span").textContent;
+      console.log("Selected category:", category);
+      // Add category navigation here
+    });
+  });
+
+  // Product cart functionality
+  const addToCartButtons = document.querySelectorAll(".add-to-cart");
+  addToCartButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      e.preventDefault();
+      const productCard = this.closest(".product-card");
+      const productName =
+        productCard.querySelector(".product-info h3").textContent;
+      const productPrice = productCard.querySelector(".price").textContent;
+
+      // Add to cart notification
+      this.innerHTML = '<i class="fas fa-check"></i>';
+      this.style.backgroundColor = "#4caf50";
+
+      console.log("Added to cart:", productName, productPrice);
+
+      // Reset button after 2 seconds
+      setTimeout(() => {
+        this.innerHTML = '<i class="fas fa-shopping-cart"></i>';
+        this.style.backgroundColor = "var(--secondary-color)";
+      }, 2000);
+    });
+  });
+
+  // Product card click for detailed view
+  const productCards = document.querySelectorAll(".product-card");
+  productCards.forEach((card) => {
+    card.addEventListener("click", function (e) {
+      if (!e.target.closest(".add-to-cart")) {
+        const productName = this.querySelector(".product-info h3").textContent;
+        console.log("Viewing product:", productName);
+        // Add product detail page navigation here
+      }
+    });
+  });
+
+  // Smooth scroll behavior
+  document.documentElement.style.scrollBehavior = "smooth";
+});

@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swarnalaya - Chains Collection</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .chains-hero {
+        width: 100%;
+        max-width: 1200px;
+        margin: 20px auto 10px auto;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        border: 1px solid rgba(197, 160, 89, 0.2);
+      }
+      .chains-hero-img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-container">
+        <!-- Logo (Left Side) -->
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="logo.png" alt="Swarnalaya Logo" class="logo" />
+          </a>
+        </div>
+
+        <!-- Search Bar with Icons (Right Side) -->
+        <div class="search-container">
+          <div class="search-bar">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search jewelry..."
+            />
+            <button class="search-icon">
+              <i class="fas fa-search"></i>
+            </button>
+            <button class="camera-icon">
+              <i class="fas fa-camera"></i>
+            </button>
+            <button class="mic-icon">
+              <i class="fas fa-microphone"></i>
+            </button>
+          </div>
+          <div class="live-rates-ticker" id="liveRatesTicker">
+            <div class="ticker-pulse-dot"></div>
+            <div class="ticker-text-wrapper">
+              <div class="ticker-text" id="tickerText">Loading rates...</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Side Icons -->
+        <div class="header-right">
+          <a href="home.html">
+            <img src="home.png" id="home-btn" alt="Home" class="header-icon" />
+          </a>
+          <img src="heart.png" alt="Wishlist" class="header-icon" />
+          <div class="user-profile-menu">
+            <img src="user-avatar.png" alt="Profile" class="header-icon user-avatar-btn" />
+            <div class="profile-dropdown-menu">
+              <a href="login" class="dropdown-item" id="loginSignupBtn">Login/Signup</a>
+              <a href="contact" class="dropdown-item">Contact Us</a>
+            </div>
+          </div>
+          <img src="shopping-bag.png" alt="Cart" class="header-icon" />
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="all-jewellery.html" class="nav-link">
+              <img src="all-jewellery.png" alt="All Jewellery" class="nav-icon" />
+              <span>All Jewellery</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="all-jewellery.html?filter=gold" class="nav-link">
+              <img src="gold-ingots.png" alt="Gold" class="nav-icon" />
+              <span>Gold</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="all-jewellery.html?filter=diamond" class="nav-link">
+              <img src="cream.png" alt="Diamond" class="nav-icon" />
+              <span>Diamond</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="all-jewellery.html?filter=earrings" class="nav-link">
+              <img src="earrings.png" alt="Earrings" class="nav-icon" />
+              <span>Earrings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="all-jewellery.html?filter=rings" class="nav-link">
+              <img src="rings.png" alt="Rings" class="nav-icon" />
+              <span>Rings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="tryon" class="nav-link">
+              <img src="chatbot-avatar.png" alt="Try-On" class="nav-icon" />
+              <span>Virtual Try-On</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Chains Hero Banner -->
+      <div class="chains-hero">
+        <img src="chains-banner.jpg" alt="Chains Collection - Luxury for Everyday" class="chains-hero-img" />
+      </div>
+
+      <div class="listing-container" style="margin-top: 10px;">
+        <!-- Breadcrumbs -->
+        <div class="listing-breadcrumb">
+          <a href="index.html">Home</a> 
+          <i class="fas fa-chevron-right separator"></i> 
+          <span class="current">Chains</span>
+        </div>
+
+        <!-- Listing Header -->
+        <div class="listing-header">
+          <h1 id="listingTitle">Chains</h1>
+          <span class="results-count" id="listingResultsCount">(8 results)</span>
+        </div>
+
+        <!-- Filters Row -->
+        <div class="filter-bar">
+          <div class="filter-left">
+            <button class="filter-btn-main">
+              <i class="fas fa-sliders-h"></i> Filter <i class="fas fa-chevron-down" style="font-size: 11px;"></i>
+            </button>
+            <div class="filter-divider"></div>
+            <div class="filter-pills-list">
+              <div class="filter-pill-item" id="pricePill" data-active="false"><span class="plus-icon">+</span> ₹25,000 - ₹50,000</div>
+              <div class="filter-pill-item" id="genderPill" data-active="false"><span class="plus-icon">+</span> Women</div>
+              <div class="filter-pill-item" id="metalPill" data-active="false"><span class="plus-icon">+</span> Gold Chains</div>
+              <a class="show-more-link" id="showMoreFiltersBtn">+Show More</a>
+            </div>
+          </div>
+          <div class="filter-right">
+            <div class="sort-select-wrapper">
+              <span>Sort By: </span>
+              <select id="sortSelect">
+                <option value="best" selected>Best Matches</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="popular">Popularity</option>
+              </select>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products Listing Grid -->
+        <div class="listing-grid" id="listingGrid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Chat Assistant Widget -->
+    <div class="chat-assistant-widget" id="chatWidget">
+      <div class="chat-assistant-avatar">
+        <img src="user-avatar.png" alt="Support Agent">
+      </div>
+      <div class="chat-assistant-text">How can I help you?</div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Brand Column -->
+        <div class="footer-col brand-col">
+          <img src="logo.png" alt="Swarnalaya Logo" class="footer-logo" />
+          <p class="brand-desc">
+            Swarnalaya, Founded in March 2025 is built on a foundation of trust that spans five generations. We honor the "old world" commitment to quality—where every setting is secure and every stone is hand-selected—while embracing the "new world" of sustainable sourcing and avant-garde style.
+          </p>
+        </div>
+
+        <!-- Useful Links Column -->
+        <div class="footer-col links-col">
+          <h3>Useful Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">My Account</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Cancellation & Refund Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Us Column -->
+        <div class="footer-col contact-col" id="contact-col">
+          <h3>Contact Us</h3>
+          <ul class="contact-details">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>791C, PJN Road,<br>Villupuram-605 602</span>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>+91 9837371616</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>info@swarnalaya.com</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- QR Scanner Column -->
+        <div class="footer-col apps-col">
+          <div class="qr-container">
+            <img src="qr-code.png" alt="QR Scanner" class="qr-image" />
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      // Chains products data
+      const allProducts = [
+        { id: 1, type: 'gold', name: 'Classic Gold Rope Chain', category: 'Chain', price: 42000, img: 'new-gold-chain-item.png', isBestseller: true, gender: 'unisex', purity: 22 },
+        { id: 2, type: 'gold', name: 'Premium Curb Gold Chain', category: 'Chain', price: 58500, img: 'new-gold-chain-item.png', isBestseller: true, gender: 'men', purity: 22 },
+        { id: 3, type: 'gold', name: 'Sleek Box Gold Chain', category: 'Chain', price: 38000, img: 'new-gold-chain-item.png', isBestseller: false, gender: 'women', purity: 22 },
+        { id: 4, type: 'gold', name: 'Traditional Gold Link Chain', category: 'Chain', price: 72000, img: 'new-gold-chain-item.png', isBestseller: false, gender: 'unisex', purity: 22 },
+        { id: 5, type: 'silver', name: 'Sterling Silver Cable Chain', category: 'Chain', price: 8500, img: 'silver-chains-item.png', isBestseller: true, gender: 'unisex', purity: 92 },
+        { id: 6, type: 'silver', name: 'Classic Silver Rope Chain', category: 'Chain', price: 6200, img: 'silver-chains-item.png', isBestseller: false, gender: 'unisex', purity: 92 },
+        { id: 7, type: 'gold', name: 'Rose Gold Box Chain', category: 'Chain', price: 45000, img: 'new-gold-chain-item.png', isBestseller: false, gender: 'women', purity: 18 },
+        { id: 8, type: 'gold', name: 'White Gold Snake Chain', category: 'Chain', price: 51200, img: 'new-gold-chain-item.png', isBestseller: false, gender: 'unisex', purity: 18 }
+      ];
+
+      let priceFilterActive = false;
+      let genderFilterActive = false;
+      let metalFilterActive = false;
+
+      function renderProducts() {
+        const grid = document.getElementById('listingGrid');
+        grid.innerHTML = '';
+
+        let filtered = allProducts.filter(p => {
+          if (priceFilterActive && (p.price < 25000 || p.price > 50000)) return false;
+          if (genderFilterActive && p.gender !== 'women') return false;
+          if (metalFilterActive && p.type !== 'gold') return false;
+          return true;
+        });
+
+        const sortBy = document.getElementById('sortSelect').value;
+        if (sortBy === 'price-low') {
+          filtered.sort((a, b) => a.price - b.price);
+        } else if (sortBy === 'price-high') {
+          filtered.sort((a, b) => b.price - a.price);
+        } else if (sortBy === 'popular') {
+          filtered.sort((a, b) => (b.isBestseller ? 1 : 0) - (a.isBestseller ? 1 : 0));
+        }
+
+        document.getElementById('listingResultsCount').textContent = `(${filtered.length} results)`;
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">No chains match the selected filters.</div>';
+          return;
+        }
+
+        filtered.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'premium-product-card';
+          
+          let bestsellerBadge = p.isBestseller ? `<div class="bestseller-tag-badge">★ Bestsellers</div>` : '';
+          
+          card.innerHTML = `
+            <div class="card-image-container">
+              ${bestsellerBadge}
+              <button class="wishlist-heart-btn" onclick="toggleWishlist(event, this, '${p.name}')">
+                <i class="far fa-heart"></i>
+              </button>
+              <img src="${p.img}" alt="${p.name}">
+            </div>
+            <div class="card-details-box">
+              <h3>${p.name}</h3>
+              <div class="card-price-row">
+                <span class="card-price">₹${p.price.toLocaleString('en-IN')}</span>
+                <button class="card-btn-add" onclick="addToCartLocal(event, '${p.name}', ${p.price})">
+                  <i class="fas fa-shopping-cart"></i>
+                </button>
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      }
+
+      window.toggleWishlist = function(event, btn, productName = "Jewelry Item") {
+        event.preventDefault();
+        event.stopPropagation();
+        btn.classList.toggle('active');
+        const icon = btn.querySelector('i');
+        const isActive = btn.classList.contains('active');
+        if (isActive) {
+          icon.className = 'fas fa-heart';
+          if (typeof window.logCustomerActivity === 'function') {
+            window.logCustomerActivity('wishlist', `Added to wishlist: ${productName}`);
+          }
+        } else {
+          icon.className = 'far fa-heart';
+        }
+      };
+
+      window.addToCartLocal = function(event, name, price) {
+        event.preventDefault();
+        event.stopPropagation();
+        alert(`Added ${name} (₹${price.toLocaleString('en-IN')}) to your cart!`);
+      };
+
+      document.getElementById('pricePill').addEventListener('click', function() {
+        priceFilterActive = !priceFilterActive;
+        togglePillStyle(this, priceFilterActive);
+        renderProducts();
+      });
+
+      document.getElementById('genderPill').addEventListener('click', function() {
+        genderFilterActive = !genderFilterActive;
+        togglePillStyle(this, genderFilterActive);
+        renderProducts();
+      });
+
+      document.getElementById('metalPill').addEventListener('click', function() {
+        metalFilterActive = !metalFilterActive;
+        togglePillStyle(this, metalFilterActive);
+        renderProducts();
+      });
+
+      function togglePillStyle(pill, active) {
+        if (active) {
+          pill.style.background = '#8B2020';
+          pill.style.color = 'white';
+          pill.style.borderColor = '#8B2020';
+          pill.querySelector('.plus-icon').textContent = '×';
+          pill.querySelector('.plus-icon').style.color = 'white';
+        } else {
+          pill.style.background = '#fff';
+          pill.style.color = '#444';
+          pill.style.borderColor = '#ddd';
+          pill.querySelector('.plus-icon').textContent = '+';
+          pill.querySelector('.plus-icon').style.color = '#B52F2A';
+        }
+      }
+
+      document.getElementById('sortSelect').addEventListener('change', renderProducts);
+
+      document.getElementById('chatWidget').addEventListener('click', function() {
+        alert("Connecting with a live customer support representative for Swarnalaya Jewellers...");
+      });
+
+      document.addEventListener("DOMContentLoaded", renderProducts);
+    </script>
+  </body>
+</html>

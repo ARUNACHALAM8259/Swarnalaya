@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Swarnalaya</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .about-page-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .breadcrumb {
+        font-size: 14px;
+        color: var(--text-light);
+        margin-bottom: 25px;
+      }
+
+      .breadcrumb a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+
+      .about-title {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 42px;
+        color: var(--text-dark);
+        margin-bottom: 30px;
+        font-weight: 700;
+        border-bottom: 2px solid var(--secondary-color);
+        padding-bottom: 10px;
+        display: inline-block;
+      }
+
+      .about-content-section {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(26, 95, 74, 0.05);
+        color: var(--text-dark);
+        line-height: 1.8;
+      }
+
+      .about-content-section h2 {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 26px;
+        color: var(--primary-color);
+        margin-top: 30px;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .about-content-section p {
+        margin-bottom: 20px;
+        font-size: 16px;
+        text-align: justify;
+      }
+
+      .silver-points {
+        list-style: none;
+        padding: 0;
+        margin: 25px 0;
+      }
+
+      .silver-points li {
+        font-size: 16px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        color: var(--text-dark);
+      }
+
+      .silver-points li span {
+        color: var(--primary-color);
+        font-weight: bold;
+      }
+
+      .highlight-box {
+        background-color: #f7f9f8;
+        border-left: 4px solid var(--secondary-color);
+        padding: 20px;
+        border-radius: 0 8px 8px 0;
+        margin-top: 25px;
+        font-style: italic;
+      }
+
+      @media (max-width: 768px) {
+        .about-page-container {
+          margin: 20px auto;
+        }
+        .about-content-section {
+          padding: 25px 20px;
+        }
+        .about-title {
+          font-size: 32px;
+        }
+      }
+
+      /* Scroll-animated business tree container and card */
+      .tree-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 50px auto 0 auto;
+        width: 100%;
+        gap: 25px;
+      }
+
+      .group-logo-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        max-width: 480px;
+        width: 90%;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .tree-container.start-growth .group-logo-card {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 2.6s; /* Plays after the tree finishes growing */
+      }
+
+      .group-logo-img {
+        height: 70px;
+        width: auto;
+        object-fit: contain;
+      }
+
+      .group-logo-text {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: #7a431c;
+        letter-spacing: 0.5px;
+      }
+
+      @media (max-width: 480px) {
+        .group-logo-card {
+          flex-direction: row;
+          gap: 15px;
+        }
+        .group-logo-img {
+          height: 50px;
+        }
+        .group-logo-text {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-container">
+        <!-- Logo (Left Side) -->
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="logo.png" alt="Swarnalaya Logo" class="logo" />
+          </a>
+        </div>
+
+        <!-- Search Bar with Icons (Right Side) -->
+        <div class="search-container">
+          <div class="search-bar">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search jewelry..."
+            />
+            <button class="search-icon">
+              <i class="fas fa-search"></i>
+            </button>
+            <button class="camera-icon">
+              <i class="fas fa-camera"></i>
+            </button>
+            <button class="mic-icon">
+              <i class="fas fa-microphone"></i>
+            </button>
+          </div>
+          <div class="live-rates-ticker" id="liveRatesTicker">
+            <div class="ticker-pulse-dot"></div>
+            <div class="ticker-text-wrapper">
+              <div class="ticker-text" id="tickerText">Loading rates...</div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Side Icons -->
+        <div class="header-right">
+          <a href="home.html">
+            <img src="home.png" id="home-btn" alt="Home" class="header-icon" />
+          </a>
+          <img src="heart.png" alt="Wishlist" class="header-icon" />
+          <div class="user-profile-menu">
+            <img src="user-avatar.png" alt="Profile" class="header-icon user-avatar-btn" />
+            <div class="profile-dropdown-menu">
+              <a href="login" class="dropdown-item" id="loginSignupBtn">Login/Signup</a>
+              <a href="contact" class="dropdown-item">Contact Us</a>
+            </div>
+          </div>
+          <img src="shopping-bag.png" alt="Cart" class="header-icon" />
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="about-page-container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+          <a href="index.html">Home</a> / About Us
+        </div>
+
+        <!-- Title -->
+        <h1 class="about-title">About Us</h1>
+
+        <!-- Content Section -->
+        <div class="about-content-section">
+          <h2>Sri Mahalakshmi Groups of Swarnalaya</h2>
+          <p>
+            In the year 1919 Textile shop was started as "SHRI KRISHNA SWADESHI HALL" by Krishnappa Chettiar. It was the first licensed ration textile shop within 100 kms radius. Then his son Kubera Chettiar renamed it as "LAKSHMI STORES" and finally as "Shree Mahalakshmi Stores", a name that sustains till date. Our street was named after him as Kubera street. Then his grandson Janardhanan Chettiar expanded it as "MAHALAKSHMI SILK COMPLEX" with 14 Govt. Co-Operative silk societies as a silk complex for the first time in Tamil Nadu. His Great Grand sons expanded it into a 45000 Sq. Ft., multi-storied air conditioned showroom with elevators for the first time in Villupuram District in 2006. The showroom now has Society silk sarees, Bridal collections, Ready wares, Baby accessories, watches, toys, baggage's, fashion jewellery and books.
+          </p>
+          <p>
+            In 2006, We decided to cater our customers with gold and diamond jewellery of the finest quality and designs, We joined hands with one of the leading retailing company in India, Titan TATA GOLDPLUS, now Tanishq - Retail Chain. In 2009, We added another store at Vellore. We are proud to adorn many awards from the brand in various operations of the store. Tanishq offers various options to customers in Gold Jewellery, Diamond & Solitaire and Colour Stone Category. Also, offers Jewellery purchase scheme and lifetime service for jewellery purchased.
+          </p>
+
+          <ul class="silver-points">
+            <li><span>➤</span> Wide Range in Silver Jewellery, Artefacts, Idols, Gift Articles, Vessels & More..</li>
+            <li><span>➤</span> Exclusive Advance Booking Scheme for Silver.</li>
+            <li><span>➤</span> Best Exchange program for Silver.</li>
+            <li><span>➤</span> Product Range Starts from 0.500g to 5000g.</li>
+            <li><span>➤</span> Value for Money and Fixed Price Shop.</li>
+          </ul>
+
+          <h2>Our Mission</h2>
+          <p>
+            By taking time to understand our customer's evolving needs, we ensure superior customer experience, strong relationships and positive outcomes.
+          </p>
+          <p>
+            By employing competent employees with varying backgrounds, cultures and ideas we are building a customer centric organization.
+          </p>
+          <p>
+            By collaborating with each other at all the Levels within the organization, we achieve excellence in everything that we do.
+          </p>
+
+          <h2>Our Vision</h2>
+          <p>
+            To ensure substantial growth year on year through superior customer service, quality and commitment, there by developing ourselves and the society.
+          </p>
+
+          <h2>Values</h2>
+          <div class="highlight-box">
+            Dedication, Devotion & Passion is what we learnt, practice & preach.
+          </div>
+
+          <!-- Animated Business Tree Diagram -->
+          <div class="tree-container">
+            <svg class="tree-svg" viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 600px; height: auto; display: block; margin: 0 auto;">
+              <style>
+                .tree-trunk {
+                  fill: #7a431c;
+                  transform-origin: 308px 410px;
+                  transform: scaleY(0);
+                }
+                .tree-container.start-growth .tree-trunk {
+                  animation: growTrunk 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                }
+                .leaf-anim-container {
+                  transform-origin: 0px 0px;
+                  transform: scale(0);
+                }
+                .tree-container.start-growth .leaf-anim-container {
+                  animation: growLeaf 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                }
+                .label-text {
+                  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+                  font-size: 15px;
+                  font-weight: 600;
+                  fill: #555555;
+                  opacity: 0;
+                }
+                .tree-container.start-growth .label-text {
+                  animation: fadeInLabel 1.2s ease-out forwards;
+                }
+                @keyframes growTrunk {
+                  from { transform: scaleY(0); }
+                  to { transform: scaleY(1); }
+                }
+                @keyframes growLeaf {
+                  from { transform: scale(0); }
+                  to { transform: scale(1); }
+                }
+                @keyframes fadeInLabel {
+                  from { opacity: 0; transform: translateY(5px); }
+                  to { opacity: 1; transform: translateY(0); }
+                }
+              </style>
+
+              <!-- Trunk Path (Hand shape) -->
+              <path class="tree-trunk" d="M 292 410 C 292 370, 290 320, 275 285 C 255 240, 218 248, 222 232 C 225 218, 255 228, 270 252 C 275 220, 240 185, 258 178 C 272 172, 290 200, 292 232 C 295 195, 295 158, 308 158 C 320 158, 320 195, 322 232 C 325 200, 342 172, 356 178 C 372 185, 338 220, 342 252 C 358 228, 388 218, 391 232 C 395 248, 358 240, 338 285 C 322 320, 320 370, 320 410 Z" />
+
+              <!-- Leaves (Staggered Animations) -->
+              
+              <!-- Textile (Bottom Left) -->
+              <g transform="translate(255, 305)">
+                <g class="leaf-anim-container" style="animation-delay: 1.0s;">
+                  <g transform="rotate(-135)">
+                    <!-- Left Half -->
+                    <path d="M 0 0 C -15 -15, -15 -45, 0 -60 C -5 -40, -5 -20, 0 0" fill="#A2D149" />
+                    <!-- Right Half -->
+                    <path d="M 0 0 C 15 -15, 15 -45, 0 -60 C 5 -40, 5 -20, 0 0" fill="#7CB02C" />
+                  </g>
+                </g>
+              </g>
+
+              <!-- Hospital (Bottom Right) -->
+              <g transform="translate(355, 305)">
+                <g class="leaf-anim-container" style="animation-delay: 1.0s;">
+                  <g transform="rotate(135)">
+                    <path d="M 0 0 C -15 -15, -15 -45, 0 -60 C -5 -40, -5 -20, 0 0" fill="#A2D149" />
+                    <path d="M 0 0 C 15 -15, 15 -45, 0 -60 C 5 -40, 5 -20, 0 0" fill="#7CB02C" />
+                  </g>
+                </g>
+              </g>
+
+              <!-- Provision (Middle Left) -->
+              <g transform="translate(222, 232)">
+                <g class="leaf-anim-container" style="animation-delay: 1.4s;">
+                  <g transform="rotate(-95)">
+                    <path d="M 0 0 C -15 -15, -15 -45, 0 -60 C -5 -40, -5 -20, 0 0" fill="#A2D149" />
+                    <path d="M 0 0 C 15 -15, 15 -45, 0 -60 C 5 -40, 5 -20, 0 0" fill="#7CB02C" />
+                  </g>
+                </g>
+              </g>
+
+              <!-- School (Middle Right) -->
+              <g transform="translate(391, 232)">
+                <g class="leaf-anim-container" style="animation-delay: 1.4s;">
+                  <g transform="rotate(95)">
+                    <path d="M 0 0 C -15 -15, -15 -45, 0 -60 C -5 -40, -5 -20, 0 0" fill="#A2D149" />
+                    <path d="M 0 0 C 15 -15, 15 -45, 0 -60 C 5 -40, 5 -20, 0 0" fill="#7CB02C" />
+                  </g>
+                </g>
+              </g>
+
+              <!-- Jewelry (Top Left) -->
+              <g transform="translate(258, 178)">
+                <g class="leaf-anim-container" style="animation-delay: 1.8s;">
+                  <g transform="rotate(-55)">
+                    <path d="M 0 0 C -15 -15, -15 -45, 0 -60 C -5 -40, -5 -20, 0 0" fill="#A2D149" />
+                    <path d="M 0 0 C 15 -15, 15 -45, 0 -60 C 5 -40, 5 -20, 0 0" fill="#7CB02C" />
+                  </g>
+                </g>
+              </g>
+
+              <!-- Mahalakshmi Plaza (Top Right) -->
+              <g transform="translate(356, 178)">
+                <g class="leaf-anim-container" style="animation-delay: 1.8s;">
+                  <g transform="rotate(55)">
+                    <path d="M 0 0 C -15 -15, -15 -45, 0 -60 C -5 -40, -5 -20, 0 0" fill="#A2D149" />
+                    <path d="M 0 0 C 15 -15, 15 -45, 0 -60 C 5 -40, 5 -20, 0 0" fill="#7CB02C" />
+                  </g>
+                </g>
+              </g>
+
+              <!-- Automobiles (Top Center) -->
+              <g transform="translate(308, 158)">
+                <g class="leaf-anim-container" style="animation-delay: 2.2s;">
+                  <g transform="rotate(0)">
+                    <path d="M 0 0 C -15 -15, -15 -45, 0 -60 C -5 -40, -5 -20, 0 0" fill="#A2D149" />
+                    <path d="M 0 0 C 15 -15, 15 -45, 0 -60 C 5 -40, 5 -20, 0 0" fill="#7CB02C" />
+                  </g>
+                </g>
+              </g>
+
+              <!-- Labels -->
+              <text x="308" y="75" class="label-text" style="animation-delay: 2.2s;" text-anchor="middle">Automobiles</text>
+              <text x="210" y="115" class="label-text" style="animation-delay: 1.8s;" text-anchor="middle">Jewelry</text>
+              <text x="135" y="255" class="label-text" style="animation-delay: 1.4s;" text-anchor="end">Provision</text>
+              <text x="215" y="375" class="label-text" style="animation-delay: 1.0s;" text-anchor="middle">Textile</text>
+              
+              <text x="420" y="110" class="label-text" style="animation-delay: 1.8s;" text-anchor="middle">
+                <tspan x="420" dy="0">Mahalakshmi</tspan>
+                <tspan x="420" dy="18">Plaza</tspan>
+              </text>
+              <text x="480" y="225" class="label-text" style="animation-delay: 1.4s;" text-anchor="start">School</text>
+              <text x="395" y="375" class="label-text" style="animation-delay: 1.0s;" text-anchor="middle">Hospital</text>
+            </svg>
+
+            <!-- Brand Logo Box (Goddess Lakshmi logo and Sri Maghalakshmi Groups title card) -->
+            <div class="group-logo-card">
+              <img src="sri-maghalakshmi-logo.jpg" alt="Sri Maghalakshmi Groups Logo" class="group-logo-img" />
+              <div class="group-logo-text">Sri Maghalakshmi Groups</div>
+            </div>
+          </div>
+
+          <!-- Centered Video (Muted, 2.0x Speed, Autoplay, Loop) -->
+          <div class="about-video-container" style="display: flex; flex-direction: column; align-items: center; margin-top: 20px; width: 100%;">
+            <video id="aboutVideo" width="100%" style="max-width: 720px; border-radius: 12px; box-shadow: var(--shadow); border: 1px solid rgba(26, 95, 74, 0.1);" autoplay loop muted playsinline>
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-gold-jewelry-in-a-box-43187-large.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              // Video playback speed setup
+              const video = document.getElementById("aboutVideo");
+              if (video) {
+                video.playbackRate = 2.0;
+                video.addEventListener("play", function() {
+                  video.playbackRate = 2.0;
+                });
+              }
+
+              // Scroll-triggered tree growth animation (observes container intersection)
+              const treeContainer = document.querySelector(".tree-container");
+              if (treeContainer) {
+                const observer = new IntersectionObserver((entries) => {
+                  entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                      treeContainer.classList.add("start-growth");
+                    } else {
+                      treeContainer.classList.remove("start-growth");
+                    }
+                  });
+                }, {
+                  threshold: 0.15
+                });
+                observer.observe(treeContainer);
+              }
+            });
+          </script>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Brand Column -->
+        <div class="footer-col brand-col">
+          <img src="logo.png" alt="Swarnalaya Logo" class="footer-logo" />
+          <p class="brand-desc">
+            Swarnalaya, Founded in March 2025 is built on a foundation of trust that spans five generations. We honor the "old world" commitment to quality—where every setting is secure and every stone is hand-selected—while embracing the "new world" of sustainable sourcing and avant-garde style.
+          </p>
+        </div>
+
+        <!-- Useful Links Column -->
+        <div class="footer-col links-col">
+          <h3>Useful Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Main Shop</a></li>
+            <li><a href="home.html">About Us</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Us Column -->
+        <div class="footer-col contact-col" id="contact-col">
+          <h3>Contact Us</h3>
+          <ul class="contact-details">
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>791C, PJN Road,<br>Villupuram-605 602</span>
+            </li>
+            <li>
+              <i class="fas fa-phone"></i>
+              <span>+91 9837371616</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>info@swarnalaya.com</span>
+            </li>
+          </ul>
+          <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <!-- QR Scanner and App Download Column -->
+        <div class="footer-col apps-col">
+          <div class="qr-container">
+            <img src="qr-code.png" alt="QR Scanner" class="qr-image" />
+          </div>
+          <div class="download-badges">
+            <a href="#" class="download-badge">
+              <svg class="badge-svg" viewBox="0 0 135 40" width="125" height="38">
+                <rect width="135" height="40" rx="6" fill="#000" stroke="#a6a6a6" stroke-width="0.5"/>
+                <path d="M20.5 13.8c-.1-2 1.6-3 1.7-3.1-1-.7-2.1-1-2.4-1-.8-.1-1.6.4-2 .4s-1.1-.4-1.8-.4c-.9 0-1.8.5-2.2 1.3-1 1.7-.3 4.2.7 5.6.5.7 1 1.5 1.7 1.4.7-.1 1-.5 1.8-.5s1.1.4 1.8.4c.7 0 1.2-.7 1.6-1.3.5-.7.7-1.4.7-1.4-.1 0-1.7-.6-1.8-2.5z M18.4 8.9c.4-.5.6-1.1.5-1.7-.5 0-1.1.3-1.5.8-.3.4-.6 1-.5 1.6.6 0 1.1-.2 1.5-.7z" fill="#fff" />
+                <text x="32" y="15" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="7" font-weight="500">Download on the</text>
+                <text x="32" y="27" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">App Store</text>
+              </svg>
+            </a>
+            <a href="#" class="download-badge">
+              <svg class="badge-svg" viewBox="0 0 135 40" width="125" height="38">
+                <rect width="135" height="40" rx="6" fill="#000" stroke="#a6a6a6" stroke-width="0.5"/>
+                <g transform="translate(12, 10) scale(0.8)">
+                  <path d="M 0 2.5 L 0 22.5 L 10.5 12.5 Z" fill="#00e5ff" />
+                  <path d="M 0 2.5 L 10.5 12.5 L 15.5 7.5 Z" fill="#ff3d00" />
+                  <path d="M 10.5 12.5 L 15.5 17.5 L 15.5 7.5 Z" fill="#ffc107" />
+                  <path d="M 0 22.5 L 15.5 17.5 L 10.5 12.5 Z" fill="#4caf50" />
+                </g>
+                <text x="32" y="15" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="7" font-weight="500">GET IT ON</text>
+                <text x="32" y="27" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">Google Play</text>
+              </svg>
+            </a>
+          </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
