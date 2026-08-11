@@ -502,7 +502,7 @@
       // Check current session state synchronously on load
       const sessionData = localStorage.getItem("swarnalaya_auth_user");
       if (!sessionData) {
-        window.location.href = "login";
+        window.location.href = "login.html";
       }
 
       const user = JSON.parse(sessionData);
