@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Out – Swarnalaya Jewellers</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --green: #1a5f4a;
+        --green-d: #124334;
+        --green-light: #e8f5f1;
+        --gold: #c5a059;
+        --gold-l: #f4d464;
+        --white: #ffffff;
+        --cream: #faf8f4;
+        --text: #111827;
+        --text-2: #374151;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --error: #dc2626;
+        --error-bg: #fef2f2;
+      }
+
+      html,
+      body {
+        height: 100%;
+        font-family: "Inter", sans-serif;
+        background: var(--cream);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── Full-page layout ──────────────────────────────────── */
+      .page {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* ── Left branding panel ───────────────────────────────── */
+      .left {
+        background: var(--green);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 48px 52px;
+      }
+
+      .left::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("banner2.jpg") center/cover no-repeat;
+        opacity: 0.25;
+      }
+
+      .left::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+
+      .left-deco-1,
+      .left-deco-2 {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(197, 160, 89, 0.12);
+        pointer-events: none;
+      }
+      .left-deco-1 {
+        width: 360px;
+        height: 360px;
+        top: -70px;
+        right: -90px;
+      }
+      .left-deco-2 {
+        width: 220px;
+        height: 220px;
+        bottom: 130px;
+        right: -50px;
+      }
+
+      .left-logo {
+        position: absolute;
+        top: 40px;
+        left: 52px;
+        z-index: 2;
+      }
+      .left-logo img {
+        height: 60px;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+        opacity: 0.9;
+      }
+
+      .left-content {
+        position: relative;
+        z-index: 2;
+        color: var(--white);
+      }
+
+      .left-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: rgba(197, 160, 89, 0.18);
+        border: 1px solid rgba(197, 160, 89, 0.35);
+        color: var(--gold-l);
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 100px;
+        margin-bottom: 22px;
+      }
+
+      .left-headline {
+        font-family: "Playfair Display", serif;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.25;
+        margin-bottom: 14px;
+      }
+      .left-headline em {
+        color: var(--gold-l);
+        font-style: normal;
+      }
+
+      .left-sub {
+        font-size: 14px;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 360px;
+        margin-bottom: 36px;
+      }
+
+      .left-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .left-link {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .left-link:hover {
+        color: var(--gold-l);
+      }
+
+      .left-link-icon {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: var(--gold-l);
+        flex-shrink: 0;
+      }
+
+      /* ── Right panel ───────────────────────────────────────── */
+      .right {
+        background: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 52px;
+        overflow-y: auto;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 420px;
+      }
+
+      /* Mobile logo */
+      .mob-logo {
+        display: none;
+        justify-content: center;
+        margin-bottom: 32px;
+      }
+      .mob-logo img {
+        height: 52px;
+        object-fit: contain;
+      }
+
+      /* ── User info card ─────────────────────────────────────── */
+      .user-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: var(--green-light);
+        border: 1.5px solid rgba(26, 95, 74, 0.15);
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin-bottom: 28px;
+      }
+
+      .user-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: var(--white);
+        font-weight: 700;
+        flex-shrink: 0;
+        font-family: "Playfair Display", serif;
+      }
+
+      .user-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .user-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .user-phone {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      .user-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: var(--green);
+        color: var(--white);
+        font-size: 10.5px;
+        font-weight: 600;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 100px;
+        flex-shrink: 0;
+      }
+
+      /* ── Heading ────────────────────────────────────────────── */
+      .page-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        background: #fef2f2;
+        border: 1.5px solid #fecaca;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: var(--error);
+        margin-bottom: 20px;
+      }
+
+      .page-title {
+        font-family: "Playfair Display", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+
+      .page-sub {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 32px;
+      }
+
+      /* ── Divider ────────────────────────────────────────────── */
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .divider::before,
+      .divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      /* ── Buttons ────────────────────────────────────────────── */
+      .btn {
+        width: 100%;
+        height: 52px;
+        border-radius: 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        transition: all 0.22s;
+        border: none;
+      }
+
+      .btn-logout {
+        background: var(--error);
+        color: var(--white);
+        box-shadow: 0 4px 14px rgba(220, 38, 38, 0.2);
+      }
+      .btn-logout:hover {
+        background: #b91c1c;
+        box-shadow: 0 6px 20px rgba(220, 38, 38, 0.28);
+        transform: translateY(-1px);
+      }
+      .btn-logout:active {
+        transform: translateY(0);
+      }
+
+      .btn-stay {
+        background: var(--white);
+        color: var(--green);
+        border: 1.5px solid var(--green);
+        margin-top: 12px;
+      }
+      .btn-stay:hover {
+        background: var(--green-light);
+        transform: translateY(-1px);
+      }
+      .btn-stay:active {
+        transform: translateY(0);
+      }
+
+      /* Spinner inside button */
+      .spinner {
+        display: none;
+        width: 18px;
+        height: 18px;
+        border: 2.5px solid rgba(255, 255, 255, 0.35);
+        border-top-color: var(--white);
+        border-radius: 50%;
+        animation: spin 0.75s linear infinite;
+      }
+      .btn-logout.loading .spinner {
+        display: block;
+      }
+      .btn-logout.loading .btn-text {
+        opacity: 0.8;
+      }
+      .btn-logout.loading .btn-icon {
+        display: none;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ── What gets cleared info ─────────────────────────────── */
+      .clear-list {
+        background: #fafafa;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 18px;
+        margin-bottom: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .clear-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--text-2);
+      }
+
+      .clear-item i {
+        width: 18px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* ── Success state (shown after logout) ─────────────────── */
+      .success-state {
+        display: none;
+        text-align: center;
+        animation: fadeUp 0.35s ease both;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .success-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--green-light);
+        border: 2.5px solid var(--green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        color: var(--green);
+        margin: 0 auto 20px;
+        animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+      }
+
+      @keyframes popIn {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        70% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .success-title {
+        font-family: "Playfair Display", serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+
+      .success-sub {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 28px;
+      }
+
+      .redirect-bar {
+        height: 4px;
+        background: var(--border);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+      .redirect-fill {
+        height: 100%;
+        background: var(--green);
+        border-radius: 2px;
+        width: 0;
+        transition: width 3s linear;
+      }
+
+      .redirect-note {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* ── Not logged in state ────────────────────────────────── */
+      .not-logged-in {
+        display: none;
+        text-align: center;
+      }
+
+      .not-logged-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: #eff6ff;
+        border: 2px solid #bfdbfe;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        color: #3b82f6;
+        margin: 0 auto 20px;
+      }
+
+      .not-logged-title {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .not-logged-sub {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 28px;
+        line-height: 1.6;
+      }
+
+      .btn-login {
+        background: var(--green);
+        color: var(--white);
+        box-shadow: 0 4px 14px rgba(26, 95, 74, 0.2);
+      }
+      .btn-login:hover {
+        background: var(--green-d);
+        transform: translateY(-1px);
+      }
+
+      /* ── Footer note ────────────────────────────────────────── */
+      .footer-note {
+        margin-top: 28px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      .footer-note a {
+        color: var(--green);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .footer-note a:hover {
+        text-decoration: underline;
+      }
+
+      /* ── Responsive ─────────────────────────────────────────── */
+      @media (max-width: 900px) {
+        .page {
+          grid-template-columns: 1fr;
+        }
+        .left {
+          display: none;
+        }
+        .right {
+          padding: 40px 24px;
+          min-height: 100vh;
+          align-items: flex-start;
+          padding-top: 40px;
+        }
+        .mob-logo {
+          display: flex;
+        }
+        .card {
+          max-width: 480px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .right {
+          padding: 32px 18px;
+        }
+        .page-title {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- ════════ LEFT BRANDING ════════════════════════════════ -->
+      <div class="left">
+        <div class="left-deco-1"></div>
+        <div class="left-deco-2"></div>
+
+        <a href="index.html" class="left-logo">
+          <img src="logo.png" alt="Swarnalaya" />
+        </a>
+
+        <div class="left-content">
+          <div class="left-badge">
+            <i class="fas fa-gem"></i>
+            Premium Jewellery Since 1995
+          </div>
+
+          <h1 class="left-headline">See You<br /><em>Again Soon</em></h1>
+
+          <p class="left-sub">
+            Your session will be safely ended. You can sign back in anytime to
+            access your savings schemes and wishlist.
+          </p>
+
+          <div class="left-links">
+            <a href="index.html" class="left-link">
+              <div class="left-link-icon"><i class="fas fa-store"></i></div>
+              Continue browsing our collections
+            </a>
+            <a href="collections.html" class="left-link">
+              <div class="left-link-icon"><i class="fas fa-gem"></i></div>
+              Explore new arrivals
+            </a>
+            <a href="contact.html" class="left-link">
+              <div class="left-link-icon"><i class="fas fa-headset"></i></div>
+              Need help? Contact us
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ RIGHT FORM ═══════════════════════════════════ -->
+      <div class="right">
+        <div class="card">
+          <!-- Mobile logo -->
+          <div class="mob-logo">
+            <a href="index.html"><img src="logo.png" alt="Swarnalaya" /></a>
+          </div>
+
+          <!-- ── State 1: Confirm logout (default) ───────────── -->
+          <div id="confirmState">
+            <!-- Logged-in user info -->
+            <div class="user-card" id="userCard">
+              <div class="user-avatar" id="userAvatar">U</div>
+              <div class="user-info">
+                <div class="user-name" id="userName">Loading…</div>
+                <div class="user-phone" id="userPhone"></div>
+              </div>
+              <div class="user-badge"><i class="fas fa-crown"></i> Member</div>
+            </div>
+
+            <div class="page-icon">
+              <i class="fas fa-sign-out-alt"></i>
+            </div>
+
+            <h1 class="page-title">Sign Out?</h1>
+            <p class="page-sub">
+              You're about to sign out of your Swarnalaya account. Your savings
+              schemes and wishlist will be safely stored.
+            </p>
+
+            <!-- What gets cleared -->
+            <div class="clear-list">
+              <div class="clear-item">
+                <i class="fas fa-check-circle" style="color: #15803d"></i>
+                Your savings scheme data is saved on our servers
+              </div>
+              <div class="clear-item">
+                <i class="fas fa-check-circle" style="color: #15803d"></i>
+                Wishlist items are preserved for next login
+              </div>
+              <div class="clear-item">
+                <i class="fas fa-times-circle" style="color: #dc2626"></i>
+                Your local session &amp; auth token will be cleared
+              </div>
+              <div class="clear-item">
+                <i class="fas fa-times-circle" style="color: #dc2626"></i>
+                You'll need to verify OTP again to sign back in
+              </div>
+            </div>
+
+            <!-- Confirm logout button -->
+            <button class="btn btn-logout" id="confirmLogoutBtn" type="button">
+              <div class="spinner"></div>
+              <span class="btn-text">Yes, Sign Me Out</span>
+              <i class="btn-icon fas fa-arrow-right"></i>
+            </button>
+
+            <!-- Stay button -->
+            <button class="btn btn-stay" id="stayBtn" type="button">
+              <i class="fas fa-arrow-left"></i>
+              No, Stay Signed In
+            </button>
+
+            <div class="footer-note">
+              By signing out you confirm this is a shared or public device.<br />
+              <a href="index.html">Back to shop</a> &nbsp;·&nbsp;
+              <a href="contact.html">Contact support</a>
+            </div>
+          </div>
+          <!-- /confirmState -->
+
+          <!-- ── State 2: Success after logout ───────────────── -->
+          <div class="success-state" id="successState">
+            <div class="success-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="success-title">Signed Out Successfully</div>
+            <p class="success-sub">
+              You have been safely signed out.<br />
+              Thanks for visiting Swarnalaya Jewellers. See you soon!
+            </p>
+            <div class="redirect-bar">
+              <div class="redirect-fill" id="redirectFill"></div>
+            </div>
+            <p class="redirect-note" id="redirectNote">
+              Redirecting to home page in 3 seconds…
+            </p>
+          </div>
+
+          <!-- ── State 3: Already logged out ─────────────────── -->
+          <div class="not-logged-in" id="notLoggedState">
+            <div class="not-logged-icon">
+              <i class="fas fa-user-slash"></i>
+            </div>
+            <div class="not-logged-title">No Active Session</div>
+            <p class="not-logged-sub">
+              You're not currently signed in to any account. Sign in to access
+              your savings schemes and exclusive member benefits.
+            </p>
+            <button class="btn btn-login" id="goLoginBtn" type="button">
+              <i class="fas fa-sign-in-alt"></i>
+              Sign In to Your Account
+            </button>
+            <div class="footer-note" style="margin-top: 20px">
+              <a href="index.html">Back to shop</a>
+            </div>
+          </div>
+        </div>
+        <!-- /card -->
+      </div>
+      <!-- /right -->
+    </div>
+    <!-- /page -->
+
+    <script>
+      "use strict";
+
+      // ── DOM refs ──────────────────────────────────────────────
+      const confirmState = document.getElementById("confirmState");
+      const successState = document.getElementById("successState");
+      const notLoggedState = document.getElementById("notLoggedState");
+
+      const userCard = document.getElementById("userCard");
+      const userAvatar = document.getElementById("userAvatar");
+      const userNameEl = document.getElementById("userName");
+      const userPhoneEl = document.getElementById("userPhone");
+
+      const confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+      const stayBtn = document.getElementById("stayBtn");
+      const goLoginBtn = document.getElementById("goLoginBtn");
+      const redirectFill = document.getElementById("redirectFill");
+      const redirectNote = document.getElementById("redirectNote");
+
+      // ── Check session ─────────────────────────────────────────
+      const raw = localStorage.getItem("swarnalaya_auth_user");
+
+      if (!raw) {
+        // No session — show "not logged in" state
+        confirmState.style.display = "none";
+        notLoggedState.style.display = "block";
+      } else {
+        // Session found — populate user card
+        try {
+          const user = JSON.parse(raw);
+
+          const name = user.name || "";
+          const phone = user.phone || user.mobile || "";
+          const email = user.email || "";
+
+          // Avatar: first letter of name, or first letter of phone
+          const initial = name
+            ? name.charAt(0).toUpperCase()
+            : phone
+              ? phone.charAt(0)
+              : "U";
+          userAvatar.textContent = initial;
+
+          // Display name
+          let displayName = name || email || phone || "Customer";
+          if (displayName.endsWith("@swarnalaya.com")) {
+            displayName = displayName.split("@")[0];
+          }
+          userNameEl.textContent = displayName;
+
+          // Sub-line: phone or email
+          if (phone) {
+            const cleaned = phone.replace(/^91/, "");
+            userPhoneEl.textContent =
+              "+91 " + cleaned.replace(/(\d{5})(\d{5})/, "$1 $2");
+          } else if (email) {
+            userPhoneEl.textContent = email;
+          }
+        } catch (_) {
+          userNameEl.textContent = "Your Account";
+        }
+      }
+
+      // ── Perform logout ────────────────────────────────────────
+      function doLogout() {
+        // Loading state
+        confirmLogoutBtn.disabled = true;
+        confirmLogoutBtn.classList.add("loading");
+
+        // Slight delay for UX — feels intentional, not instant
+        setTimeout(() => {
+          // Clear all auth data
+          localStorage.removeItem("swarnalaya_auth_user");
+          sessionStorage.clear();
+
+          // Also clear any cart / wishlist data if stored locally
+          // (keep scheme data as it's server-side)
+          localStorage.removeItem("swarnalaya_cart");
+          localStorage.removeItem("swarnalaya_wishlist");
+
+          // Notify server (fire-and-forget, don't block UI)
+          try {
+            fetch("/api/activity", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                activityType: "logout",
+                details: "User signed out via logout page",
+                page: "logout.html",
+              }),
+            }).catch(() => {}); // silent — don't block redirect
+          } catch (_) {}
+
+          // Show success screen
+          confirmState.style.display = "none";
+          successState.style.display = "block";
+
+          // Start redirect progress bar
+          setTimeout(() => {
+            redirectFill.style.width = "100%";
+          }, 50);
+
+          // Countdown note
+          let secs = 3;
+          const tick = setInterval(() => {
+            secs--;
+            redirectNote.textContent = `Redirecting to home page in ${secs} second${secs !== 1 ? "s" : ""}…`;
+            if (secs <= 0) {
+              clearInterval(tick);
+              window.location.replace("index.html");
+            }
+          }, 1000);
+        }, 600); // 600ms loading feel
+      }
+
+      // ── Button events ─────────────────────────────────────────
+      confirmLogoutBtn.addEventListener("click", doLogout);
+
+      stayBtn.addEventListener("click", () => {
+        // Go back to previous page, or dashboard if no history
+        if (document.referrer && !document.referrer.includes("logout")) {
+          window.history.back();
+        } else {
+          window.location.href = "dashboard.html";
+        }
+      });
+
+      goLoginBtn.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
+
+      // ── Keyboard shortcut: Enter = confirm logout ─────────────
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && raw && !confirmLogoutBtn.disabled) {
+          doLogout();
+        }
+        if (e.key === "Escape") {
+          stayBtn.click();
+        }
+      });
+    </script>
+  </body>
+</html>

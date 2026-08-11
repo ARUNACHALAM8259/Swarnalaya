@@ -9,6 +9,26 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <style>
+      .gemstone-hero-video-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        border: none;
+        border-bottom: 2px solid rgba(197, 160, 89, 0.2);
+        display: none;
+      }
+      .gemstone-hero-video {
+        width: 100%;
+        height: auto;
+        display: block;
+        max-height: 500px;
+        object-fit: cover;
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
@@ -46,7 +66,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Right Side Icons -->
         <div class="header-right">
           <a href="home.html">
@@ -54,11 +74,12 @@
           </a>
           <img src="heart.png" alt="Wishlist" class="header-icon" />
           <div class="user-profile-menu">
-            <img src="user-avatar.png" alt="Profile" class="header-icon user-avatar-btn" />
-            <div class="profile-dropdown-menu">
-              <a href="login" class="dropdown-item" id="loginSignupBtn">Login/Signup</a>
-              <a href="contact" class="dropdown-item">Contact Us</a>
-            </div>
+            <img
+              src="user-avatar.png"
+              alt="Profile"
+              class="header-icon user-avatar-btn"
+            />
+            <div class="profile-dropdown-menu"></div>
           </div>
           <img src="shopping-bag.png" alt="Cart" class="header-icon" />
         </div>
@@ -69,7 +90,7 @@
     <nav class="navbar">
       <div class="nav-container">
         <ul class="nav-menu">
-                    <li class="nav-item has-mega-menu">
+          <li class="nav-item has-mega-menu">
             <a href="#" class="nav-link" id="alljewelleryMegaMenuBtn">
               <img
                 src="all-jewellery.png"
@@ -134,76 +155,112 @@
             </a>
           </li>
         </ul>
-        
-                <!-- All Jewellery Mega Dropdown Panel -->
+
+        <!-- All Jewellery Mega Dropdown Panel -->
         <div class="mega-dropdown" id="alljewelleryMegaDropdown">
-          <div class="mega-dropdown-container" style="flex-direction: column;">
-            <div style="display: flex; min-height: 200px;">
+          <div class="mega-dropdown-container" style="flex-direction: column">
+            <div style="display: flex; min-height: 200px">
               <!-- Sidebar (Left) -->
               <div class="mega-sidebar">
-                <div class="sidebar-item active" data-tab="category">Category</div>
+                <div class="sidebar-item active" data-tab="category">
+                  Category
+                </div>
                 <div class="sidebar-item" data-tab="price">Price</div>
                 <div class="sidebar-item" data-tab="occasion">Occasion</div>
                 <div class="sidebar-item" data-tab="gender">Gender</div>
               </div>
               <!-- Content Grid (Right) -->
-              <div class="mega-grids-wrapper" style="flex: 1;">
+              <div class="mega-grids-wrapper" style="flex: 1">
                 <!-- Category Tab Content -->
-                <div class="mega-grid active-grid" id="tab-alljewellery-category">
+                <div
+                  class="mega-grid active-grid"
+                  id="tab-alljewellery-category"
+                >
                   <!-- Column 1 -->
                   <div class="mega-column">
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="all-jewellery.png" alt="All Jewellery" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="all-jewellery.png" alt="All Jewellery" />
+                      </div>
                       <span>All Jewellery</span>
                     </a>
-                    <a href="/all-jewellery?filter=rings" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-ring-base1.png" alt="Finger Rings" /></div>
+                    <a href="all-jewellery.html?filter=rings" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-ring-base1.png" alt="Finger Rings" />
+                      </div>
                       <span>Finger Rings</span>
                     </a>
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="nose-pin.png" alt="Nose Pin" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="nose-pin.png" alt="Nose Pin" />
+                      </div>
                       <span>Nose Pin</span>
                     </a>
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-bangles-item.png" alt="Bangles" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-bangles-item.png" alt="Bangles" />
+                      </div>
                       <span>Bangles</span>
                     </a>
                   </div>
                   <!-- Column 2 -->
                   <div class="mega-column">
-                    <a href="/all-jewellery?filter=earrings" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="earrings.png" alt="Earrings" /></div>
+                    <a
+                      href="all-jewellery.html?filter=earrings"
+                      class="mega-sub-item"
+                    >
+                      <div class="sub-item-icon">
+                        <img src="earrings.png" alt="Earrings" />
+                      </div>
                       <span>Earrings</span>
                     </a>
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-mangalsutra.png" alt="Mangalsutra" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-mangalsutra.png" alt="Mangalsutra" />
+                      </div>
                       <span>Mangalsutra</span>
                     </a>
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-necklace.jpg" alt="Necklaces" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-necklace.jpg" alt="Necklaces" />
+                      </div>
                       <span>Necklaces</span>
                     </a>
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="silver-bracelet.jpg" alt="Bracelets" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="silver-bracelet.jpg" alt="Bracelets" />
+                      </div>
                       <span>Bracelets</span>
                     </a>
                   </div>
                   <!-- Column 3 -->
                   <div class="mega-column">
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="ruby-pendant.jpg" alt="Pendants" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="ruby-pendant.jpg" alt="Pendants" />
+                      </div>
                       <span>Pendants</span>
                     </a>
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="new-gold-chain-item.png" alt="Chains" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="new-gold-chain-item.png" alt="Chains" />
+                      </div>
                       <span>Chains</span>
                     </a>
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="bridal-set.jpg" alt="Necklace Set" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="bridal-set.jpg" alt="Necklace Set" />
+                      </div>
                       <span>Necklace Set</span>
                     </a>
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="ruby-pendant.jpg" style="filter: hue-rotate(90deg);" alt="Pendants & Earring Set" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img
+                          src="ruby-pendant.jpg"
+                          style="filter: hue-rotate(90deg)"
+                          alt="Pendants & Earring Set"
+                        />
+                      </div>
                       <span>Pendants & Earring Set</span>
                     </a>
                   </div>
@@ -212,28 +269,38 @@
                 <!-- Price Tab Content -->
                 <div class="mega-grid" id="tab-alljewellery-price">
                   <div class="mega-column">
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-ring-base4.png" alt="Under 10k" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-ring-base4.png" alt="Under 10k" />
+                      </div>
                       <span>Under ₹10,000</span>
                     </a>
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-ring-base1.png" alt="10k-20k" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-ring-base1.png" alt="10k-20k" />
+                      </div>
                       <span>₹10,000 - ₹20,000</span>
                     </a>
                   </div>
                   <div class="mega-column">
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-earrings-item.png" alt="20k-50k" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-earrings-item.png" alt="20k-50k" />
+                      </div>
                       <span>₹20,000 - ₹50,000</span>
                     </a>
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-bangles-item.png" alt="50k-100k" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-bangles-item.png" alt="50k-100k" />
+                      </div>
                       <span>₹50,000 - ₹1,00,000</span>
                     </a>
                   </div>
                   <div class="mega-column">
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-necklace.jpg" alt="Over 100k" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-necklace.jpg" alt="Over 100k" />
+                      </div>
                       <span>Above ₹1,00,000</span>
                     </a>
                   </div>
@@ -242,24 +309,32 @@
                 <!-- Occasion Tab Content -->
                 <div class="mega-grid" id="tab-alljewellery-occasion">
                   <div class="mega-column">
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-necklace.jpg" alt="Wedding" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-necklace.jpg" alt="Wedding" />
+                      </div>
                       <span>Wedding Wear</span>
                     </a>
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="daily-wear.png" alt="Daily Wear" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="daily-wear.png" alt="Daily Wear" />
+                      </div>
                       <span>Daily Wear</span>
                     </a>
                   </div>
                   <div class="mega-column">
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="festive-wear.png" alt="Festive Wear" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="festive-wear.png" alt="Festive Wear" />
+                      </div>
                       <span>Festive Wear</span>
                     </a>
                   </div>
                   <div class="mega-column">
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gift-box.png" alt="Gifting" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gift-box.png" alt="Gifting" />
+                      </div>
                       <span>Gifting</span>
                     </a>
                   </div>
@@ -268,20 +343,26 @@
                 <!-- Gender Tab Content -->
                 <div class="mega-grid" id="tab-alljewellery-gender">
                   <div class="mega-column">
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="womens-collection.png" alt="Women" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="womens-collection.png" alt="Women" />
+                      </div>
                       <span>Women</span>
                     </a>
                   </div>
                   <div class="mega-column">
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="mens-collection.png" alt="Men" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="mens-collection.png" alt="Men" />
+                      </div>
                       <span>Men</span>
                     </a>
                   </div>
                   <div class="mega-column">
-                    <a href="/all-jewellery" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="kids-collection.png" alt="Kids" /></div>
+                    <a href="all-jewellery.html" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="kids-collection.png" alt="Kids" />
+                      </div>
                       <span>Kids</span>
                     </a>
                   </div>
@@ -301,17 +382,19 @@
                   <p>14,000+ designs to choose from</p>
                 </div>
               </div>
-              <a href="/all-jewellery" class="banner-btn">View All</a>
+              <a href="all-jewellery.html" class="banner-btn">View All</a>
             </div>
           </div>
         </div>
-<!-- Gold Mega Dropdown Panel -->
+        <!-- Gold Mega Dropdown Panel -->
         <div class="mega-dropdown" id="goldMegaDropdown">
-          <div class="mega-dropdown-container" style="flex-direction: column;">
-            <div style="display: flex; min-height: 200px;">
+          <div class="mega-dropdown-container" style="flex-direction: column">
+            <div style="display: flex; min-height: 200px">
               <!-- Sidebar (Left) -->
               <div class="mega-sidebar">
-                <div class="sidebar-item active" data-tab="category">Category</div>
+                <div class="sidebar-item active" data-tab="category">
+                  Category
+                </div>
                 <div class="sidebar-item" data-tab="price">Price</div>
                 <div class="sidebar-item" data-tab="occasion">Occasion</div>
                 <div class="sidebar-item" data-tab="gold-coin">Gold Coin</div>
@@ -319,63 +402,103 @@
                 <div class="sidebar-item" data-tab="metal">Metal</div>
               </div>
               <!-- Content Grid (Right) -->
-              <div class="mega-grids-wrapper" style="flex: 1;">
+              <div class="mega-grids-wrapper" style="flex: 1">
                 <!-- Category Tab Content -->
                 <div class="mega-grid active-grid" id="tab-gold-category">
                   <!-- Column 1 -->
                   <div class="mega-column">
-                    <a href="/all-jewellery?filter=gold" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-bars.png" alt="All Gold" /></div>
+                    <a href="all-jewellery.html?filter=gold" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-bars.png" alt="All Gold" />
+                      </div>
                       <span>All Gold</span>
                     </a>
-                    <a href="/all-jewellery?filter=earrings" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-earrings-item.png" alt="Gold Earrings" /></div>
+                    <a
+                      href="all-jewellery.html?filter=earrings"
+                      class="mega-sub-item"
+                    >
+                      <div class="sub-item-icon">
+                        <img src="gold-earrings-item.png" alt="Gold Earrings" />
+                      </div>
                       <span>Gold Earrings</span>
                     </a>
-                    <a href="/all-jewellery?filter=rings" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-ring-base1.png" alt="Gold Rings" /></div>
+                    <a href="all-jewellery.html?filter=rings" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-ring-base1.png" alt="Gold Rings" />
+                      </div>
                       <span>Gold Rings</span>
                     </a>
-                    <a href="/all-jewellery?filter=gold" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="nose-pin.png" alt="Gold Nose Pins" /></div>
+                    <a href="all-jewellery.html?filter=gold" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="nose-pin.png" alt="Gold Nose Pins" />
+                      </div>
                       <span>Gold Nose Pins</span>
                     </a>
                   </div>
                   <!-- Column 2 -->
                   <div class="mega-column">
-                    <a href="/all-jewellery?filter=gold" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-bangles-item.png" alt="Gold Bangles" /></div>
+                    <a href="all-jewellery.html?filter=gold" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-bangles-item.png" alt="Gold Bangles" />
+                      </div>
                       <span>Gold Bangles</span>
                     </a>
-                    <a href="/all-jewellery?filter=gold" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="new-gold-chain-item.png" alt="Gold Chains" /></div>
+                    <a href="all-jewellery.html?filter=gold" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="new-gold-chain-item.png" alt="Gold Chains" />
+                      </div>
                       <span>Gold Chains</span>
                     </a>
-                    <a href="/all-jewellery?filter=rings" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-ring-base3.png" alt="Gold Engagement Rings" /></div>
+                    <a href="all-jewellery.html?filter=rings" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img
+                          src="gold-ring-base3.png"
+                          alt="Gold Engagement Rings"
+                        />
+                      </div>
                       <span>Gold Engagement Rings</span>
                     </a>
-                    <a href="/all-jewellery?filter=gold" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="silver-bangle-base.png" style="filter: sepia(1) saturate(5) hue-rotate(15deg) brightness(0.9);" alt="Gold Kadas" /></div>
+                    <a href="all-jewellery.html?filter=gold" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img
+                          src="silver-bangle-base.png"
+                          style="
+                            filter: sepia(1) saturate(5) hue-rotate(15deg)
+                              brightness(0.9);
+                          "
+                          alt="Gold Kadas"
+                        />
+                      </div>
                       <span>Gold Kadas</span>
                     </a>
                   </div>
                   <!-- Column 3 -->
                   <div class="mega-column">
-                    <a href="/all-jewellery?filter=gold" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="kids-collection.png" alt="Gold Bracelets" /></div>
+                    <a href="all-jewellery.html?filter=gold" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="kids-collection.png" alt="Gold Bracelets" />
+                      </div>
                       <span>Gold Bracelets</span>
                     </a>
-                    <a href="/all-jewellery?filter=gold" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="ruby-pendant.jpg" alt="Gold Pendants" /></div>
+                    <a href="all-jewellery.html?filter=gold" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="ruby-pendant.jpg" alt="Gold Pendants" />
+                      </div>
                       <span>Gold Pendants</span>
                     </a>
-                    <a href="/all-jewellery?filter=gold" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-necklace.jpg" alt="Gold Necklaces" /></div>
+                    <a href="all-jewellery.html?filter=gold" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img src="gold-necklace.jpg" alt="Gold Necklaces" />
+                      </div>
                       <span>Gold Necklaces</span>
                     </a>
-                    <a href="/all-jewellery?filter=gold" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="gold-mangalsutra.png" alt="Gold Mangalsutras" /></div>
+                    <a href="all-jewellery.html?filter=gold" class="mega-sub-item">
+                      <div class="sub-item-icon">
+                        <img
+                          src="gold-mangalsutra.png"
+                          alt="Gold Mangalsutras"
+                        />
+                      </div>
                       <span>Gold Mangalsutras</span>
                     </a>
                   </div>
@@ -395,30 +518,39 @@
                   <p>Explore 6000+ Stunning Designs.</p>
                 </div>
               </div>
-              <a href="/all-jewellery?filter=gold" class="banner-btn">View All</a>
+              <a href="all-jewellery.html?filter=gold" class="banner-btn"
+                >View All</a
+              >
             </div>
           </div>
         </div>
 
         <!-- Diamond Mega Dropdown Panel -->
         <div class="mega-dropdown" id="diamondMegaDropdown">
-          <div class="mega-dropdown-container" style="flex-direction: column;">
-            <div style="display: flex; min-height: 200px;">
+          <div class="mega-dropdown-container" style="flex-direction: column">
+            <div style="display: flex; min-height: 200px">
               <!-- Sidebar (Left) -->
               <div class="mega-sidebar">
-                <div class="sidebar-item active" data-tab="category">Category</div>
+                <div class="sidebar-item active" data-tab="category">
+                  Category
+                </div>
                 <div class="sidebar-item" data-tab="price">Price</div>
                 <div class="sidebar-item" data-tab="occasion">Occasion</div>
                 <div class="sidebar-item" data-tab="gender">Gender</div>
               </div>
               <!-- Content Grid (Right) -->
-              <div class="mega-grids-wrapper" style="flex: 1;">
+              <div class="mega-grids-wrapper" style="flex: 1">
                 <!-- Category Tab Content -->
                 <div class="mega-grid active-grid" id="tab-diamond-category">
                   <!-- Column 1 -->
                   <div class="mega-column">
-                    <a href="/all-jewellery?filter=diamond" class="mega-sub-item">
-                      <div class="sub-item-icon"><img src="diamond.png" alt="All Diamond" /></div>
+                    <a
+                      href="all-jewellery.html?filter=diamond"
+                      class="mega-sub-item"
+                    >
+                      <div class="sub-item-icon">
+                        <img src="diamond.png" alt="All Diamond" />
+                      </div>
                       <span>All Diamond</span>
                     </a>
                   </div>
@@ -430,34 +562,55 @@
       </div>
     </nav>
 
+    <!-- Gemstone Video Hero Banner -->
+    <div id="gemstoneHeroVideoContainer" class="gemstone-hero-video-container">
+      <video id="gemstoneVideo" autoplay loop muted playsinline class="gemstone-hero-video"></video>
+    </div>
+
     <!-- Main Content -->
     <main class="main-content">
+
       <div class="listing-container">
         <!-- Breadcrumbs -->
         <div class="listing-breadcrumb">
-          <a href="index.html">Home</a> 
-          <i class="fas fa-chevron-right separator"></i> 
+          <a href="index.html">Home</a>
+          <i class="fas fa-chevron-right separator"></i>
           <span class="current" id="breadcrumbCurrent">Gold</span>
         </div>
 
         <!-- Listing Header -->
         <div class="listing-header">
           <h1 id="listingTitle">Gold</h1>
-          <span class="results-count" id="listingResultsCount">(13177 results)</span>
+          <span class="results-count" id="listingResultsCount"
+            >(13177 results)</span
+          >
         </div>
 
         <!-- Filters Row -->
         <div class="filter-bar">
           <div class="filter-left">
             <button class="filter-btn-main">
-              <i class="fas fa-sliders-h"></i> Filter <i class="fas fa-chevron-down" style="font-size: 11px;"></i>
+              <i class="fas fa-sliders-h"></i> Filter
+              <i class="fas fa-chevron-down" style="font-size: 11px"></i>
             </button>
             <div class="filter-divider"></div>
             <div class="filter-pills-list">
-              <div class="filter-pill-item" id="pricePill" data-active="false"><span class="plus-icon">+</span> ₹25,000 - ₹50,000</div>
-              <div class="filter-pill-item" id="genderPill" data-active="false"><span class="plus-icon">+</span> Women</div>
-              <div class="filter-pill-item" id="categoryPill" data-active="false"><span class="plus-icon">+</span> Gold Jewellery</div>
-              <div class="filter-pill-item" id="purityPill" data-active="false"><span class="plus-icon">+</span> 22</div>
+              <div class="filter-pill-item" id="pricePill" data-active="false">
+                <span class="plus-icon">+</span> ₹25,000 - ₹50,000
+              </div>
+              <div class="filter-pill-item" id="genderPill" data-active="false">
+                <span class="plus-icon">+</span> Women
+              </div>
+              <div
+                class="filter-pill-item"
+                id="categoryPill"
+                data-active="false"
+              >
+                <span class="plus-icon">+</span> Gold Jewellery
+              </div>
+              <div class="filter-pill-item" id="purityPill" data-active="false">
+                <span class="plus-icon">+</span> 22
+              </div>
               <a class="show-more-link" id="showMoreFiltersBtn">+Show More</a>
             </div>
           </div>
@@ -482,13 +635,7 @@
       </div>
     </main>
 
-    <!-- Chat Assistant Widget -->
-    <div class="chat-assistant-widget" id="chatWidget">
-      <div class="chat-assistant-avatar">
-        <img src="user-avatar.png" alt="Support Agent">
-      </div>
-      <div class="chat-assistant-text">How can I help you?</div>
-    </div>
+
 
     <!-- Footer Section -->
     <footer class="footer">
@@ -497,7 +644,11 @@
         <div class="footer-col brand-col">
           <img src="logo.png" alt="Swarnalaya Logo" class="footer-logo" />
           <p class="brand-desc">
-            Swarnalaya, Founded in March 2025 is built on a foundation of trust that spans five generations. We honor the "old world" commitment to quality—where every setting is secure and every stone is hand-selected—while embracing the "new world" of sustainable sourcing and avant-garde style.
+            Swarnalaya, Founded in March 2025 is built on a foundation of trust
+            that spans five generations. We honor the "old world" commitment to
+            quality—where every setting is secure and every stone is
+            hand-selected—while embracing the "new world" of sustainable
+            sourcing and avant-garde style.
           </p>
         </div>
 
@@ -519,7 +670,7 @@
           <ul class="contact-details">
             <li>
               <i class="fas fa-map-marker-alt"></i>
-              <span>791C, PJN Road,<br>Villupuram-605 602</span>
+              <span>791C, PJN Road,<br />Villupuram-605 602</span>
             </li>
             <li>
               <i class="fas fa-phone"></i>
@@ -546,26 +697,233 @@
       // Products data
       const allProducts = [
         // Gold Products
-        { id: 1, type: 'gold', name: 'Delicate Leaf Gold Pendant', category: 'Pendant', price: 32500, img: 'ruby-pendant.jpg', isBestseller: true, gender: 'women', purity: 22 },
-        { id: 2, type: 'gold', name: 'Sleek Gold Loop Pendant', category: 'Pendant', price: 28800, img: 'gold-ring-base1.png', isBestseller: false, gender: 'women', purity: 22 },
-        { id: 3, type: 'gold', name: 'Classic Gold Chain Link', category: 'Chain', price: 42000, img: 'new-gold-chain-item.png', isBestseller: false, gender: 'unisex', purity: 22 },
-        { id: 4, type: 'gold', name: 'Royal Gold Mangalsutra', category: 'Mangalsutra', price: 68500, img: 'gold-mangalsutra.png', isBestseller: true, gender: 'women', purity: 22 },
-        { id: 5, type: 'gold', name: 'Traditional Gold Bangles', category: 'Bangle', price: 82000, img: 'gold-bangles-item.png', isBestseller: false, gender: 'women', purity: 22 },
-        { id: 6, type: 'gold', name: 'Elegant Gold Earrings', category: 'Earrings', price: 24500, img: 'gold-earrings-item.png', isBestseller: false, gender: 'women', purity: 22 },
-        { id: 7, type: 'gold', name: 'Flora Gold Ring', category: 'Ring', price: 18900, img: 'gold-ring-base1.png', isBestseller: false, gender: 'women', purity: 22 },
-        { id: 8, type: 'gold', name: 'Sleek Men\'s Gold Ring', category: 'Ring', price: 35000, img: 'gold-ring-base2.png', isBestseller: true, gender: 'men', purity: 22 },
-        { id: 9, type: 'gold', name: 'Vruthi Gold Engagement Ring', category: 'Ring', price: 46200, img: 'gold-ring-base3.png', isBestseller: false, gender: 'women', purity: 22 },
-        { id: 10, type: 'gold', name: 'Classic Gold Band', category: 'Ring', price: 12400, img: 'gold-ring-base4.png', isBestseller: false, gender: 'unisex', purity: 18 },
-        
+        {
+          id: 1,
+          type: "gold",
+          name: "Delicate Leaf Gold Pendant",
+          category: "Pendant",
+          price: 32500,
+          img: "ruby-pendant.jpg",
+          isBestseller: true,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 2,
+          type: "gold",
+          name: "Sleek Gold Loop Pendant",
+          category: "Pendant",
+          price: 28800,
+          img: "gold-ring-base1.png",
+          isBestseller: false,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 3,
+          type: "gold",
+          name: "Classic Gold Chain Link",
+          category: "Chain",
+          price: 42000,
+          img: "new-gold-chain-item.png",
+          isBestseller: false,
+          gender: "unisex",
+          purity: 22,
+        },
+        {
+          id: 4,
+          type: "gold",
+          name: "Royal Gold Mangalsutra",
+          category: "Mangalsutra",
+          price: 68500,
+          img: "gold-mangalsutra.png",
+          isBestseller: true,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 5,
+          type: "gold",
+          name: "Traditional Gold Bangles",
+          category: "Bangle",
+          price: 82000,
+          img: "gold-bangles-item.png",
+          isBestseller: false,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 6,
+          type: "gold",
+          name: "Elegant Gold Earrings",
+          category: "Earrings",
+          price: 24500,
+          img: "gold-earrings-item.png",
+          isBestseller: false,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 7,
+          type: "gold",
+          name: "Flora Gold Ring",
+          category: "Ring",
+          price: 18900,
+          img: "gold-ring-base1.png",
+          isBestseller: false,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 8,
+          type: "gold",
+          name: "Sleek Men's Gold Ring",
+          category: "Ring",
+          price: 35000,
+          img: "gold-ring-base2.png",
+          isBestseller: true,
+          gender: "men",
+          purity: 22,
+        },
+        {
+          id: 9,
+          type: "gold",
+          name: "Vruthi Gold Engagement Ring",
+          category: "Ring",
+          price: 46200,
+          img: "gold-ring-base3.png",
+          isBestseller: false,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 10,
+          type: "gold",
+          name: "Classic Gold Band",
+          category: "Ring",
+          price: 12400,
+          img: "gold-ring-base4.png",
+          isBestseller: false,
+          gender: "unisex",
+          purity: 18,
+        },
+
         // Diamond Products
-        { id: 11, type: 'diamond', name: 'Premium Solitaire Ring', category: 'Ring', price: 95000, img: 'diamond-ring.jpg', isBestseller: true, gender: 'women', purity: 18 },
-        { id: 12, type: 'diamond', name: 'Classic Diamond Bangles', category: 'Bangle', price: 125000, img: 'diamond-bangle.png', isBestseller: false, gender: 'women', purity: 18 },
-        { id: 13, type: 'diamond', name: 'Shining Diamond Studs', category: 'Earrings', price: 48000, img: 'diamond-rings-item.png', isBestseller: false, gender: 'women', purity: 18 },
-        { id: 14, type: 'diamond', name: 'Diamond Pendant Set', category: 'Pendant', price: 62000, img: 'diamond.png', isBestseller: true, gender: 'women', purity: 18 }
+        {
+          id: 11,
+          type: "diamond",
+          name: "Premium Solitaire Ring",
+          category: "Ring",
+          price: 95000,
+          img: "diamond-ring.jpg",
+          isBestseller: true,
+          gender: "women",
+          purity: 18,
+        },
+        {
+          id: 12,
+          type: "diamond",
+          name: "Classic Diamond Bangles",
+          category: "Bangle",
+          price: 125000,
+          img: "diamond-bangle.png",
+          isBestseller: false,
+          gender: "women",
+          purity: 18,
+        },
+        {
+          id: 13,
+          type: "diamond",
+          name: "Shining Diamond Studs",
+          category: "Earrings",
+          price: 48000,
+          img: "diamond-rings-item.png",
+          isBestseller: false,
+          gender: "women",
+          purity: 18,
+        },
+        {
+          id: 14,
+          type: "diamond",
+          name: "Diamond Pendant Set",
+          category: "Pendant",
+          price: 62000,
+          img: "diamond.png",
+          isBestseller: true,
+          gender: "women",
+          purity: 18,
+        },
+        // Gemstone Products
+        {
+          id: 15,
+          type: "gemstone",
+          name: "Imperial Emerald & Gold Ring",
+          category: "Ring",
+          price: 54000,
+          img: "all-gemstone-rings.png",
+          isBestseller: true,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 16,
+          type: "gemstone",
+          name: "Classic Ruby Drop Earrings",
+          category: "Earrings",
+          price: 43500,
+          img: "ruby-earrings.png",
+          isBestseller: false,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 17,
+          type: "gemstone",
+          name: "Royal Emerald Stud Earrings",
+          category: "Earrings",
+          price: 49000,
+          img: "emerald-earrings.png",
+          isBestseller: true,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 18,
+          type: "gemstone",
+          name: "Navaratna Gemstone Pendant",
+          category: "Pendant",
+          price: 38000,
+          img: "ruby-pendant.jpg",
+          isBestseller: false,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 19,
+          type: "gemstone",
+          name: "Celestial Sapphire Pendant",
+          category: "Pendant",
+          price: 31500,
+          img: "all-gemstone-pendants.png",
+          isBestseller: false,
+          gender: "women",
+          purity: 22,
+        },
+        {
+          id: 20,
+          type: "gemstone",
+          name: "Vibrant Sapphire Earrings",
+          category: "Earrings",
+          price: 47200,
+          img: "all-gemstone-earrings.png",
+          isBestseller: false,
+          gender: "women",
+          purity: 22,
+        }
       ];
 
       // Current active filter variables
-      let currentFilterType = 'gold'; // default
+      let currentFilterType = "gold"; // default
       let priceFilterActive = false;
       let genderFilterActive = false;
       let categoryFilterActive = false;
@@ -574,53 +932,149 @@
       // Handle query parameters
       function parseQuery() {
         const urlParams = new URLSearchParams(window.location.search);
-        const filterVal = urlParams.get('filter');
+        const filterVal = urlParams.get("filter");
         if (filterVal) {
           currentFilterType = filterVal.toLowerCase();
         }
 
         // Update titles and breadcrumbs
-        const breadcrumbCurrent = document.getElementById('breadcrumbCurrent');
-        const listingTitle = document.getElementById('listingTitle');
-        const resultsCount = document.getElementById('listingResultsCount');
+        const breadcrumbCurrent = document.getElementById("breadcrumbCurrent");
+        const listingTitle = document.getElementById("listingTitle");
+        const resultsCount = document.getElementById("listingResultsCount");
 
-        const titleText = currentFilterType.charAt(0).toUpperCase() + currentFilterType.slice(1);
+        const titleText =
+          currentFilterType.charAt(0).toUpperCase() +
+          currentFilterType.slice(1);
         breadcrumbCurrent.textContent = titleText;
         listingTitle.textContent = titleText;
 
         // Set counts matching typical lists
         let totalCount = 13177;
-        if (currentFilterType === 'diamond') totalCount = 4280;
-        else if (currentFilterType === 'earrings') totalCount = 6540;
-        else if (currentFilterType === 'rings') totalCount = 8920;
-        
+        if (currentFilterType === "diamond") totalCount = 4280;
+        else if (currentFilterType === "earrings") totalCount = 6540;
+        else if (currentFilterType === "rings") totalCount = 8920;
+        else if (currentFilterType === "gemstone") totalCount = 3560;
+
         resultsCount.textContent = `(${totalCount} results)`;
 
         // Update visual pills based on category
-        const categoryPill = document.getElementById('categoryPill');
+        const categoryPill = document.getElementById("categoryPill");
         categoryPill.innerHTML = `<span class="plus-icon">+</span> ${titleText} Jewellery`;
+
+        // Toggle video hero banner and body class
+        const gemstoneHero = document.getElementById("gemstoneHeroVideoContainer");
+        const videoEl = document.getElementById("gemstoneVideo");
+        if (currentFilterType === "gemstone") {
+          document.body.classList.add("filter-gemstone");
+          if (gemstoneHero) {
+            gemstoneHero.style.display = "block";
+            gemstoneHero.style.backgroundColor = "#E3D1D1"; // Gemstone theme background
+            if (videoEl) {
+              videoEl.muted = true; // Force mute
+              if (!videoEl.src || !videoEl.src.includes("assets/gemstone-video.mp4")) {
+                videoEl.src = "assets/gemstone-video.mp4";
+              }
+              videoEl.playbackRate = 0.6; // Slightly faster slow motion
+              videoEl.play().catch(err => console.log("Video play failed:", err));
+            }
+          }
+        } else if (currentFilterType === "gold") {
+          document.body.classList.remove("filter-gemstone");
+          if (gemstoneHero) {
+            gemstoneHero.style.display = "block";
+            gemstoneHero.style.backgroundColor = "transparent"; // Default transparent background
+            if (videoEl) {
+              videoEl.muted = true; // Force mute
+              if (!videoEl.src || !videoEl.src.includes("assets/gold-video.mp4")) {
+                videoEl.src = "assets/gold-video.mp4";
+              }
+              videoEl.playbackRate = 1.0; // Normal playback speed
+              videoEl.play().catch(err => console.log("Video play failed:", err));
+            }
+          }
+        } else if (currentFilterType === "diamond") {
+          document.body.classList.remove("filter-gemstone");
+          if (gemstoneHero) {
+            gemstoneHero.style.display = "block";
+            gemstoneHero.style.backgroundColor = "transparent"; // Default transparent background
+            if (videoEl) {
+              videoEl.muted = true; // Force mute
+              if (!videoEl.src || !videoEl.src.includes("assets/diamond-video.mp4")) {
+                videoEl.src = "assets/diamond-video.mp4";
+              }
+              videoEl.playbackRate = 1.0; // Normal playback speed
+              videoEl.play().catch(err => console.log("Video play failed:", err));
+            }
+          }
+        } else if (currentFilterType === "rings") {
+          document.body.classList.remove("filter-gemstone");
+          if (gemstoneHero) {
+            gemstoneHero.style.display = "block";
+            gemstoneHero.style.backgroundColor = "transparent"; // Default transparent background
+            if (videoEl) {
+              videoEl.muted = true; // Force mute
+              if (!videoEl.src || !videoEl.src.includes("assets/rings-video.mp4")) {
+                videoEl.src = "assets/rings-video.mp4";
+              }
+              videoEl.playbackRate = 1.0; // Normal playback speed
+              videoEl.play().catch(err => console.log("Video play failed:", err));
+            }
+          }
+        } else if (currentFilterType === "earrings") {
+          document.body.classList.remove("filter-gemstone");
+          if (gemstoneHero) {
+            gemstoneHero.style.display = "block";
+            gemstoneHero.style.backgroundColor = "transparent"; // Default transparent background
+            if (videoEl) {
+              videoEl.muted = true; // Force mute
+              if (!videoEl.src || !videoEl.src.includes("assets/earrings-video.mp4")) {
+                videoEl.src = "assets/earrings-video.mp4";
+              }
+              videoEl.playbackRate = 1.0; // Normal playback speed
+              videoEl.play().catch(err => console.log("Video play failed:", err));
+            }
+          }
+        } else {
+          document.body.classList.remove("filter-gemstone");
+          if (gemstoneHero) {
+            gemstoneHero.style.display = "none";
+            if (videoEl) videoEl.pause();
+          }
+        }
 
         renderProducts();
       }
 
       // Render products in grid
       function renderProducts() {
-        const grid = document.getElementById('listingGrid');
-        grid.innerHTML = '';
+        const grid = document.getElementById("listingGrid");
+        grid.innerHTML = "";
 
         // Filter product items
-        let filtered = allProducts.filter(p => {
+        let filtered = allProducts.filter((p) => {
           // Main filter match (e.g. type is gold)
-          if (currentFilterType === 'gold' && p.type !== 'gold') return false;
-          if (currentFilterType === 'diamond' && p.type !== 'diamond') return false;
-          if (currentFilterType === 'earrings' && p.category.toLowerCase() !== 'earrings') return false;
-          if (currentFilterType === 'rings' && p.category.toLowerCase() !== 'ring') return false;
+          if (currentFilterType === "gold" && p.type !== "gold") return false;
+          if (currentFilterType === "diamond" && p.type !== "diamond")
+            return false;
+          if (currentFilterType === "gemstone" && p.type !== "gemstone")
+            return false;
+          if (
+            currentFilterType === "earrings" &&
+            p.category.toLowerCase() !== "earrings"
+          )
+            return false;
+          if (
+            currentFilterType === "rings" &&
+            p.category.toLowerCase() !== "ring"
+          )
+            return false;
 
           // Price filter: ₹25,000 - ₹50,000
-          if (priceFilterActive && (p.price < 25000 || p.price > 50000)) return false;
+          if (priceFilterActive && (p.price < 25000 || p.price > 50000))
+            return false;
 
           // Gender filter: Women
-          if (genderFilterActive && p.gender !== 'women') return false;
+          if (genderFilterActive && p.gender !== "women") return false;
 
           // Purity filter: 22K
           if (purityFilterActive && p.purity !== 22) return false;
@@ -629,27 +1083,32 @@
         });
 
         // Sorting
-        const sortBy = document.getElementById('sortSelect').value;
-        if (sortBy === 'price-low') {
+        const sortBy = document.getElementById("sortSelect").value;
+        if (sortBy === "price-low") {
           filtered.sort((a, b) => a.price - b.price);
-        } else if (sortBy === 'price-high') {
+        } else if (sortBy === "price-high") {
           filtered.sort((a, b) => b.price - a.price);
-        } else if (sortBy === 'popular') {
-          filtered.sort((a, b) => (b.isBestseller ? 1 : 0) - (a.isBestseller ? 1 : 0));
+        } else if (sortBy === "popular") {
+          filtered.sort(
+            (a, b) => (b.isBestseller ? 1 : 0) - (a.isBestseller ? 1 : 0),
+          );
         }
 
         // Generate cards
         if (filtered.length === 0) {
-          grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">No products match the selected filters.</div>';
+          grid.innerHTML =
+            '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">No products match the selected filters.</div>';
           return;
         }
 
-        filtered.forEach(p => {
-          const card = document.createElement('div');
-          card.className = 'premium-product-card';
-          
-          let bestsellerBadge = p.isBestseller ? `<div class="bestseller-tag-badge">★ Bestsellers</div>` : '';
-          
+        filtered.forEach((p) => {
+          const card = document.createElement("div");
+          card.className = "premium-product-card";
+
+          let bestsellerBadge = p.isBestseller
+            ? `<div class="bestseller-tag-badge">★ Bestsellers</div>`
+            : "";
+
           card.innerHTML = `
             <div class="card-image-container">
               ${bestsellerBadge}
@@ -661,7 +1120,7 @@
             <div class="card-details-box">
               <h3>${p.name}</h3>
               <div class="card-price-row">
-                <span class="card-price">₹${p.price.toLocaleString('en-IN')}</span>
+                <span class="card-price">₹${p.price.toLocaleString("en-IN")}</span>
                 <button class="card-btn-add" onclick="addToCartLocal(event, '${p.name}', ${p.price})">
                   <i class="fas fa-shopping-cart"></i>
                 </button>
@@ -673,77 +1132,101 @@
       }
 
       // Add to wishlist toggle
-      window.toggleWishlist = function(event, btn, productName = "Jewelry Item") {
+      window.toggleWishlist = function (
+        event,
+        btn,
+        productName = "Jewelry Item",
+      ) {
         event.preventDefault();
         event.stopPropagation();
-        btn.classList.toggle('active');
-        const icon = btn.querySelector('i');
-        const isActive = btn.classList.contains('active');
+        btn.classList.toggle("active");
+        const icon = btn.querySelector("i");
+        const isActive = btn.classList.contains("active");
         if (isActive) {
-          icon.className = 'fas fa-heart';
-          if (typeof window.logCustomerActivity === 'function') {
-            window.logCustomerActivity('wishlist', `Added to wishlist: ${productName}`);
+          icon.className = "fas fa-heart";
+          if (typeof window.logCustomerActivity === "function") {
+            window.logCustomerActivity(
+              "wishlist",
+              `Added to wishlist: ${productName}`,
+            );
           }
         } else {
-          icon.className = 'far fa-heart';
+          icon.className = "far fa-heart";
         }
       };
 
       // Add to cart helper
-      window.addToCartLocal = function(event, name, price) {
+      window.addToCartLocal = function (event, name, price) {
         event.preventDefault();
         event.stopPropagation();
-        alert(`Added ${name} (₹${price.toLocaleString('en-IN')}) to your cart!`);
+        alert(
+          `Added ${name} (₹${price.toLocaleString("en-IN")}) to your cart!`,
+        );
       };
 
       // Set up interactive filter pills
-      document.getElementById('pricePill').addEventListener('click', function() {
-        priceFilterActive = !priceFilterActive;
-        togglePillStyle(this, priceFilterActive);
-        renderProducts();
-      });
+      document
+        .getElementById("pricePill")
+        .addEventListener("click", function () {
+          priceFilterActive = !priceFilterActive;
+          togglePillStyle(this, priceFilterActive);
+          renderProducts();
+        });
 
-      document.getElementById('genderPill').addEventListener('click', function() {
-        genderFilterActive = !genderFilterActive;
-        togglePillStyle(this, genderFilterActive);
-        renderProducts();
-      });
+      document
+        .getElementById("genderPill")
+        .addEventListener("click", function () {
+          genderFilterActive = !genderFilterActive;
+          togglePillStyle(this, genderFilterActive);
+          renderProducts();
+        });
 
-      document.getElementById('purityPill').addEventListener('click', function() {
-        purityFilterActive = !purityFilterActive;
-        togglePillStyle(this, purityFilterActive);
-        renderProducts();
-      });
+      document
+        .getElementById("purityPill")
+        .addEventListener("click", function () {
+          purityFilterActive = !purityFilterActive;
+          togglePillStyle(this, purityFilterActive);
+          renderProducts();
+        });
 
-      document.getElementById('categoryPill').addEventListener('click', function() {
-        categoryFilterActive = !categoryFilterActive;
-        togglePillStyle(this, categoryFilterActive);
-        renderProducts();
-      });
+      document
+        .getElementById("categoryPill")
+        .addEventListener("click", function () {
+          categoryFilterActive = !categoryFilterActive;
+          togglePillStyle(this, categoryFilterActive);
+          renderProducts();
+        });
 
       function togglePillStyle(pill, active) {
         if (active) {
-          pill.style.background = '#8B2020';
-          pill.style.color = 'white';
-          pill.style.borderColor = '#8B2020';
-          pill.querySelector('.plus-icon').textContent = '×';
-          pill.querySelector('.plus-icon').style.color = 'white';
+          pill.style.background = "#8B2020";
+          pill.style.color = "white";
+          pill.style.borderColor = "#8B2020";
+          pill.querySelector(".plus-icon").textContent = "×";
+          pill.querySelector(".plus-icon").style.color = "white";
         } else {
-          pill.style.background = '#fff';
-          pill.style.color = '#444';
-          pill.style.borderColor = '#ddd';
-          pill.querySelector('.plus-icon').textContent = '+';
-          pill.querySelector('.plus-icon').style.color = '#B52F2A';
+          pill.style.background = "#fff";
+          pill.style.color = "#444";
+          pill.style.borderColor = "#ddd";
+          pill.querySelector(".plus-icon").textContent = "+";
+          pill.querySelector(".plus-icon").style.color = "#B52F2A";
         }
       }
 
       // Sort Select listener
-      document.getElementById('sortSelect').addEventListener('change', renderProducts);
+      document
+        .getElementById("sortSelect")
+        .addEventListener("change", renderProducts);
 
       // Chat widget click handler
-      document.getElementById('chatWidget').addEventListener('click', function() {
-        alert("Connecting with a live customer support representative for Swarnalaya Jewellers...");
-      });
+      const chatWidget = document.getElementById("chatWidget");
+      if (chatWidget) {
+        chatWidget.addEventListener("click", function () {
+          alert(
+            "Connecting with a live customer support representative for Swarnalaya Jewellers...",
+          );
+        });
+      }
 
       // Load on document loaded
       document.addEventListener("DOMContentLoaded", parseQuery);

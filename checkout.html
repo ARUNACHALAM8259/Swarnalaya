@@ -22,7 +22,7 @@
       }
 
       body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background-color: var(--bg-light);
         color: var(--text-dark);
         min-height: 100vh;
@@ -140,7 +140,9 @@
         font-size: 15px;
         outline: none;
         background-color: #ffffff;
-        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        transition:
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
       }
 
       .checkout-input:focus {
@@ -333,7 +335,7 @@
         width: 90%;
         text-align: center;
         border: 1px solid var(--accent-gold);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         transform: scale(0.9);
         transition: transform 0.4s ease;
       }
@@ -411,11 +413,12 @@
           </a>
           <img src="heart.png" alt="Wishlist" class="header-icon" />
           <div class="user-profile-menu">
-            <img src="user-avatar.png" alt="Profile" class="header-icon user-avatar-btn" />
-            <div class="profile-dropdown-menu">
-              <a href="login" class="dropdown-item" id="loginSignupBtn">Login/Signup</a>
-              <a href="contact" class="dropdown-item">Contact Us</a>
-            </div>
+            <img
+              src="user-avatar.png"
+              alt="Profile"
+              class="header-icon user-avatar-btn"
+            />
+            <div class="profile-dropdown-menu"></div>
           </div>
           <img src="shopping-bag.png" alt="Cart" class="header-icon" />
         </div>
@@ -425,8 +428,8 @@
     <!-- Secure Checkout Content -->
     <main class="checkout-wrapper">
       <div class="checkout-breadcrumb">
-        <a href="index.html">Home</a> 
-        <i class="fas fa-chevron-right separator"></i> 
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right separator"></i>
         <span class="active">Secure Checkout</span>
       </div>
 
@@ -435,48 +438,95 @@
       <div class="checkout-grid">
         <!-- Billing / Shipping Details -->
         <div class="checkout-card">
-          <h2><i class="fas fa-shipping-fast"></i> Shipping & Billing Address</h2>
+          <h2>
+            <i class="fas fa-shipping-fast"></i> Shipping & Billing Address
+          </h2>
           <form id="checkoutForm" onsubmit="handlePlaceOrder(event)">
             <div class="form-grid">
               <div class="form-group-full">
-                <label class="checkout-field-label" for="shipName">Full Name</label>
-                <input type="text" id="shipName" class="checkout-input" placeholder="Full name" required />
+                <label class="checkout-field-label" for="shipName"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  id="shipName"
+                  class="checkout-input"
+                  placeholder="Full name"
+                  required
+                />
               </div>
               <div>
-                <label class="checkout-field-label" for="shipMobile">Mobile Number</label>
-                <input type="tel" id="shipMobile" class="checkout-input" placeholder="10-Digit Mobile Number" required pattern="[0-9]{10}" maxlength="10" />
+                <label class="checkout-field-label" for="shipMobile"
+                  >Mobile Number</label
+                >
+                <input
+                  type="tel"
+                  id="shipMobile"
+                  class="checkout-input"
+                  placeholder="10-Digit Mobile Number"
+                  required
+                  pattern="[0-9]{10}"
+                  maxlength="10"
+                />
               </div>
               <div>
-                <label class="checkout-field-label" for="shipEmail">Email Address</label>
-                <input type="email" id="shipEmail" class="checkout-input" placeholder="Email Address" required />
+                <label class="checkout-field-label" for="shipEmail"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  id="shipEmail"
+                  class="checkout-input"
+                  placeholder="Email Address"
+                  required
+                />
               </div>
               <div class="form-group-full">
-                <label class="checkout-field-label" for="shipAddress">Shipping Address</label>
-                <textarea id="shipAddress" class="checkout-input" placeholder="Apartment, Street Address, City, State, ZIP Code" rows="3" required></textarea>
+                <label class="checkout-field-label" for="shipAddress"
+                  >Shipping Address</label
+                >
+                <textarea
+                  id="shipAddress"
+                  class="checkout-input"
+                  placeholder="Apartment, Street Address, City, State, ZIP Code"
+                  rows="3"
+                  required
+                ></textarea>
               </div>
             </div>
 
-            <h2 style="margin-top: 35px;"><i class="fas fa-wallet"></i> Payment Options</h2>
+            <h2 style="margin-top: 35px">
+              <i class="fas fa-wallet"></i> Payment Options
+            </h2>
             <div class="payment-methods">
-              <label class="payment-option active" onclick="selectPayment(this)">
+              <label
+                class="payment-option active"
+                onclick="selectPayment(this)"
+              >
                 <input type="radio" name="paymentMethod" value="cod" checked />
                 <div class="payment-info">
                   <span class="payment-title">Cash on Delivery (COD)</span>
-                  <span class="payment-desc">Pay in cash or UPI upon delivery.</span>
+                  <span class="payment-desc"
+                    >Pay in cash or UPI upon delivery.</span
+                  >
                 </div>
               </label>
               <label class="payment-option" onclick="selectPayment(this)">
                 <input type="radio" name="paymentMethod" value="upi" />
                 <div class="payment-info">
                   <span class="payment-title">Instant UPI Transfer</span>
-                  <span class="payment-desc">Pay securely using Google Pay, PhonePe, or Paytm.</span>
+                  <span class="payment-desc"
+                    >Pay securely using Google Pay, PhonePe, or Paytm.</span
+                  >
                 </div>
               </label>
               <label class="payment-option" onclick="selectPayment(this)">
                 <input type="radio" name="paymentMethod" value="card" />
                 <div class="payment-info">
                   <span class="payment-title">Credit / Debit Card</span>
-                  <span class="payment-desc">Secure payment using Visa, MasterCard, or RuPay.</span>
+                  <span class="payment-desc"
+                    >Secure payment using Visa, MasterCard, or RuPay.</span
+                  >
                 </div>
               </label>
             </div>
@@ -484,30 +534,42 @@
         </div>
 
         <!-- Order Summary -->
-        <div class="checkout-card" style="position: sticky; top: 100px;">
+        <div class="checkout-card" style="position: sticky; top: 100px">
           <h2><i class="fas fa-shopping-bag"></i> Order Summary</h2>
           <div class="summary-items-list">
             <!-- Item 1 -->
             <div class="summary-item-row">
               <div class="summary-item-info">
-                <img src="gold-necklace.jpg" alt="Classic Gold Necklace" class="summary-item-img" />
+                <img
+                  src="gold-necklace.jpg"
+                  alt="Classic Gold Necklace"
+                  class="summary-item-img"
+                />
                 <div class="summary-item-details">
                   <h4>Classic Gold Necklace</h4>
                   <p>Qty: 1 | Purity: 22K (916)</p>
                 </div>
               </div>
-              <span class="item-price-val" style="font-weight: 600;">₹72,000</span>
+              <span class="item-price-val" style="font-weight: 600"
+                >₹72,000</span
+              >
             </div>
             <!-- Item 2 -->
             <div class="summary-item-row">
               <div class="summary-item-info">
-                <img src="gold-choker.png" alt="Antique Gold Choker" class="summary-item-img" />
+                <img
+                  src="gold-choker.png"
+                  alt="Antique Gold Choker"
+                  class="summary-item-img"
+                />
                 <div class="summary-item-details">
                   <h4>Antique Gold Choker</h4>
                   <p>Qty: 1 | Purity: 22K (916)</p>
                 </div>
               </div>
-              <span class="item-price-val" style="font-weight: 600;">₹28,000</span>
+              <span class="item-price-val" style="font-weight: 600"
+                >₹28,000</span
+              >
             </div>
           </div>
 
@@ -518,7 +580,7 @@
             </div>
             <div class="pricing-row">
               <span>Delivery (Insured Courier)</span>
-              <span style="color: #137333; font-weight: 600;">FREE</span>
+              <span style="color: #137333; font-weight: 600">FREE</span>
             </div>
             <div class="pricing-row">
               <span>GST (3%)</span>
@@ -544,18 +606,25 @@
           <i class="fas fa-check"></i>
         </div>
         <h3>Order Placed Successfully!</h3>
-        <p>Thank you for shopping at Swarnalaya. Your order has been placed successfully. A delivery confirmation will be sent to your mobile shortly.</p>
+        <p>
+          Thank you for shopping at Swarnalaya. Your order has been placed
+          successfully. A delivery confirmation will be sent to your mobile
+          shortly.
+        </p>
         <div class="redirect-msg">Redirecting to Dashboard...</div>
       </div>
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer" style="margin-top: 80px;">
+    <footer class="footer" style="margin-top: 80px">
       <div class="footer-container">
         <div class="footer-col brand-col">
           <img src="logo.png" alt="Swarnalaya Logo" class="footer-logo" />
           <p class="brand-desc">
-            Swarnalaya, Founded in March 2025 is built on a foundation of trust that spans five generations. We honor the "old world" commitment to quality—where every setting is secure and every stone is hand-selected.
+            Swarnalaya, Founded in March 2025 is built on a foundation of trust
+            that spans five generations. We honor the "old world" commitment to
+            quality—where every setting is secure and every stone is
+            hand-selected.
           </p>
         </div>
         <div class="footer-col links-col">
@@ -569,7 +638,9 @@
         <div class="footer-col contact-col" id="contact-col">
           <h3>Contact Us</h3>
           <ul class="contact-details">
-            <li><i class="fas fa-map-marker-alt"></i> 791C, PJN Road, Villupuram</li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i> 791C, PJN Road, Villupuram
+            </li>
             <li><i class="fas fa-phone"></i> +91 9837371616</li>
           </ul>
         </div>
@@ -582,7 +653,7 @@
       // 1. Auto-fill details if user is logged in
       const sessionData = localStorage.getItem("swarnalaya_auth_user");
       const user = sessionData ? JSON.parse(sessionData) : null;
-      
+
       if (user) {
         document.getElementById("shipName").value = user.name || "";
         document.getElementById("shipMobile").value = user.phone || "";
@@ -601,18 +672,23 @@
           mobile: customerMobile,
           email: customerEmail,
           activityType: "checkout_abandoned",
-          details: "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
-          page: "checkout.html"
+          details:
+            "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+          page: "checkout.html",
+        }),
+      })
+        .then((res) => {
+          console.log("Logged checkout_abandoned successfully");
         })
-      }).then(res => {
-        console.log("Logged checkout_abandoned successfully");
-      }).catch(err => {
-        console.warn("Error logging checkout_abandoned activity:", err);
-      });
+        .catch((err) => {
+          console.warn("Error logging checkout_abandoned activity:", err);
+        });
 
       // Style toggle for payment radio cards
       function selectPayment(element) {
-        document.querySelectorAll(".payment-option").forEach(opt => opt.classList.remove("active"));
+        document
+          .querySelectorAll(".payment-option")
+          .forEach((opt) => opt.classList.remove("active"));
         element.classList.add("active");
         element.querySelector("input[type='radio']").checked = true;
       }
@@ -620,13 +696,15 @@
       // 3. Complete Purchase Handler
       function handlePlaceOrder(event) {
         event.preventDefault();
-        
+
         checkoutCompleted = true;
         const name = document.getElementById("shipName").value;
         const mobile = document.getElementById("shipMobile").value;
         const email = document.getElementById("shipEmail").value;
         const address = document.getElementById("shipAddress").value;
-        const payment = document.querySelector("input[name='paymentMethod']:checked").value.toUpperCase();
+        const payment = document
+          .querySelector("input[name='paymentMethod']:checked")
+          .value.toUpperCase();
 
         // Send purchase activity report to backend to override checkout abandonment
         fetch("/api/activity", {
@@ -637,13 +715,15 @@
             email: email,
             activityType: "purchase",
             details: `Order placed! Name: ${name}, Total: ₹1,03,000, Payment: ${payment}, Address: ${address}`,
-            page: "checkout.html"
+            page: "checkout.html",
+          }),
+        })
+          .then((res) => {
+            console.log("Logged purchase successfully");
           })
-        }).then(res => {
-          console.log("Logged purchase successfully");
-        }).catch(err => {
-          console.warn("Error logging purchase activity:", err);
-        });
+          .catch((err) => {
+            console.warn("Error logging purchase activity:", err);
+          });
 
         // Show checkout success banner
         document.getElementById("successOverlay").classList.add("active");

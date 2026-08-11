@@ -28,5 +28,55 @@
     "change22K": 130,
     "change18K": 125,
     "changeSilver": 0
+  },
+  {
+    "timeKey": "10/06/2026 Morning 09:35 AM",
+    "timestamp": "2026-06-10T07:52:04.728Z",
+    "gold22K": 13800,
+    "gold18K": 11570,
+    "silver": 260,
+    "change22K": -400,
+    "change18K": -350,
+    "changeSilver": -10
+  },
+  {
+    "timeKey": "11/06/2026 Morning 09:40 AM",
+    "timestamp": "2026-06-11T12:18:40.336Z",
+    "gold22K": 13500,
+    "gold18K": 11310,
+    "silver": 260,
+    "change22K": -300,
+    "change18K": -260,
+    "changeSilver": 0
+  },
+  {
+    "timeKey": "12/06/2026 Morning 09:40 AM",
+    "timestamp": "2026-06-12T06:48:49.813Z",
+    "gold22K": 13800,
+    "gold18K": 11550,
+    "silver": 265,
+    "change22K": 300,
+    "change18K": 240,
+    "changeSilver": 5
+  },
+  {
+    "timeKey": "13/06/2026 Morning 09:42 AM",
+    "timestamp": "2026-06-13T06:52:42.153Z",
+    "gold22K": 13860,
+    "gold18K": 11610,
+    "silver": 270,
+    "change22K": 60,
+    "change18K": 60,
+    "changeSilver": 5
+  },
+  {
+    "timeKey": "11/08/2026 Evening 05:21 PM",
+    "timestamp": "2026-08-11T14:57:16.974Z",
+    "gold22K": 14150,
+    "gold18K": 11930,
+    "silver": 260,
+    "change22K": -100,
+    "change18K": -70,
+    "changeSilver": 0
   }
 ]

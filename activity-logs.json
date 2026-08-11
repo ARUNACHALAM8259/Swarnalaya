@@ -138,5 +138,628 @@
     "details": "New customer registered via MSG91 token. Phone: 7777777777",
     "page": "login.html",
     "timestamp": "2026-06-09T05:42:06.452Z"
+  },
+  {
+    "userKey": "Guest",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-09T10:40:49.056Z"
+  },
+  {
+    "userKey": "Guest",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-09T10:49:48.831Z"
+  },
+  {
+    "userKey": "7603882099",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-09T12:13:15.766Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-09T12:13:24.792Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-09T12:14:08.191Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-09T12:16:34.793Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-09T12:20:08.599Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-09T12:20:39.964Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out via logout page",
+    "page": "logout.html",
+    "timestamp": "2026-06-09T12:21:46.262Z"
+  },
+  {
+    "userKey": "8610593460",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-09T12:22:24.158Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-09T12:22:47.132Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out via logout page",
+    "page": "logout.html",
+    "timestamp": "2026-06-09T12:23:24.639Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-09T12:29:00.967Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out via logout page",
+    "page": "logout.html",
+    "timestamp": "2026-06-09T12:29:09.528Z"
+  },
+  {
+    "userKey": "8610593460",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-09T12:29:33.764Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-09T12:29:55.754Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out via logout page",
+    "page": "logout.html",
+    "timestamp": "2026-06-09T12:30:56.880Z"
+  },
+  {
+    "userKey": "7603882099",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-09T12:31:37.923Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-09T12:31:47.339Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out via logout page",
+    "page": "logout.html",
+    "timestamp": "2026-06-09T12:32:12.291Z"
+  },
+  {
+    "userKey": "8610593460",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-09T12:34:14.879Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out via logout page",
+    "page": "logout.html",
+    "timestamp": "2026-06-09T12:39:54.062Z"
+  },
+  {
+    "userKey": "7603882099",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-09T12:40:23.603Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out via logout page",
+    "page": "logout.html",
+    "timestamp": "2026-06-09T12:40:39.687Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T07:53:45.894Z"
+  },
+  {
+    "userKey": "Guest",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-10T07:55:10.705Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T08:24:46.286Z"
+  },
+  {
+    "userKey": "9791295122",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-10T08:26:07.564Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T08:26:45.214Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out via logout page",
+    "page": "logout.html",
+    "timestamp": "2026-06-10T08:27:09.883Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T08:33:48.773Z"
+  },
+  {
+    "userKey": "Guest",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-10T08:39:10.124Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T09:16:40.260Z"
+  },
+  {
+    "userKey": "7603882099",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-10T09:24:38.550Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out via logout page",
+    "page": "logout.html",
+    "timestamp": "2026-06-10T09:26:14.416Z"
+  },
+  {
+    "userKey": "7603882099",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-10T09:29:36.853Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out directly from header menu",
+    "page": "index.html",
+    "timestamp": "2026-06-10T09:29:45.238Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T09:30:08.771Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T09:33:56.979Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T09:38:02.546Z"
+  },
+  {
+    "userKey": "7603882099",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-10T13:16:17.687Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T13:16:40.151Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out directly from header menu",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T13:17:04.155Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T13:20:13.558Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T13:21:03.476Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T13:21:03.481Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T13:21:51.361Z"
+  },
+  {
+    "userKey": "7603882099",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-10T13:44:25.495Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out directly from header menu",
+    "page": "index.html",
+    "timestamp": "2026-06-10T13:44:36.511Z"
+  },
+  {
+    "userKey": "Guest",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-10T13:58:36.724Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-10T14:00:04.339Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T12:20:07.603Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T12:48:25.153Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T12:52:00.427Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T12:54:08.611Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T13:05:08.935Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T13:22:59.147Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T13:27:31.082Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T13:29:13.555Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T13:39:24.012Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T14:05:23.112Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T14:21:54.642Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T14:25:49.754Z"
+  },
+  {
+    "userKey": "7603882099",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-11T14:28:02.680Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out directly from header menu",
+    "page": "index.html",
+    "timestamp": "2026-06-11T14:28:13.174Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-11T14:28:27.671Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-12T06:50:04.479Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-12T07:01:35.804Z"
+  },
+  {
+    "userKey": "Guest",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-12T07:03:47.828Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-12T07:05:18.141Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-12T07:24:50.064Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-12T07:27:48.533Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-12T08:09:44.146Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-12T08:20:09.356Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-12T08:24:56.835Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-12T08:35:11.614Z"
+  },
+  {
+    "userKey": "Guest",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-12T08:38:00.605Z"
+  },
+  {
+    "userKey": "Guest",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-12T08:49:20.899Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-12T09:24:58.097Z"
+  },
+  {
+    "userKey": "Guest",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-12T09:25:24.614Z"
+  },
+  {
+    "userKey": "7603882099",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-12T11:05:09.668Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out directly from header menu",
+    "page": "index.html",
+    "timestamp": "2026-06-12T12:54:54.765Z"
+  },
+  {
+    "userKey": "7603882099",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-12T12:56:31.952Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out directly from header menu",
+    "page": "index.html",
+    "timestamp": "2026-06-12T13:01:27.187Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-12T13:23:40.191Z"
+  },
+  {
+    "userKey": "Guest",
+    "activityType": "checkout_abandoned",
+    "details": "User reached checkout page but has not placed an order yet. Item Total: ₹1,03,000",
+    "page": "checkout.html",
+    "timestamp": "2026-06-12T13:57:18.486Z"
+  },
+  {
+    "userKey": "7603882099",
+    "activityType": "login",
+    "details": "Login via /verify-otp (demo)",
+    "page": "login.html",
+    "timestamp": "2026-06-12T13:57:47.223Z"
+  },
+  {
+    "userKey": "arunachalamjayakumar2005@gmail.com",
+    "activityType": "tryon",
+    "details": "Tried on: Gold Necklace (gold-necklace.jpg)",
+    "page": "tryon.html",
+    "timestamp": "2026-06-13T06:53:09.417Z"
+  },
+  {
+    "userKey": "N/A",
+    "activityType": "logout",
+    "details": "User signed out directly from header menu",
+    "page": "index.html",
+    "timestamp": "2026-06-13T06:53:19.103Z"
   }
 ]

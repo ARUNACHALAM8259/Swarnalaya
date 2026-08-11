@@ -17,12 +17,14 @@ if (!fs.existsSync(ACTIVITY_LOGS_FILE)) {
 const emailRateLimits = {};
 const otpStore = {};
 
-
 function checkEmailRateLimit(userKey, activityType) {
   const limitKey = `${userKey}_${activityType}`;
   const now = Date.now();
   const thirtyMinutes = 30 * 60 * 1000;
-  if (emailRateLimits[limitKey] && (now - emailRateLimits[limitKey]) < thirtyMinutes) {
+  if (
+    emailRateLimits[limitKey] &&
+    now - emailRateLimits[limitKey] < thirtyMinutes
+  ) {
     return false;
   }
   emailRateLimits[limitKey] = now;
@@ -33,13 +35,17 @@ function saveUser(user) {
   try {
     const data = fs.readFileSync(USERS_FILE, "utf8");
     const users = JSON.parse(data);
-    
+
     // Check for duplicate user by mobile or email
-    const exists = users.some(u => u.mobile === user.mobile || u.email === user.email);
+    const exists = users.some(
+      (u) => u.mobile === user.mobile || u.email === user.email,
+    );
     if (!exists) {
       users.push(user);
       fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2), "utf8");
-      console.log(`User registered successfully: ${user.name} (${user.mobile})`);
+      console.log(
+        `User registered successfully: ${user.name} (${user.mobile})`,
+      );
     }
   } catch (e) {
     console.error("Error saving user:", e);
@@ -52,22 +58,33 @@ function logActivity(activity) {
     const logs = JSON.parse(data);
     logs.push(activity);
     fs.writeFileSync(ACTIVITY_LOGS_FILE, JSON.stringify(logs, null, 2), "utf8");
-    console.log(`Activity logged: ${activity.activityType} for ${activity.userKey}`);
+    console.log(
+      `Activity logged: ${activity.activityType} for ${activity.userKey}`,
+    );
   } catch (e) {
     console.error("Error saving activity log:", e);
   }
 }
 
-function sendAdminEmailNotification(customer, activityType, details = "", page = "") {
-  const adminEmail = process.env.ADMIN_EMAIL || "arunachalamjayakumar2005@gmail.com";
+function sendAdminEmailNotification(
+  customer,
+  activityType,
+  details = "",
+  page = "",
+) {
+  const adminEmail =
+    process.env.ADMIN_EMAIL || "arunachalamjayakumar2005@gmail.com";
   const smtpHost = process.env.SMTP_HOST || "";
   const smtpPort = process.env.SMTP_PORT || "";
   const smtpUser = process.env.SMTP_USER || "";
   const smtpPass = process.env.SMTP_PASS || "";
 
-  console.log(`[Email Notification Triggered] User: ${customer.email || customer.mobile}, Action: ${activityType}`);
+  console.log(
+    `[Email Notification Triggered] User: ${customer.email || customer.mobile}, Action: ${activityType}`,
+  );
 
-  const registrationDateTime = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) + " IST";
+  const registrationDateTime =
+    new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) + " IST";
 
   const emailSubject = `Swarnalaya Notification: Customer ${activityType.toUpperCase()} Alert`;
   const emailHtml = `
@@ -104,11 +121,15 @@ function sendAdminEmailNotification(customer, activityType, details = "", page =
           <td style="padding: 10px; border-bottom: 1px solid #ddd; font-weight: bold;">Page Registered From</td>
           <td style="padding: 10px; border-bottom: 1px solid #ddd;">${page || "N/A"}</td>
         </tr>
-        ${details ? `
+        ${
+          details
+            ? `
         <tr>
           <td style="padding: 10px; border-bottom: 1px solid #ddd; font-weight: bold;">Activity Details</td>
           <td style="padding: 10px; border-bottom: 1px solid #ddd; font-style: italic;">${details}</td>
-        </tr>` : ""}
+        </tr>`
+            : ""
+        }
       </table>
       
       <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; font-size: 12px; color: #888; text-align: center;">
@@ -119,19 +140,29 @@ function sendAdminEmailNotification(customer, activityType, details = "", page =
 
   const userKey = customer.email || customer.mobile || "unknown";
   if (!checkEmailRateLimit(userKey, activityType)) {
-    console.log(`[Email Notification Skipped] Rate limited for user ${userKey} (${activityType}) within 30 minutes.`);
+    console.log(
+      `[Email Notification Skipped] Rate limited for user ${userKey} (${activityType}) within 30 minutes.`,
+    );
     return;
   }
 
   if (!smtpUser || !smtpPass) {
-    console.log("----------------------------------------------------------------------");
-    console.log(`[SMTP Settings Missing] Notification logged to console. Details:`);
+    console.log(
+      "----------------------------------------------------------------------",
+    );
+    console.log(
+      `[SMTP Settings Missing] Notification logged to console. Details:`,
+    );
     console.log(`To: ${adminEmail}`);
     console.log(`Subject: ${emailSubject}`);
     console.log(`Activity: ${activityType}`);
-    console.log(`Customer: Name: ${customer.name}, Mobile: ${customer.mobile}, Email: ${customer.email}`);
+    console.log(
+      `Customer: Name: ${customer.name}, Mobile: ${customer.mobile}, Email: ${customer.email}`,
+    );
     console.log(`Details: ${details || "N/A"}, Page: ${page || "N/A"}`);
-    console.log("----------------------------------------------------------------------");
+    console.log(
+      "----------------------------------------------------------------------",
+    );
     return;
   }
 
@@ -141,22 +172,30 @@ function sendAdminEmailNotification(customer, activityType, details = "", page =
     secure: parseInt(smtpPort) === 465,
     auth: {
       user: smtpUser,
-      pass: smtpPass
-    }
+      pass: smtpPass,
+    },
   });
 
   const mailOptions = {
     from: `"Swarnalaya Notifications" <${smtpUser}>`,
     to: adminEmail,
     subject: emailSubject,
-    html: emailHtml
+    html: emailHtml,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.error("[SMTP Error] Failed to send notification email:", error.message);
+      console.error(
+        "[SMTP Error] Failed to send notification email:",
+        error.message,
+      );
     } else {
-      console.log("[SMTP Success] Notification email sent successfully to:", adminEmail, "ID:", info.messageId);
+      console.log(
+        "[SMTP Success] Notification email sent successfully to:",
+        adminEmail,
+        "ID:",
+        info.messageId,
+      );
     }
   });
 }
@@ -166,17 +205,17 @@ function formatToIST(isoString) {
   if (!isoString) return "N/A";
   try {
     const d = new Date(isoString);
-    const dateStr = d.toLocaleDateString('en-GB', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      timeZone: 'Asia/Kolkata'
+    const dateStr = d.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      timeZone: "Asia/Kolkata",
     });
-    const timeStr = d.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
+    const timeStr = d.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
       hour12: true,
-      timeZone: 'Asia/Kolkata'
+      timeZone: "Asia/Kolkata",
     });
     return `${dateStr} ${timeStr} IST`;
   } catch (e) {
@@ -197,10 +236,26 @@ function loadEnv() {
         if (eqIdx > 0) {
           const key = trimmed.substring(0, eqIdx).trim();
           let val = trimmed.substring(eqIdx + 1).trim();
-          if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-            val = val.substring(1, val.length - 1);
+          
+          // Strip inline comments if not inside quotes
+          if (!val.startsWith('"') && !val.startsWith("'")) {
+            const hashIdx = val.indexOf("#");
+            if (hashIdx >= 0) {
+              val = val.substring(0, hashIdx).trim();
+            }
+          } else {
+            if (
+              (val.startsWith('"') && val.endsWith('"')) ||
+              (val.startsWith("'") && val.endsWith("'"))
+            ) {
+              val = val.substring(1, val.length - 1);
+            }
           }
-          process.env[key] = val;
+          
+          // Don't overwrite existing environment variables
+          if (process.env[key] === undefined) {
+            process.env[key] = val;
+          }
         }
       }
     } catch (e) {
@@ -217,13 +272,13 @@ const RATES_FILE = path.join(__dirname, "rates.json");
 
 function needsUpdate(lastUpdatedString) {
   if (!lastUpdatedString) return true;
-  
+
   const lastUpdateDate = new Date(lastUpdatedString);
   const now = new Date();
-  
+
   // Cache rates for 30 minutes (1,800,000 ms) to refresh automatically every 30 mins
   const cacheDuration = 30 * 60 * 1000;
-  return (now.getTime() - lastUpdateDate.getTime()) > cacheDuration;
+  return now.getTime() - lastUpdateDate.getTime() > cacheDuration;
 }
 
 const HISTORY_FILE = path.join(__dirname, "rate-history.json");
@@ -235,11 +290,12 @@ function saveToHistory(rates) {
       const data = fs.readFileSync(HISTORY_FILE, "utf8");
       history = JSON.parse(data);
     }
-    
+
     // Check if entry for the same updatetimeText or date already exists to prevent duplicate entries
-    const timeKey = rates.updatetimeText || new Date().toISOString().substring(0, 10);
-    const exists = history.some(h => h.timeKey === timeKey);
-    
+    const timeKey =
+      rates.updatetimeText || new Date().toISOString().substring(0, 10);
+    const exists = history.some((h) => h.timeKey === timeKey);
+
     if (!exists) {
       history.push({
         timeKey: timeKey,
@@ -249,7 +305,7 @@ function saveToHistory(rates) {
         silver: rates.silver.price,
         change22K: rates.gold22K.change,
         change18K: rates.gold18K.change,
-        changeSilver: rates.silver.change
+        changeSilver: rates.silver.change,
       });
       // Limit history to last 100 records
       if (history.length > 100) {
@@ -265,67 +321,78 @@ function saveToHistory(rates) {
 
 async function fetchMJDTA() {
   try {
-    console.log("Fetching live gold rates from MJDTA (thejewellersassociation.org)...");
-    const response = await fetch("https://thejewellersassociation.org/index.php", {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-      }
-    });
+    console.log(
+      "Fetching live gold rates from MJDTA (thejewellersassociation.org)...",
+    );
+    const response = await fetch(
+      "https://thejewellersassociation.org/index.php",
+      {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        },
+      },
+    );
     if (!response.ok) throw new Error("HTTP error " + response.status);
     const html = await response.text();
-    
+
     // Match rates using robust relaxed patterns
     const match22 = html.match(/goldrate_22ct.*html\("([\d\.]+)"\)/);
     const match18 = html.match(/goldrate_18ct.*html\("([\d\.]+)"\)/);
-    const matchSilver = html.match(/class="silver_rate">([\d\.]+)<\/span>/) || html.match(/silverrate_1gm.*html\("([\d\.]+)"\)/);
-    
+    const matchSilver =
+      html.match(/class="silver_rate">([\d\.]+)<\/span>/) ||
+      html.match(/silverrate_1gm.*html\("([\d\.]+)"\)/);
+
     // Match changes
     const match22Diff = html.match(/goldrate_22ctdiff\s*=\s*"(-?[\d\.]+)"/);
     const match18Diff = html.match(/goldrate_18ctdiff\s*=\s*"(-?[\d\.]+)"/);
-    const matchSilverDiff = html.match(/silverrate_1gmdiff\s*=\s*parseFloat\("(-?[\d\.]+)"\)/) || html.match(/silverrate_1gmdiff\s*=\s*"(-?[\d\.]+)"/);
-    
+    const matchSilverDiff =
+      html.match(/silverrate_1gmdiff\s*=\s*parseFloat\("(-?[\d\.]+)"\)/) ||
+      html.match(/silverrate_1gmdiff\s*=\s*"(-?[\d\.]+)"/);
+
     // Match update time
     const matchTime = html.match(/updatetime.*html\("([^"]+)"\)/);
-    
+
     if (match22 && match18 && matchSilver) {
       const gold22Price = parseFloat(match22[1]);
       const gold18Price = parseFloat(match18[1]);
       const silverPrice = parseFloat(matchSilver[1]);
-      
+
       const change22 = match22Diff ? parseFloat(match22Diff[1]) : 0;
       const change18 = match18Diff ? parseFloat(match18Diff[1]) : 0;
       const changeSilver = matchSilverDiff ? parseFloat(matchSilverDiff[1]) : 0;
-      
+
       const timeStr = matchTime ? matchTime[1] : new Date().toLocaleString();
-      
+
       const updatedRates = {
         gold22K: {
           price: gold22Price,
           change: change22,
-          direction: change22 > 0 ? "up" : change22 < 0 ? "down" : "flat"
+          direction: change22 > 0 ? "up" : change22 < 0 ? "down" : "flat",
         },
         gold18K: {
           price: gold18Price,
           change: change18,
-          direction: change18 > 0 ? "up" : change18 < 0 ? "down" : "flat"
+          direction: change18 > 0 ? "up" : change18 < 0 ? "down" : "flat",
         },
         silver: {
           price: silverPrice,
           change: changeSilver,
-          direction: changeSilver > 0 ? "up" : changeSilver < 0 ? "down" : "flat"
+          direction:
+            changeSilver > 0 ? "up" : changeSilver < 0 ? "down" : "flat",
         },
         // For 24K, calibrate from 22K (22K * 1.091)
         gold24K: {
           price: Math.round(gold22Price * 1.091),
           change: Math.round(change22 * 1.091),
-          direction: change22 > 0 ? "up" : change22 < 0 ? "down" : "flat"
+          direction: change22 > 0 ? "up" : change22 < 0 ? "down" : "flat",
         },
         lastUpdated: new Date().toISOString(),
         updateSource: "MJDTA",
         updatetimeText: timeStr,
-        status: "success"
+        status: "success",
       };
-      
+
       saveToHistory(updatedRates);
       return updatedRates;
     }
@@ -345,14 +412,14 @@ function loadSavedRates() {
   } catch (err) {
     console.error("Error reading rates.json:", err);
   }
-  
+
   // Default fallback initial rates
   const initialRates = {
     gold24K: { price: 15334, change: 0.0, direction: "flat" },
     gold22K: { price: 14046, change: 0.0, direction: "flat" },
     gold18K: { price: 11501, change: 0.0, direction: "flat" },
     silver: { price: 242.74, change: 0.0, direction: "flat" },
-    lastUpdated: new Date(0).toISOString()
+    lastUpdated: new Date(0).toISOString(),
   };
   saveRates(initialRates);
   return initialRates;
@@ -372,7 +439,7 @@ let isUpdating = false;
 async function updateLiveRates() {
   if (isUpdating) return;
   isUpdating = true;
-  
+
   try {
     // 1. Try MJDTA first
     const mjdtaRates = await fetchMJDTA();
@@ -382,65 +449,75 @@ async function updateLiveRates() {
       console.log("Gold rates updated from MJDTA:", cachedRates);
       return;
     }
-    
+
     // 2. Try GoldAPI as fallback
     console.log("Fetching live gold rates from GoldAPI fallback...");
     const [xauRes, xagRes] = await Promise.all([
       fetch("https://api.gold-api.com/price/XAU"),
-      fetch("https://api.gold-api.com/price/XAG")
+      fetch("https://api.gold-api.com/price/XAG"),
     ]);
-    
+
     if (!xauRes.ok || !xagRes.ok) {
       throw new Error("HTTP error fetching rates from GoldAPI");
     }
-    
+
     const xauData = await xauRes.json();
     const xagData = await xagRes.json();
-    
+
     const xauUSD = xauData.price;
     const xagUSD = xagData.price;
-    
+
     const usdToInr = 83.5;
-    
+
     // Chennai gold rate calibration (import duties, GST, local margins)
-    const gold24KPrice = Math.round((xauUSD * usdToInr / 31.1035) * 1.33);
+    const gold24KPrice = Math.round(((xauUSD * usdToInr) / 31.1035) * 1.33);
     const gold22KPrice = Math.round(gold24KPrice * 0.916);
     const gold18KPrice = Math.round(gold24KPrice * 0.75);
-    const silverPrice = parseFloat(((xagUSD * usdToInr / 31.1035) * 1.35).toFixed(2));
-    
-    let dir24 = "up", chg24 = 0.15;
-    let dir22 = "up", chg22 = 0.15;
-    let dir18 = "up", chg18 = 0.15;
-    let dirSil = "down", chgSil = -0.25;
-    
+    const silverPrice = parseFloat(
+      (((xagUSD * usdToInr) / 31.1035) * 1.35).toFixed(2),
+    );
+
+    let dir24 = "up",
+      chg24 = 0.15;
+    let dir22 = "up",
+      chg22 = 0.15;
+    let dir18 = "up",
+      chg18 = 0.15;
+    let dirSil = "down",
+      chgSil = -0.25;
+
     if (cachedRates && cachedRates.gold24K) {
       const prev24 = cachedRates.gold24K.price;
       const prev22 = cachedRates.gold22K.price;
       const prev18 = cachedRates.gold18K.price;
       const prevSil = cachedRates.silver.price;
-      
+
       const calcDiff = (curr, prev) => {
         if (!prev) return { change: 0.0, dir: "flat" };
         const diff = curr - prev;
         return {
           change: parseFloat(diff.toFixed(2)),
-          dir: diff > 0 ? "up" : diff < 0 ? "down" : "flat"
+          dir: diff > 0 ? "up" : diff < 0 ? "down" : "flat",
         };
       };
-      
+
       const c24 = calcDiff(gold24KPrice, prev24);
-      dir24 = c24.dir; chg24 = c24.change;
-      
+      dir24 = c24.dir;
+      chg24 = c24.change;
+
       const c22 = calcDiff(gold22KPrice, prev22);
-      dir22 = c22.dir; chg22 = c22.change;
-      
+      dir22 = c22.dir;
+      chg22 = c22.change;
+
       const c18 = calcDiff(gold18KPrice, prev18);
-      dir18 = c18.dir; chg18 = c18.change;
-      
+      dir18 = c18.dir;
+      chg18 = c18.change;
+
       const cSil = calcDiff(silverPrice, prevSil);
-      dirSil = cSil.dir; chgSil = cSil.change;
+      dirSil = cSil.dir;
+      chgSil = cSil.change;
     }
-    
+
     cachedRates = {
       gold24K: { price: gold24KPrice, change: chg24, direction: dir24 },
       gold22K: { price: gold22KPrice, change: chg22, direction: dir22 },
@@ -448,16 +525,24 @@ async function updateLiveRates() {
       silver: { price: silverPrice, change: chgSil, direction: dirSil },
       lastUpdated: new Date().toISOString(),
       updateSource: "GoldAPI",
-      updatetimeText: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }) + " (Live)",
-      status: "success"
+      updatetimeText:
+        new Date().toLocaleTimeString("en-IN", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        }) + " (Live)",
+      status: "success",
     };
-    
+
     saveRates(cachedRates);
     saveToHistory(cachedRates);
     console.log("Gold rates updated from GoldAPI fallback:", cachedRates);
   } catch (err) {
-    console.error("All live sources failed, showing last available rates with warning:", err.message);
-    
+    console.error(
+      "All live sources failed, showing last available rates with warning:",
+      err.message,
+    );
+
     // Set status to "update-in-progress" to warn the user
     if (cachedRates) {
       cachedRates.status = "update-in-progress";
@@ -471,33 +556,78 @@ async function updateLiveRates() {
 // Offline fallback keywords matcher in case Gemini is not configured or offline
 function getOfflineFallbackResponse(message, lang = "en") {
   const msg = message.toLowerCase();
-  const isTamil = lang === "ta" || /தங்கம்|வெள்ளி|விழுப்புரம்|நகைகள்|திட்டம்|சேமிப்பு|விருத்தி|வணக்கம்|உதவி|பதிவு|அப்பாயிண்ட்மெண்ட்/.test(msg);
-  
+  const isTamil =
+    lang === "ta" ||
+    /தங்கம்|வெள்ளி|விழுப்புரம்|நகைகள்|திட்டம்|சேமிப்பு|விருத்தி|வணக்கம்|உதவி|பதிவு|அப்பாயிண்ட்மெண்ட்/.test(
+      msg,
+    );
+
   if (isTamil) {
-    if (msg.includes("விழுப்புரம்") || msg.includes("முகவரி") || msg.includes("தொடர்பு") || msg.includes("போன்") || msg.includes("வாட்ஸ்அப்")) {
+    if (
+      msg.includes("விழுப்புரம்") ||
+      msg.includes("முகவரி") ||
+      msg.includes("தொடர்பு") ||
+      msg.includes("போன்") ||
+      msg.includes("வாட்ஸ்அப்")
+    ) {
       return "ஸ்வர்ணாலயா ஜுவல்லர்ஸ் முகவரி:\n791C, PJN ரோடு, விழுப்புரம் - 605 602, தமிழ்நாடு.\nதொலைபேசி: +91 9837371616.\nவிவரங்களுக்கு கீழே உள்ள 'தொடர்பு கொள்ள' பொத்தானைக் கிளிக் செய்யவும்.";
     }
-    if (msg.includes("திட்டம்") || msg.includes("விருத்தி") || msg.includes("சேமிப்பு")) {
+    if (
+      msg.includes("திட்டம்") ||
+      msg.includes("விருத்தி") ||
+      msg.includes("சேமிப்பு")
+    ) {
       return "ஸ்வர்ணாலயாவில் 4 பிரபலமான சேமிப்புத் திட்டங்கள் உள்ளன:\n1. தனா விருத்தி (VA செய்கூலி தள்ளுபடி)\n2. செல்வ விருத்தி (12வது தவணை இலவசம்)\n3. குபேர விருத்தி (பழைய தங்க வைப்பு)\n4. கனக விருத்தி (தினசரி தங்க எடை சேமிப்பு)\n\nமேலும் அறிய கீழே உள்ள 'சேமிப்பு திட்டங்கள்' பொத்தானைக் கிளிக் செய்யவும்.";
     }
-    if (msg.includes("விலை") || msg.includes("ரேட்") || msg.includes("தங்கம்") || msg.includes("வெள்ளி")) {
-      return `இன்றைய சென்னை தங்கத்தின் நேரடி விலை:\n- 22K தங்க விலை: ₹${cachedRates.gold22K.price.toLocaleString('en-IN')}/g\n- 24K தங்க விலை: ₹${cachedRates.gold24K.price.toLocaleString('en-IN')}/g\n- வெள்ளி விலை: ₹${cachedRates.silver.price.toFixed(2)}/g\n\nகடைசியாக புதுப்பிக்கப்பட்டது: ${formatToIST(cachedRates.lastUpdated)}`;
+    if (
+      msg.includes("விலை") ||
+      msg.includes("ரேட்") ||
+      msg.includes("தங்கம்") ||
+      msg.includes("வெள்ளி")
+    ) {
+      return `இன்றைய சென்னை தங்கத்தின் நேரடி விலை:\n- 22K தங்க விலை: ₹${cachedRates.gold22K.price.toLocaleString("en-IN")}/g\n- 24K தங்க விலை: ₹${cachedRates.gold24K.price.toLocaleString("en-IN")}/g\n- வெள்ளி (91.6) விலை: ₹${cachedRates.silver.price.toFixed(2)}/g\n\nகடைசியாக புதுப்பிக்கப்பட்டது: ${formatToIST(cachedRates.lastUpdated)}`;
     }
-    if (msg.includes("பதிவு") || msg.includes("நேரம்") || msg.includes("அப்பாயிண்ட்மெண்ட்")) {
+    if (
+      msg.includes("பதிவு") ||
+      msg.includes("நேரம்") ||
+      msg.includes("அப்பாயிண்ட்மெண்ட்")
+    ) {
       return "நீங்கள் ஷோரூம் அப்பாயிண்ட்மெண்ட் பதிவு செய்ய விரும்பினால், தயவுசெய்து கீழே உள்ள 'அப்பாயிண்ட்மெண்ட்' பொத்தானைக் கிளிக் செய்து விவரங்களை வழங்கவும்.";
     }
     return "வணக்கம்! ஸ்வர்ணாலயா ஜுவல்லர்ஸிற்கு உங்களை வரவேற்கிறோம். தற்சமயம் AI சேவை ஆஃப்லைனில் உள்ளது. ஆனால் நான் ஆஃபர்கள், தங்க விலை, சேமிப்பு திட்டங்கள் மற்றும் அப்பாயிண்ட்மெண்ட் ஆகியவற்றில் உதவ முடியும். கீழே உள்ள பொத்தான்களைப் பயன்படுத்தவும்.";
   } else {
-    if (msg.includes("address") || msg.includes("location") || msg.includes("contact") || msg.includes("phone") || msg.includes("whatsapp") || msg.includes("villupuram")) {
+    if (
+      msg.includes("address") ||
+      msg.includes("location") ||
+      msg.includes("contact") ||
+      msg.includes("phone") ||
+      msg.includes("whatsapp") ||
+      msg.includes("villupuram")
+    ) {
       return "Swarnalaya Jewellers Address:\n791C, PJN Road, Villupuram - 605 602, Tamil Nadu.\nPhone: +91 9837371616.\nYou can also click the 'Contact Us' button to start a WhatsApp chat with our staff.";
     }
-    if (msg.includes("scheme") || msg.includes("savings") || msg.includes("vruthi") || msg.includes("thanaa") || msg.includes("selva")) {
+    if (
+      msg.includes("scheme") ||
+      msg.includes("savings") ||
+      msg.includes("vruthi") ||
+      msg.includes("thanaa") ||
+      msg.includes("selva")
+    ) {
       return "We offer 4 savings schemes:\n1. Thanaa Vruthi (Value Addition discount)\n2. Selva Vruthi (12th installment free)\n3. Kubera Vruthi (Old gold investment)\n4. Kanaga Vruthi (Daily gold rate locking)\n\nClick the 'Schemes' button below to see detailed benefits of each scheme.";
     }
-    if (msg.includes("rate") || msg.includes("price") || msg.includes("gold") || msg.includes("silver")) {
-      return `Today's live Chennai rates per gram:\n- 22K (916) Gold: ₹${cachedRates.gold22K.price.toLocaleString('en-IN')}/g\n- 24K (999) Gold: ₹${cachedRates.gold24K.price.toLocaleString('en-IN')}/g\n- Silver (Pure): ₹${cachedRates.silver.price.toFixed(2)}/g\n\nLast updated: ${formatToIST(cachedRates.lastUpdated)}`;
+    if (
+      msg.includes("rate") ||
+      msg.includes("price") ||
+      msg.includes("gold") ||
+      msg.includes("silver")
+    ) {
+      return `Today's live Chennai rates per gram:\n- 22K (916) Gold: ₹${cachedRates.gold22K.price.toLocaleString("en-IN")}/g\n- 24K (999) Gold: ₹${cachedRates.gold24K.price.toLocaleString("en-IN")}/g\n- Silver (91.6): ₹${cachedRates.silver.price.toFixed(2)}/g\n\nLast updated: ${formatToIST(cachedRates.lastUpdated)}`;
     }
-    if (msg.includes("appointment") || msg.includes("book") || msg.includes("visit")) {
+    if (
+      msg.includes("appointment") ||
+      msg.includes("book") ||
+      msg.includes("visit")
+    ) {
       return "To book a showroom visit, please click the 'Book Appointment' button below to launch our interactive booking helper.";
     }
     return "Hello! Welcome to Swarnalaya Jewellers. AI service is currently in offline mode (API key not configured). I can still help you with gold rates, schemes, contacts, and appointments. Please use the quick options below!";
@@ -506,25 +636,27 @@ function getOfflineFallbackResponse(message, lang = "en") {
 
 // Calls Gemini 1.5 Flash using Node native fetch
 async function callGeminiAPI(message, chatHistory, lang = "en") {
-  const apiKey = process.env.GEMINI_API_KEY || "";
-  
-  if (!apiKey) {
-    console.log("GEMINI_API_KEY not configured. Falling back to offline matcher.");
+  const apiKey = (process.env.GEMINI_API_KEY || "").trim();
+
+  if (!apiKey || apiKey === "undefined" || apiKey === "null") {
+    console.log(
+      "GEMINI_API_KEY not configured or invalid. Falling back to offline matcher.",
+    );
     return getOfflineFallbackResponse(message, lang);
   }
-  
+
   try {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-    
+
     // Construct dynamic rates context
     const ratesStr = `
-- Gold 24K (999): ₹${cachedRates.gold24K.price.toLocaleString('en-IN')}/g (change: ${cachedRates.gold24K.change}%, direction: ${cachedRates.gold24K.direction})
-- Gold 22K (916) Jewellery: ₹${cachedRates.gold22K.price.toLocaleString('en-IN')}/g (change: ${cachedRates.gold22K.change}%, direction: ${cachedRates.gold22K.direction})
-- Gold 18K (750): ₹${cachedRates.gold18K.price.toLocaleString('en-IN')}/g (change: ${cachedRates.gold18K.change}%, direction: ${cachedRates.gold18K.direction})
-- Silver (Pure): ₹${cachedRates.silver.price.toFixed(2)}/g (change: ${cachedRates.silver.change}%, direction: ${cachedRates.silver.direction})
+- Gold 24K (999): ₹${cachedRates.gold24K.price.toLocaleString("en-IN")}/g (change: ${cachedRates.gold24K.change}%, direction: ${cachedRates.gold24K.direction})
+- Gold 22K (916) Jewellery: ₹${cachedRates.gold22K.price.toLocaleString("en-IN")}/g (change: ${cachedRates.gold22K.change}%, direction: ${cachedRates.gold22K.direction})
+- Gold 18K (750): ₹${cachedRates.gold18K.price.toLocaleString("en-IN")}/g (change: ${cachedRates.gold18K.change}%, direction: ${cachedRates.gold18K.direction})
+- Silver (91.6): ₹${cachedRates.silver.price.toFixed(2)}/g (change: ${cachedRates.silver.change}%, direction: ${cachedRates.silver.direction})
 - Rates Last Updated: ${formatToIST(cachedRates.lastUpdated)}
     `;
-    
+
     const systemPrompt = `You are "Swarnalaya Assistant" (ஸ்வர்ணாலயா உதவி), the premium luxury AI customer shopping assistant for Swarnalaya Jewellers in Villupuram, Tamil Nadu.
 Your goal is to provide exceptional, polite, and helpful customer support in English and Tamil.
 
@@ -574,32 +706,32 @@ Style, Language & Tone Instructions:
 - NEVER invent information. If you do not know the answer, politely ask them to click the "Contact Us" option to chat with our showroom staff on WhatsApp (+91 9837371616).`;
 
     // Map history to Gemini's format: [{ role: "user" | "model", parts: [{ text: "..." }] }]
-    const contents = chatHistory.map(msg => ({
+    const contents = chatHistory.map((msg) => ({
       role: msg.role === "bot" ? "model" : "user",
-      parts: [{ text: msg.text || "" }]
+      parts: [{ text: msg.text || "" }],
     }));
-    
+
     // Add current user message
     contents.push({
       role: "user",
-      parts: [{ text: message }]
+      parts: [{ text: message }],
     });
 
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         contents: contents,
         systemInstruction: {
-          parts: [{ text: systemPrompt }]
+          parts: [{ text: systemPrompt }],
         },
         generationConfig: {
           temperature: 0.4,
-          maxOutputTokens: 800
-        }
-      })
+          maxOutputTokens: 800,
+        },
+      }),
     });
 
     if (!response.ok) {
@@ -608,16 +740,58 @@ Style, Language & Tone Instructions:
     }
 
     const resData = await response.json();
-    if (resData.candidates && resData.candidates[0] && resData.candidates[0].content && resData.candidates[0].content.parts[0]) {
+    if (
+      resData.candidates &&
+      resData.candidates[0] &&
+      resData.candidates[0].content &&
+      resData.candidates[0].content.parts[0]
+    ) {
       return resData.candidates[0].content.parts[0].text;
     }
-    
+
     throw new Error("Invalid response structure from Gemini API");
   } catch (err) {
-    console.error("Error calling Gemini API, falling back to offline matcher:", err.message);
+    console.error(
+      "Error calling Gemini API, falling back to offline matcher:",
+      err.message,
+    );
     return getOfflineFallbackResponse(message, lang);
   }
 }
+
+// ── Startup diagnostic: print config status ───────────────────
+console.log("\n" + "─".repeat(65));
+console.log("  SWARNALAYA SERVER — CONFIGURATION DIAGNOSTIC");
+console.log("─".repeat(65));
+const _diag = {
+  MSG91_AUTH_KEY: (process.env.MSG91_AUTH_KEY || "").trim(),
+  MSG91_TEMPLATE_ID: (process.env.MSG91_TEMPLATE_ID || "").trim(),
+  MSG91_WIDGET_ID: (process.env.MSG91_WIDGET_ID || "").trim(),
+  MSG91_SEND_OTP_URL: (process.env.MSG91_SEND_OTP_URL || "").trim() || "(default)",
+  GEMINI_API_KEY: (process.env.GEMINI_API_KEY || "").trim(),
+  SMTP_USER: (process.env.SMTP_USER || "").trim(),
+  ADMIN_EMAIL: (process.env.ADMIN_EMAIL || "").trim(),
+};
+for (const [k, v] of Object.entries(_diag)) {
+  const isSet = v && v !== "(default)" && v !== "undefined" && v !== "null";
+  const status = isSet
+    ? `✅  SET  → ${v.slice(0, 8)}...`
+    : v === "(default)"
+      ? `ℹ️  DEFAULT`
+      : `❌  NOT SET`;
+  console.log(`  ${k.padEnd(22)}  ${status}`);
+}
+if (!_diag["MSG91_AUTH_KEY"] || !_diag["MSG91_TEMPLATE_ID"]) {
+  console.log("\n  ⚠️  MSG91 keys missing → /send-otp will run in DEMO mode");
+  console.log(
+    "  ⚠️  Set MSG91_AUTH_KEY + MSG91_TEMPLATE_ID in .env for live SMS",
+  );
+} else {
+  console.log(
+    "\n  ✅  MSG91 keys present → /send-otp will call MSG91 live API",
+  );
+}
+console.log("─".repeat(65) + "\n");
 
 // Proactive startup check
 if (needsUpdate(cachedRates.lastUpdated)) {
@@ -625,42 +799,50 @@ if (needsUpdate(cachedRates.lastUpdated)) {
 }
 
 // Background check every 30 minutes to auto-update live rates
-setInterval(() => {
-  if (needsUpdate(cachedRates.lastUpdated)) {
-    console.log("Background check: Rates need update. Fetching live rates...");
-    updateLiveRates();
-  }
-}, 30 * 60 * 1000);
+setInterval(
+  () => {
+    if (needsUpdate(cachedRates.lastUpdated)) {
+      console.log(
+        "Background check: Rates need update. Fetching live rates...",
+      );
+      updateLiveRates();
+    }
+  },
+  30 * 60 * 1000,
+);
 
 const server = http.createServer((req, res) => {
-  let urlPath = req.url.split('?')[0];
-  
+  let urlPath = req.url.split("?")[0];
+
   // API Route for getting configuration
   if (urlPath === "/api/config" && req.method === "GET") {
-    res.writeHead(200, { 
+    res.writeHead(200, {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*" 
+      "Access-Control-Allow-Origin": "*",
     });
-    res.end(JSON.stringify({
-      widgetId: process.env.MSG91_WIDGET_ID || ""
-    }));
+    res.end(
+      JSON.stringify({
+        widgetId: process.env.MSG91_WIDGET_ID || "",
+      }),
+    );
     return;
   }
 
   // API Route for verifying MSG91 Access Token
   if (urlPath === "/api/auth/verify-msg91" && req.method === "POST") {
     let body = "";
-    req.on("data", chunk => {
+    req.on("data", (chunk) => {
       body += chunk.toString();
     });
     req.on("end", async () => {
       try {
         const payload = JSON.parse(body);
-        const receivedAccessToken = payload["access-token"] || payload["accessToken"] || "";
+        const receivedAccessToken =
+          payload["access-token"] || payload["accessToken"] || "";
         const name = payload.name || "Swarnalaya Customer";
         const email = payload.email || "";
         const authMode = payload.authMode || "signin";
-        
+
         if (!receivedAccessToken) {
           res.writeHead(400, { "Content-Type": "application/json" });
           res.end(JSON.stringify({ error: "Missing access token" }));
@@ -677,9 +859,13 @@ const server = http.createServer((req, res) => {
           const parts = receivedAccessToken.split("-");
           const mobile = parts[2] || "9999999999";
           const otp = parts[3] || "123456";
-          
+
           const stored = otpStore[mobile] || otpStore["91" + mobile];
-          if ((stored && stored.otp === otp && stored.expiresAt > Date.now()) || otp === "123456" || otp === "1234") {
+          if (
+            (stored && stored.otp === otp && stored.expiresAt > Date.now()) ||
+            otp === "123456" ||
+            otp === "1234"
+          ) {
             verificationSuccess = true;
             verifiedMobile = mobile;
             if (stored) {
@@ -687,26 +873,29 @@ const server = http.createServer((req, res) => {
               delete otpStore["91" + mobile];
             }
           }
-          console.log(`[MSG91 DEMO MODE] Verifying Access Token: ${receivedAccessToken}. Success: ${verificationSuccess}, Mobile: ${verifiedMobile}`);
+          console.log(
+            `[MSG91 DEMO MODE] Verifying Access Token: ${receivedAccessToken}. Success: ${verificationSuccess}, Mobile: ${verifiedMobile}`,
+          );
         } else {
           // Live Mode: call MSG91 verifyAccessToken API
-          const verifyUrl = "https://control.msg91.com/api/v5/widget/verifyAccessToken";
+          const verifyUrl =
+            "https://control.msg91.com/api/v5/widget/verifyAccessToken";
           console.log(`[MSG91 verifyAccessToken] Request to ${verifyUrl}`);
-          
+
           const response = await fetch(verifyUrl, {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              "authkey": authKey,
-              "access-token": receivedAccessToken
-            })
+              authkey: authKey,
+              "access-token": receivedAccessToken,
+            }),
           });
 
           const resText = await response.text();
           console.log(`[MSG91 verifyAccessToken] Response:`, resText);
-          
+
           let resData;
           try {
             resData = JSON.parse(resText);
@@ -714,7 +903,10 @@ const server = http.createServer((req, res) => {
             resData = { status: "error", message: resText };
           }
 
-          if (response.ok && (resData.status === "success" || resData.type === "success")) {
+          if (
+            response.ok &&
+            (resData.status === "success" || resData.type === "success")
+          ) {
             verificationSuccess = true;
             const userData = resData.data || {};
             verifiedMobile = userData.mobile || resData.mobile || "";
@@ -727,14 +919,18 @@ const server = http.createServer((req, res) => {
 
         if (verificationSuccess && verifiedMobile) {
           // Complete login/register flow
-          let user = { name: name || "Guest User", mobile: verifiedMobile, email: email || `${verifiedMobile}@swarnalaya.com` };
-          
+          let user = {
+            name: name || "Guest User",
+            mobile: verifiedMobile,
+            email: email || `${verifiedMobile}@swarnalaya.com`,
+          };
+
           if (authMode === "signup") {
             user = {
               name: name || "Swarnalaya Customer",
               mobile: verifiedMobile,
               email: email || `${verifiedMobile}@swarnalaya.com`,
-              registeredAt: new Date().toISOString()
+              registeredAt: new Date().toISOString(),
             };
             saveUser(user);
 
@@ -743,15 +939,20 @@ const server = http.createServer((req, res) => {
               activityType: "register",
               details: `New customer registered via MSG91 token. Phone: ${verifiedMobile}`,
               page: "login.html",
-              timestamp: new Date().toISOString()
+              timestamp: new Date().toISOString(),
             });
 
-            sendAdminEmailNotification(user, "register", `New user registration via MSG91 widget: ${user.name} (${user.mobile})`, "login.html");
+            sendAdminEmailNotification(
+              user,
+              "register",
+              `New user registration via MSG91 widget: ${user.name} (${user.mobile})`,
+              "login.html",
+            );
           } else {
             if (fs.existsSync(USERS_FILE)) {
               const data = fs.readFileSync(USERS_FILE, "utf8");
               const users = JSON.parse(data);
-              const found = users.find(u => u.mobile === verifiedMobile);
+              const found = users.find((u) => u.mobile === verifiedMobile);
               if (found) {
                 user = found;
               }
@@ -762,23 +963,30 @@ const server = http.createServer((req, res) => {
               activityType: "login",
               details: `Customer logged in via MSG91 token`,
               page: "login.html",
-              timestamp: new Date().toISOString()
+              timestamp: new Date().toISOString(),
             });
 
-            sendAdminEmailNotification(user, "login", `User logged in via MSG91 widget: ${user.name} (${user.mobile})`, "login.html");
+            sendAdminEmailNotification(
+              user,
+              "login",
+              `User logged in via MSG91 widget: ${user.name} (${user.mobile})`,
+              "login.html",
+            );
           }
 
-          res.writeHead(200, { 
+          res.writeHead(200, {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*" 
+            "Access-Control-Allow-Origin": "*",
           });
           res.end(JSON.stringify({ success: true, user }));
         } else {
-          res.writeHead(401, { 
+          res.writeHead(401, {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*" 
+            "Access-Control-Allow-Origin": "*",
           });
-          res.end(JSON.stringify({ error: "Unauthorized: Invalid access token" }));
+          res.end(
+            JSON.stringify({ error: "Unauthorized: Invalid access token" }),
+          );
         }
       } catch (err) {
         console.error("Error in MSG91 verifyAccessToken route:", err);
@@ -792,14 +1000,14 @@ const server = http.createServer((req, res) => {
   // API Route for Sending OTP using MSG91
   if (urlPath === "/api/otp/send" && req.method === "POST") {
     let body = "";
-    req.on("data", chunk => {
+    req.on("data", (chunk) => {
       body += chunk.toString();
     });
     req.on("end", async () => {
       try {
         const payload = JSON.parse(body);
         const { mobile, countryCode } = payload;
-        
+
         if (!mobile) {
           res.writeHead(400, { "Content-Type": "application/json" });
           res.end(JSON.stringify({ error: "Missing mobile number" }));
@@ -808,48 +1016,65 @@ const server = http.createServer((req, res) => {
 
         const cleanCountryCode = (countryCode || "91").replace("+", "").trim();
         const fullMobile = `${cleanCountryCode}${mobile.trim()}`;
-        
+
         const authKey = process.env.MSG91_AUTH_KEY || "";
         const templateId = process.env.MSG91_TEMPLATE_ID || "";
-        const sendOtpUrl = process.env.MSG91_SEND_OTP_URL || "https://control.msg91.com/api/v5/otp";
+        const sendOtpUrl =
+          process.env.MSG91_SEND_OTP_URL ||
+          "https://control.msg91.com/api/v5/otp";
 
         // Demo Mode Check (if auth key is not configured)
         if (!authKey || !templateId) {
           // Generate a random 6-digit OTP
-          const generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
-          console.log(`\n-------------------------------------------------------------`);
-          console.log(`[MSG91 DEMO MODE] OTP for ${fullMobile}: ${generatedOtp}`);
-          console.log(`-------------------------------------------------------------\n`);
-          
+          const generatedOtp = Math.floor(
+            100000 + Math.random() * 900000,
+          ).toString();
+          console.log(
+            `\n-------------------------------------------------------------`,
+          );
+          console.log(
+            `[MSG91 DEMO MODE] OTP for ${fullMobile}: ${generatedOtp}`,
+          );
+          console.log(
+            `-------------------------------------------------------------\n`,
+          );
+
           otpStore[fullMobile] = {
             otp: generatedOtp,
-            expiresAt: Date.now() + 10 * 60 * 1000 // 10 minutes
+            expiresAt: Date.now() + 10 * 60 * 1000, // 10 minutes
           };
 
-          res.writeHead(200, { 
+          res.writeHead(200, {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*" 
+            "Access-Control-Allow-Origin": "*",
           });
-          res.end(JSON.stringify({ success: true, message: "OTP sent (Demo Mode)", demoMode: true, testOtp: generatedOtp }));
+          res.end(
+            JSON.stringify({
+              success: true,
+              message: "OTP sent (Demo Mode)",
+              demoMode: true,
+              testOtp: generatedOtp,
+            }),
+          );
           return;
         }
 
         // Live Mode: call MSG91 API
         const finalUrl = `${sendOtpUrl}?template_id=${templateId}&mobile=${fullMobile}`;
         console.log(`[MSG91 Send OTP] Request: ${finalUrl}`);
-        
+
         const response = await fetch(finalUrl, {
           method: "POST",
           headers: {
-            "authkey": authKey,
-            "Content-Type": "application/json"
+            authkey: authKey,
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({})
+          body: JSON.stringify({}),
         });
 
         const resText = await response.text();
         console.log(`[MSG91 Send OTP] Response:`, resText);
-        
+
         let resData;
         try {
           resData = JSON.parse(resText);
@@ -857,18 +1082,27 @@ const server = http.createServer((req, res) => {
           resData = { type: "error", message: resText };
         }
 
-        if (response.ok && (resData.type === "success" || resData.success === true)) {
-          res.writeHead(200, { 
+        if (
+          response.ok &&
+          (resData.type === "success" || resData.success === true)
+        ) {
+          res.writeHead(200, {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*" 
+            "Access-Control-Allow-Origin": "*",
           });
-          res.end(JSON.stringify({ success: true, message: "OTP sent successfully" }));
+          res.end(
+            JSON.stringify({ success: true, message: "OTP sent successfully" }),
+          );
         } else {
-          res.writeHead(400, { 
+          res.writeHead(400, {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*" 
+            "Access-Control-Allow-Origin": "*",
           });
-          res.end(JSON.stringify({ error: resData.message || "Failed to send OTP via MSG91" }));
+          res.end(
+            JSON.stringify({
+              error: resData.message || "Failed to send OTP via MSG91",
+            }),
+          );
         }
       } catch (err) {
         console.error("Error in MSG91 Send OTP route:", err);
@@ -882,14 +1116,14 @@ const server = http.createServer((req, res) => {
   // API Route for Verifying OTP using MSG91
   if (urlPath === "/api/otp/verify" && req.method === "POST") {
     let body = "";
-    req.on("data", chunk => {
+    req.on("data", (chunk) => {
       body += chunk.toString();
     });
     req.on("end", async () => {
       try {
         const payload = JSON.parse(body);
         const { mobile, countryCode, otp, name, email, authMode } = payload;
-        
+
         if (!mobile || !otp) {
           res.writeHead(400, { "Content-Type": "application/json" });
           res.end(JSON.stringify({ error: "Missing mobile number or OTP" }));
@@ -898,16 +1132,21 @@ const server = http.createServer((req, res) => {
 
         const cleanCountryCode = (countryCode || "91").replace("+", "").trim();
         const fullMobile = `${cleanCountryCode}${mobile.trim()}`;
-        
+
         const authKey = process.env.MSG91_AUTH_KEY || "";
-        const verifyOtpUrl = process.env.MSG91_VERIFY_OTP_URL || "https://control.msg91.com/api/v5/otp/verify";
+        const verifyOtpUrl =
+          process.env.MSG91_VERIFY_OTP_URL ||
+          "https://control.msg91.com/api/v5/otp/verify";
 
         let verificationSuccess = false;
 
         // Demo Mode Check (if auth key is not configured)
         if (!authKey) {
           const stored = otpStore[fullMobile];
-          if ((stored && stored.otp === otp && stored.expiresAt > Date.now()) || otp === "123456") {
+          if (
+            (stored && stored.otp === otp && stored.expiresAt > Date.now()) ||
+            otp === "123456"
+          ) {
             verificationSuccess = true;
             delete otpStore[fullMobile];
           }
@@ -915,12 +1154,12 @@ const server = http.createServer((req, res) => {
           // Live Mode: call MSG91 Verify API
           const finalUrl = `${verifyOtpUrl}?otp=${otp.trim()}&mobile=${fullMobile}`;
           console.log(`[MSG91 Verify OTP] Request: ${finalUrl}`);
-          
+
           const response = await fetch(finalUrl, {
             method: "GET",
             headers: {
-              "authkey": authKey
-            }
+              authkey: authKey,
+            },
           });
 
           const resText = await response.text();
@@ -933,28 +1172,37 @@ const server = http.createServer((req, res) => {
             resData = { type: "error", message: resText };
           }
 
-          if (response.ok && (resData.type === "success" || resData.success === true)) {
+          if (
+            response.ok &&
+            (resData.type === "success" || resData.success === true)
+          ) {
             verificationSuccess = true;
           } else {
-            res.writeHead(400, { 
+            res.writeHead(400, {
               "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*" 
+              "Access-Control-Allow-Origin": "*",
             });
-            res.end(JSON.stringify({ error: resData.message || "Invalid OTP code" }));
+            res.end(
+              JSON.stringify({ error: resData.message || "Invalid OTP code" }),
+            );
             return;
           }
         }
 
         if (verificationSuccess) {
           // Complete login/register flow
-          let user = { name: "Guest User", mobile: mobile, email: email || `${mobile}@swarnalaya.com` };
-          
+          let user = {
+            name: "Guest User",
+            mobile: mobile,
+            email: email || `${mobile}@swarnalaya.com`,
+          };
+
           if (authMode === "signup") {
             user = {
               name: name || "Swarnalaya Customer",
               mobile: mobile,
               email: email || `${mobile}@swarnalaya.com`,
-              registeredAt: new Date().toISOString()
+              registeredAt: new Date().toISOString(),
             };
             saveUser(user);
 
@@ -963,15 +1211,20 @@ const server = http.createServer((req, res) => {
               activityType: "register",
               details: `New customer registered via MSG91 OTP. Phone: ${mobile}`,
               page: "login.html",
-              timestamp: new Date().toISOString()
+              timestamp: new Date().toISOString(),
             });
 
-            sendAdminEmailNotification(user, "register", `New user registration via MSG91: ${user.name} (${user.mobile})`, "login.html");
+            sendAdminEmailNotification(
+              user,
+              "register",
+              `New user registration via MSG91: ${user.name} (${user.mobile})`,
+              "login.html",
+            );
           } else {
             if (fs.existsSync(USERS_FILE)) {
               const data = fs.readFileSync(USERS_FILE, "utf8");
               const users = JSON.parse(data);
-              const found = users.find(u => u.mobile === mobile);
+              const found = users.find((u) => u.mobile === mobile);
               if (found) {
                 user = found;
               }
@@ -982,21 +1235,26 @@ const server = http.createServer((req, res) => {
               activityType: "login",
               details: `Customer logged in via MSG91 OTP`,
               page: "login.html",
-              timestamp: new Date().toISOString()
+              timestamp: new Date().toISOString(),
             });
 
-            sendAdminEmailNotification(user, "login", `User logged in via MSG91: ${user.name} (${user.mobile})`, "login.html");
+            sendAdminEmailNotification(
+              user,
+              "login",
+              `User logged in via MSG91: ${user.name} (${user.mobile})`,
+              "login.html",
+            );
           }
 
-          res.writeHead(200, { 
+          res.writeHead(200, {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*" 
+            "Access-Control-Allow-Origin": "*",
           });
           res.end(JSON.stringify({ success: true, user }));
         } else {
-          res.writeHead(400, { 
+          res.writeHead(400, {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*" 
+            "Access-Control-Allow-Origin": "*",
           });
           res.end(JSON.stringify({ error: "Invalid OTP code" }));
         }
@@ -1012,7 +1270,7 @@ const server = http.createServer((req, res) => {
   // API Route for Chat bot with Gemini
   if (urlPath === "/api/chat" && req.method === "POST") {
     let body = "";
-    req.on("data", chunk => {
+    req.on("data", (chunk) => {
       body += chunk.toString();
     });
     req.on("end", async () => {
@@ -1021,12 +1279,12 @@ const server = http.createServer((req, res) => {
         const userMessage = payload.message || "";
         const chatHistory = payload.history || [];
         const lang = payload.lang || "en";
-        
+
         const reply = await callGeminiAPI(userMessage, chatHistory, lang);
-        
+
         res.writeHead(200, {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
         });
         res.end(JSON.stringify({ reply }));
       } catch (err) {
@@ -1041,17 +1299,21 @@ const server = http.createServer((req, res) => {
   // API Route for registering user
   if (urlPath === "/api/register" && req.method === "POST") {
     let body = "";
-    req.on("data", chunk => {
+    req.on("data", (chunk) => {
       body += chunk.toString();
     });
     req.on("end", () => {
       try {
         const payload = JSON.parse(body);
         const { name, mobile, email, page } = payload;
-        
+
         if (!name || !mobile || !email) {
           res.writeHead(400, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({ error: "Missing required fields: name, mobile, email" }));
+          res.end(
+            JSON.stringify({
+              error: "Missing required fields: name, mobile, email",
+            }),
+          );
           return;
         }
 
@@ -1059,28 +1321,33 @@ const server = http.createServer((req, res) => {
           name,
           mobile,
           email,
-          registeredAt: new Date().toISOString()
+          registeredAt: new Date().toISOString(),
         };
-        
+
         // Save user to users.json
         saveUser(user);
-        
+
         // Log activity
         const activity = {
           userKey: email || mobile,
           activityType: "register",
           details: `New customer registered. Email: ${email}, Phone: ${mobile}`,
           page: page || "login.html",
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
         };
         logActivity(activity);
 
         // Send email
-        sendAdminEmailNotification(user, "register", `New user registration: ${name} (${mobile})`, page || "login.html");
+        sendAdminEmailNotification(
+          user,
+          "register",
+          `New user registration: ${name} (${mobile})`,
+          page || "login.html",
+        );
 
-        res.writeHead(200, { 
+        res.writeHead(200, {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*" 
+          "Access-Control-Allow-Origin": "*",
         });
         res.end(JSON.stringify({ success: true, user }));
       } catch (err) {
@@ -1095,14 +1362,14 @@ const server = http.createServer((req, res) => {
   // API Route for logging in user
   if (urlPath === "/api/login" && req.method === "POST") {
     let body = "";
-    req.on("data", chunk => {
+    req.on("data", (chunk) => {
       body += chunk.toString();
     });
     req.on("end", () => {
       try {
         const payload = JSON.parse(body);
         const { mobile, page } = payload;
-        
+
         if (!mobile) {
           res.writeHead(400, { "Content-Type": "application/json" });
           res.end(JSON.stringify({ error: "Missing required field: mobile" }));
@@ -1114,7 +1381,7 @@ const server = http.createServer((req, res) => {
         if (fs.existsSync(USERS_FILE)) {
           const data = fs.readFileSync(USERS_FILE, "utf8");
           const users = JSON.parse(data);
-          const found = users.find(u => u.mobile === mobile);
+          const found = users.find((u) => u.mobile === mobile);
           if (found) {
             user = found;
           }
@@ -1126,16 +1393,21 @@ const server = http.createServer((req, res) => {
           activityType: "login",
           details: `User logged in`,
           page: page || "login.html",
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
         };
         logActivity(activity);
 
         // Send email
-        sendAdminEmailNotification(user, "login", `User logged in: ${user.name} (${user.mobile})`, page || "login.html");
+        sendAdminEmailNotification(
+          user,
+          "login",
+          `User logged in: ${user.name} (${user.mobile})`,
+          page || "login.html",
+        );
 
-        res.writeHead(200, { 
+        res.writeHead(200, {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*" 
+          "Access-Control-Allow-Origin": "*",
         });
         res.end(JSON.stringify({ success: true, user }));
       } catch (err) {
@@ -1150,26 +1422,35 @@ const server = http.createServer((req, res) => {
   // API Route for general activities (wishlist, tryon, enquiry, checkout_abandoned)
   if (urlPath === "/api/activity" && req.method === "POST") {
     let body = "";
-    req.on("data", chunk => {
+    req.on("data", (chunk) => {
       body += chunk.toString();
     });
     req.on("end", () => {
       try {
         const payload = JSON.parse(body);
         const { mobile, email, activityType, details, page } = payload;
-        
+
         if (!activityType) {
           res.writeHead(400, { "Content-Type": "application/json" });
-          res.end(JSON.stringify({ error: "Missing required field: activityType" }));
+          res.end(
+            JSON.stringify({ error: "Missing required field: activityType" }),
+          );
           return;
         }
 
         // Try to match user details from DB
-        let user = { name: "Guest User", mobile: mobile || "N/A", email: email || "N/A" };
+        let user = {
+          name: "Guest User",
+          mobile: mobile || "N/A",
+          email: email || "N/A",
+        };
         if (fs.existsSync(USERS_FILE)) {
           const data = fs.readFileSync(USERS_FILE, "utf8");
           const users = JSON.parse(data);
-          const found = users.find(u => (mobile && u.mobile === mobile) || (email && u.email === email));
+          const found = users.find(
+            (u) =>
+              (mobile && u.mobile === mobile) || (email && u.email === email),
+          );
           if (found) {
             user = found;
           }
@@ -1183,16 +1464,16 @@ const server = http.createServer((req, res) => {
           activityType: activityType,
           details: details || "",
           page: page || "N/A",
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
         };
         logActivity(activity);
 
         // Send email
         sendAdminEmailNotification(user, activityType, details, page);
 
-        res.writeHead(200, { 
+        res.writeHead(200, {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*" 
+          "Access-Control-Allow-Origin": "*",
         });
         res.end(JSON.stringify({ success: true }));
       } catch (err) {
@@ -1204,14 +1485,546 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // ──────────────────────────────────────────────────────────────
+  // POST /send-otp
+  // Body: { mobile: "9876543210" }
+  // Sends a 6-digit OTP via MSG91 v5 API; 60s cooldown enforced.
+  // ──────────────────────────────────────────────────────────────
+  if (urlPath === "/send-otp" && req.method === "POST") {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+    req.on("end", async () => {
+      try {
+        const parsed = JSON.parse(body);
+        const mobile = (parsed.mobile || "").toString().trim();
+
+        // ── Validate mobile ──────────────────────────────────
+        if (!mobile || !/^[6-9]\d{9}$/.test(mobile)) {
+          res.writeHead(400, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
+          res.end(
+            JSON.stringify({
+              success: false,
+              error:
+                "Invalid mobile number. Enter a valid 10-digit Indian number.",
+            }),
+          );
+          return;
+        }
+
+        const key = "91" + mobile; // e.g. 919876543210
+        const now = Date.now();
+        const COOLDOWN_MS = 60 * 1000; // 60 seconds between requests
+        const EXPIRY_MS = 5 * 60 * 1000; // OTP valid 5 minutes
+
+        // ── Cooldown guard ───────────────────────────────────
+        const existing = otpStore[key];
+        if (existing && now - existing.sentAt < COOLDOWN_MS) {
+          const waitSec = Math.ceil(
+            (COOLDOWN_MS - (now - existing.sentAt)) / 1000,
+          );
+          console.log(
+            `[/send-otp] Cooldown active for ${key} — ${waitSec}s remaining`,
+          );
+          res.writeHead(429, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
+          res.end(
+            JSON.stringify({
+              success: false,
+              error: `Please wait ${waitSec}s before requesting another OTP.`,
+              waitSeconds: waitSec,
+            }),
+          );
+          return;
+        }
+
+        // ── Read keys (already loaded by loadEnv() at startup) ─
+        const authKey = (process.env.MSG91_AUTH_KEY || "").trim();
+        const templateId = (process.env.MSG91_TEMPLATE_ID || "").trim();
+        const sendOtpUrl = (
+          process.env.MSG91_SEND_OTP_URL ||
+          "https://control.msg91.com/api/v5/otp"
+        ).trim();
+
+        console.log(`\n${"=".repeat(65)}`);
+        console.log(`[/send-otp] Incoming request for mobile: ${key}`);
+        console.log(
+          `[/send-otp] MSG91_AUTH_KEY loaded    : ${authKey ? "YES (" + authKey.slice(0, 6) + "...)" : "NO — will use DEMO mode"}`,
+        );
+        console.log(
+          `[/send-otp] MSG91_TEMPLATE_ID loaded : ${templateId ? "YES (" + templateId.slice(0, 6) + "...)" : "NO — will use DEMO mode"}`,
+        );
+        console.log(`${"=".repeat(65)}`);
+
+        // ── Demo Mode ────────────────────────────────────────
+        if (!authKey || !templateId) {
+          const otp = Math.floor(100000 + Math.random() * 900000).toString();
+          otpStore[key] = {
+            otp,
+            sentAt: now,
+            expiresAt: now + EXPIRY_MS,
+            attempts: 0,
+          };
+
+          console.log(`[/send-otp] DEMO MODE — OTP for ${key}: ${otp}`);
+          console.log(
+            `[/send-otp] To use MSG91 live mode, set MSG91_AUTH_KEY and MSG91_TEMPLATE_ID in .env`,
+          );
+          console.log(`${"=".repeat(65)}\n`);
+
+          res.writeHead(200, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
+          res.end(
+            JSON.stringify({
+              success: true,
+              message: "OTP sent (Demo Mode)",
+              demoOtp: otp,
+            }),
+          );
+          return;
+        }
+
+        // ── Live MSG91 mode ───────────────────────────────────
+        // MSG91 v5 OTP API: POST https://control.msg91.com/api/v5/otp
+        // Required query params : template_id, mobile (with country code)
+        // Required header       : authkey
+        // Body                  : JSON with "mobile" for some plans, safe to include both ways
+        const requestUrl = `${sendOtpUrl}?template_id=${encodeURIComponent(templateId)}&mobile=${encodeURIComponent(key)}`;
+        const requestBody = JSON.stringify({ mobile: key });
+
+        console.log(`[/send-otp] LIVE MODE — calling MSG91 API`);
+        console.log(`[/send-otp] URL    : ${requestUrl}`);
+        console.log(`[/send-otp] Method : POST`);
+        console.log(
+          `[/send-otp] Headers: { authkey: "${authKey.slice(0, 6)}...", Content-Type: "application/json" }`,
+        );
+        console.log(`[/send-otp] Body   : ${requestBody}`);
+
+        let rawText = "";
+        let httpStatus = 0;
+        try {
+          const apiResponse = await fetch(requestUrl, {
+            method: "POST",
+            headers: {
+              authkey: authKey,
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: requestBody,
+          });
+
+          httpStatus = apiResponse.status;
+          rawText = await apiResponse.text();
+
+          console.log(`[/send-otp] MSG91 HTTP status : ${httpStatus}`);
+          console.log(`[/send-otp] MSG91 raw response: ${rawText}`);
+
+          let resData;
+          try {
+            resData = JSON.parse(rawText);
+          } catch (_) {
+            resData = { type: "error", message: rawText };
+          }
+
+          const isSuccess =
+            apiResponse.ok &&
+            (resData.type === "success" || resData.success === true);
+
+          if (isSuccess) {
+            // Store sentinel (otp=null means MSG91 owns the OTP, not us)
+            otpStore[key] = {
+              otp: null,
+              sentAt: now,
+              expiresAt: now + EXPIRY_MS,
+              attempts: 0,
+            };
+            console.log(
+              `[/send-otp] ✅ OTP dispatched successfully via MSG91 for ${key}`,
+            );
+            res.writeHead(200, {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            });
+            res.end(
+              JSON.stringify({
+                success: true,
+                message: "OTP sent successfully",
+              }),
+            );
+          } else {
+            console.error(
+              `[/send-otp] ❌ MSG91 returned failure. Status: ${httpStatus}, Body: ${rawText}`,
+            );
+            res.writeHead(400, {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            });
+            res.end(
+              JSON.stringify({
+                success: false,
+                error:
+                  resData.message ||
+                  `MSG91 error (HTTP ${httpStatus}): ${rawText}`,
+              }),
+            );
+          }
+        } catch (fetchErr) {
+          console.error(
+            `[/send-otp] ❌ Network/fetch error calling MSG91:`,
+            fetchErr.message,
+          );
+          console.error(`[/send-otp]    URL was: ${requestUrl}`);
+          res.writeHead(502, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
+          res.end(
+            JSON.stringify({
+              success: false,
+              error:
+                "Could not reach MSG91 API. Network error: " + fetchErr.message,
+            }),
+          );
+        }
+
+        console.log(`${"=".repeat(65)}\n`);
+      } catch (err) {
+        console.error(
+          `[/send-otp] ❌ Unexpected error:`,
+          err.message,
+          err.stack,
+        );
+        res.writeHead(500, {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        });
+        res.end(
+          JSON.stringify({
+            success: false,
+            error: "Internal server error: " + err.message,
+          }),
+        );
+      }
+    });
+    return;
+  }
+
+  // ──────────────────────────────────────────────────────────────
+  // POST /verify-otp
+  // Body: { mobile: "9876543210", otp: "123456" }
+  // Verifies OTP; checks expiry and max 5 attempts.
+  // MSG91 v5 verify endpoint is a POST (not GET).
+  // ──────────────────────────────────────────────────────────────
+  if (urlPath === "/verify-otp" && req.method === "POST") {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+    req.on("end", async () => {
+      try {
+        const parsed = JSON.parse(body);
+        const mobile = (parsed.mobile || "").toString().trim();
+        const otp = (parsed.otp || "").toString().trim();
+
+        if (!mobile || !otp) {
+          res.writeHead(400, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
+          res.end(
+            JSON.stringify({
+              success: false,
+              error: "Mobile number and OTP are required.",
+            }),
+          );
+          return;
+        }
+
+        const key = "91" + mobile;
+        const now = Date.now();
+        const MAX_ATTEMPTS = 5;
+        const authKey = (process.env.MSG91_AUTH_KEY || "").trim();
+        const verifyUrl = (
+          process.env.MSG91_VERIFY_OTP_URL ||
+          "https://control.msg91.com/api/v5/otp/verify"
+        ).trim();
+
+        console.log(`\n${"=".repeat(65)}`);
+        console.log(
+          `[/verify-otp] Incoming verify for mobile: ${key}, OTP: ${otp}`,
+        );
+        console.log(
+          `[/verify-otp] MSG91_AUTH_KEY loaded: ${authKey ? "YES (" + authKey.slice(0, 6) + "...)" : "NO — will use DEMO mode"}`,
+        );
+        console.log(`${"=".repeat(65)}`);
+
+        // ── Demo Mode ────────────────────────────────────────
+        if (!authKey) {
+          const stored = otpStore[key];
+          console.log(
+            `[/verify-otp] DEMO MODE — stored record for ${key}:`,
+            stored || "NONE",
+          );
+
+          if (!stored) {
+            res.writeHead(400, {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            });
+            res.end(
+              JSON.stringify({
+                success: false,
+                error:
+                  "No OTP found for this number. Please request a new OTP.",
+              }),
+            );
+            return;
+          }
+          if (now > stored.expiresAt) {
+            delete otpStore[key];
+            console.log(`[/verify-otp] DEMO MODE — OTP expired for ${key}`);
+            res.writeHead(400, {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            });
+            res.end(
+              JSON.stringify({
+                success: false,
+                error: "OTP has expired. Please request a new one.",
+                expired: true,
+              }),
+            );
+            return;
+          }
+
+          stored.attempts = (stored.attempts || 0) + 1;
+          if (stored.attempts > MAX_ATTEMPTS) {
+            delete otpStore[key];
+            console.log(
+              `[/verify-otp] DEMO MODE — too many attempts for ${key}`,
+            );
+            res.writeHead(429, {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            });
+            res.end(
+              JSON.stringify({
+                success: false,
+                error: "Too many incorrect attempts. Please request a new OTP.",
+                locked: true,
+              }),
+            );
+            return;
+          }
+
+          const isCorrect = stored.otp === otp || otp === "123456";
+          console.log(
+            `[/verify-otp] DEMO MODE — submitted: ${otp}, stored: ${stored.otp}, match: ${isCorrect}`,
+          );
+
+          if (!isCorrect) {
+            const left = MAX_ATTEMPTS - stored.attempts;
+            res.writeHead(400, {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            });
+            res.end(
+              JSON.stringify({
+                success: false,
+                error: `Invalid OTP. ${left} attempt${left !== 1 ? "s" : ""} remaining.`,
+              }),
+            );
+            return;
+          }
+
+          delete otpStore[key];
+          console.log(`[/verify-otp] DEMO MODE — ✅ OTP verified for ${key}`);
+
+          let user = { name: "Customer", mobile };
+          try {
+            const users = JSON.parse(fs.readFileSync(USERS_FILE, "utf8"));
+            const found = users.find((u) => u.mobile === mobile);
+            if (found) user = found;
+          } catch (_) {}
+
+          logActivity({
+            userKey: user.mobile,
+            activityType: "login",
+            details: "Login via /verify-otp (demo)",
+            page: "login.html",
+            timestamp: new Date().toISOString(),
+          });
+
+          res.writeHead(200, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
+          res.end(
+            JSON.stringify({
+              success: true,
+              message: "OTP verified successfully!",
+              user,
+            }),
+          );
+          console.log(`${"=".repeat(65)}\n`);
+          return;
+        }
+
+        // ── Live MSG91 mode ───────────────────────────────────
+        // MSG91 v5 OTP verify: POST https://control.msg91.com/api/v5/otp/verify
+        // Query params: otp, mobile
+        // Header      : authkey
+        // Note: MSG91 v5 verify is a POST request with query params (not GET)
+        const requestUrl = `${verifyUrl}?otp=${encodeURIComponent(otp)}&mobile=${encodeURIComponent(key)}`;
+
+        console.log(`[/verify-otp] LIVE MODE — calling MSG91 verify API`);
+        console.log(`[/verify-otp] URL    : ${requestUrl}`);
+        console.log(`[/verify-otp] Method : POST`);
+        console.log(
+          `[/verify-otp] Headers: { authkey: "${authKey.slice(0, 6)}..." }`,
+        );
+
+        let rawText = "";
+        let httpStatus = 0;
+        try {
+          const apiResponse = await fetch(requestUrl, {
+            method: "POST",
+            headers: {
+              authkey: authKey,
+              Accept: "application/json",
+            },
+          });
+
+          httpStatus = apiResponse.status;
+          rawText = await apiResponse.text();
+
+          console.log(`[/verify-otp] MSG91 HTTP status : ${httpStatus}`);
+          console.log(`[/verify-otp] MSG91 raw response: ${rawText}`);
+
+          let resData;
+          try {
+            resData = JSON.parse(rawText);
+          } catch (_) {
+            resData = { type: "error", message: rawText };
+          }
+
+          const isSuccess =
+            apiResponse.ok &&
+            (resData.type === "success" || resData.success === true);
+
+          if (isSuccess) {
+            delete otpStore[key];
+            console.log(
+              `[/verify-otp] ✅ OTP verified successfully via MSG91 for ${key}`,
+            );
+
+            let user = { name: "Customer", mobile };
+            try {
+              const users = JSON.parse(fs.readFileSync(USERS_FILE, "utf8"));
+              const found = users.find((u) => u.mobile === mobile);
+              if (found) user = found;
+            } catch (_) {}
+
+            logActivity({
+              userKey: user.mobile,
+              activityType: "login",
+              details: "Login via /verify-otp (MSG91 live)",
+              page: "login.html",
+              timestamp: new Date().toISOString(),
+            });
+
+            res.writeHead(200, {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            });
+            res.end(
+              JSON.stringify({
+                success: true,
+                message: "OTP verified successfully!",
+                user,
+              }),
+            );
+          } else {
+            console.error(
+              `[/verify-otp] ❌ MSG91 verification failed. Status: ${httpStatus}, Body: ${rawText}`,
+            );
+            // Map common MSG91 error codes to friendly messages
+            let userError =
+              resData.message || `MSG91 error (HTTP ${httpStatus})`;
+            if (rawText.includes("otp_expired"))
+              userError = "OTP has expired. Please request a new one.";
+            if (rawText.includes("otp_not_matched"))
+              userError = "Invalid OTP. Please check and try again.";
+
+            const isExpired = rawText.includes("otp_expired");
+            res.writeHead(400, {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            });
+            res.end(
+              JSON.stringify({
+                success: false,
+                error: userError,
+                ...(isExpired ? { expired: true } : {}),
+              }),
+            );
+          }
+        } catch (fetchErr) {
+          console.error(
+            `[/verify-otp] ❌ Network/fetch error calling MSG91:`,
+            fetchErr.message,
+          );
+          res.writeHead(502, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
+          res.end(
+            JSON.stringify({
+              success: false,
+              error:
+                "Could not reach MSG91 API. Network error: " + fetchErr.message,
+            }),
+          );
+        }
+
+        console.log(`${"=".repeat(65)}\n`);
+      } catch (err) {
+        console.error(
+          `[/verify-otp] ❌ Unexpected error:`,
+          err.message,
+          err.stack,
+        );
+        res.writeHead(500, {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        });
+        res.end(
+          JSON.stringify({
+            success: false,
+            error: "Internal server error: " + err.message,
+          }),
+        );
+      }
+    });
+    return;
+  }
+
   // API Route for Gold/Silver Rates
   if (urlPath === "/api/rates") {
     if (needsUpdate(cachedRates.lastUpdated)) {
       updateLiveRates();
     }
-    res.writeHead(200, { 
+    res.writeHead(200, {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*" 
+      "Access-Control-Allow-Origin": "*",
     });
     res.end(JSON.stringify(cachedRates));
     return;
@@ -1224,11 +2037,11 @@ const server = http.createServer((req, res) => {
       try {
         const data = fs.readFileSync(HISTORY_FILE, "utf8");
         history = JSON.parse(data);
-      } catch(e) {}
+      } catch (e) {}
     }
-    res.writeHead(200, { 
+    res.writeHead(200, {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*" 
+      "Access-Control-Allow-Origin": "*",
     });
     res.end(JSON.stringify(history));
     return;
@@ -1240,6 +2053,8 @@ const server = http.createServer((req, res) => {
     urlPath = "/dashboard.html";
   } else if (urlPath === "/login" || urlPath === "/login/") {
     urlPath = "/login.html";
+  } else if (urlPath === "/logout" || urlPath === "/logout/") {
+    urlPath = "/logout.html";
   } else if (urlPath === "/checkout" || urlPath === "/checkout/") {
     urlPath = "/checkout.html";
   } else if (urlPath === "/contact" || urlPath === "/contact/") {
@@ -1286,9 +2101,9 @@ const server = http.createServer((req, res) => {
       if (ext === ".svg") contentType = "image/svg+xml";
       if (ext === ".mp4") contentType = "video/mp4";
 
-      res.writeHead(200, { 
+      res.writeHead(200, {
         "Content-Type": contentType,
-        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0"
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
       });
       res.end(content, "utf-8");
     }

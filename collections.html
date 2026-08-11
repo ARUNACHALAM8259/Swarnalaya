@@ -53,11 +53,12 @@
           </a>
           <img src="heart.png" alt="Wishlist" class="header-icon" />
           <div class="user-profile-menu">
-            <img src="user-avatar.png" alt="Profile" class="header-icon user-avatar-btn" />
-            <div class="profile-dropdown-menu">
-              <a href="login" class="dropdown-item" id="loginSignupBtn">Login/Signup</a>
-              <a href="contact" class="dropdown-item">Contact Us</a>
-            </div>
+            <img
+              src="user-avatar.png"
+              alt="Profile"
+              class="header-icon user-avatar-btn"
+            />
+            <div class="profile-dropdown-menu"></div>
           </div>
           <img src="shopping-bag.png" alt="Cart" class="header-icon" />
         </div>
@@ -72,17 +73,27 @@
         <div class="collections-hero-content">
           <h1>Our Collections</h1>
           <div class="collections-breadcrumb">
-            <a href="index.html">Home</a> <span class="divider">/</span> <span class="active">Collections</span>
+            <a href="index.html">Home</a> <span class="divider">/</span>
+            <span class="active">Collections</span>
           </div>
         </div>
       </div>
 
       <!-- Quick Section Links -->
       <div class="quick-links-container">
-        
         <div class="jump-dropdown-wrapper">
-          <a href="#" class="jump-btn" id="categoryJumpBtn" onclick="toggleCategoryDropdown(event)">Category <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 11px;"></i></a>
-          
+          <a
+            href="#"
+            class="jump-btn"
+            id="categoryJumpBtn"
+            onclick="toggleCategoryDropdown(event)"
+            >Category
+            <i
+              class="fas fa-chevron-down"
+              style="margin-left: 5px; font-size: 11px"
+            ></i
+          ></a>
+
           <!-- Category list dropdown -->
           <div class="quick-category-dropdown" id="quickCategoryDropdown">
             <div class="category-list-container">
@@ -91,15 +102,15 @@
                 <h3>Shop by Category</h3>
                 <div class="title-underline"></div>
               </div>
-              
+
               <!-- Row 1 -->
-              <a href="/all-jewellery" class="category-list-item">
+              <a href="all-jewellery.html" class="category-list-item">
                 <div class="category-list-icon">
                   <img src="all-jewellery-collection.png" alt="All Jewellery" />
                 </div>
                 <span class="category-list-name">All Jewellery</span>
               </a>
-              
+
               <a href="index.html?search=Earrings" class="category-list-item">
                 <div class="category-list-icon">
                   <img src="earrings-collection.png" alt="Earrings" />
@@ -122,7 +133,10 @@
                 <span class="category-list-name">Finger Rings</span>
               </a>
 
-              <a href="index.html?search=Mangalsutra" class="category-list-item">
+              <a
+                href="index.html?search=Mangalsutra"
+                class="category-list-item"
+              >
                 <div class="category-list-icon">
                   <img src="gold-mangalsutra.png" alt="Mangalsutra" />
                 </div>
@@ -151,7 +165,10 @@
                 <span class="category-list-name">Necklaces</span>
               </a>
 
-              <a href="index.html?search=Necklace%20Set" class="category-list-item">
+              <a
+                href="index.html?search=Necklace%20Set"
+                class="category-list-item"
+              >
                 <div class="category-list-icon">
                   <img src="bridal-set.jpg" alt="Necklace Set" />
                 </div>
@@ -182,11 +199,21 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Occasion Dropdown -->
         <div class="jump-dropdown-wrapper">
-          <a href="#" class="jump-btn" id="occasionJumpBtn" onclick="toggleOccasionDropdown(event)">Occasion <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 11px;"></i></a>
-          
+          <a
+            href="#"
+            class="jump-btn"
+            id="occasionJumpBtn"
+            onclick="toggleOccasionDropdown(event)"
+            >Occasion
+            <i
+              class="fas fa-chevron-down"
+              style="margin-left: 5px; font-size: 11px"
+            ></i
+          ></a>
+
           <!-- Occasion list dropdown -->
           <div class="quick-occasion-dropdown" id="quickOccasionDropdown">
             <div class="category-list-container occasion-list-container">
@@ -195,32 +222,60 @@
                 <h3>Shop by Occasion</h3>
                 <div class="title-underline"></div>
               </div>
-              
+
               <!-- Cards -->
-              <a href="index.html?search=Bridal" class="category-list-item occasion-list-item">
+              <a
+                href="index.html?search=Bridal"
+                class="category-list-item occasion-list-item"
+              >
                 <div class="category-list-icon occasion-list-icon">
-                  <img src="bridal-set.jpg" alt="Bridal & Wedding" style="width: 100%; height: 100%; object-fit: cover;" />
+                  <img
+                    src="bridal-set.jpg"
+                    alt="Bridal & Wedding"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                  />
                 </div>
                 <span class="category-list-name">Bridal & Wedding</span>
               </a>
-              
-              <a href="index.html?search=Daily" class="category-list-item occasion-list-item">
+
+              <a
+                href="index.html?search=Daily"
+                class="category-list-item occasion-list-item"
+              >
                 <div class="category-list-icon occasion-list-icon">
-                  <img src="daily-casual-wear.png" alt="Daily & Casual Wear" style="width: 100%; height: 100%; object-fit: cover;" />
+                  <img
+                    src="daily-casual-wear.png"
+                    alt="Daily & Casual Wear"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                  />
                 </div>
                 <span class="category-list-name">Daily & Casual Wear</span>
               </a>
 
-              <a href="index.html?search=Festive" class="category-list-item occasion-list-item">
+              <a
+                href="index.html?search=Festive"
+                class="category-list-item occasion-list-item"
+              >
                 <div class="category-list-icon occasion-list-icon">
-                  <img src="festive-wear.png" alt="Festive Wear" style="width: 100%; height: 100%; object-fit: cover;" />
+                  <img
+                    src="festive-wear.png"
+                    alt="Festive Wear"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                  />
                 </div>
                 <span class="category-list-name">Festive Wear</span>
               </a>
 
-              <a href="index.html?search=Gift" class="category-list-item occasion-list-item">
+              <a
+                href="index.html?search=Gift"
+                class="category-list-item occasion-list-item"
+              >
                 <div class="category-list-icon occasion-list-icon">
-                  <img src="gift-collection.png" alt="Gift Collections" style="width: 100%; height: 100%; object-fit: cover;" />
+                  <img
+                    src="gift-collection.png"
+                    alt="Gift Collections"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                  />
                 </div>
                 <span class="category-list-name">Gift Collections</span>
               </a>
@@ -230,8 +285,18 @@
 
         <!-- Gender Dropdown -->
         <div class="jump-dropdown-wrapper">
-          <a href="#" class="jump-btn" id="genderJumpBtn" onclick="toggleGenderDropdown(event)">Gender <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 11px;"></i></a>
-          
+          <a
+            href="#"
+            class="jump-btn"
+            id="genderJumpBtn"
+            onclick="toggleGenderDropdown(event)"
+            >Gender
+            <i
+              class="fas fa-chevron-down"
+              style="margin-left: 5px; font-size: 11px"
+            ></i
+          ></a>
+
           <!-- Gender list dropdown -->
           <div class="quick-gender-dropdown" id="quickGenderDropdown">
             <div class="category-list-container gender-list-container">
@@ -240,25 +305,46 @@
                 <h3>Shop by Gender</h3>
                 <div class="title-underline"></div>
               </div>
-              
+
               <!-- Cards -->
-              <a href="index.html?search=Women" class="category-list-item gender-list-item">
+              <a
+                href="index.html?search=Women"
+                class="category-list-item gender-list-item"
+              >
                 <div class="category-list-icon gender-list-icon">
-                  <img src="womens-collection.png" alt="Women" style="width: 100%; height: 100%; object-fit: cover;" />
+                  <img
+                    src="womens-collection.png"
+                    alt="Women"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                  />
                 </div>
                 <span class="category-list-name">Women's Collection</span>
               </a>
-              
-              <a href="index.html?search=Men" class="category-list-item gender-list-item">
+
+              <a
+                href="index.html?search=Men"
+                class="category-list-item gender-list-item"
+              >
                 <div class="category-list-icon gender-list-icon">
-                  <img src="mens-collection.png" alt="Men" style="width: 100%; height: 100%; object-fit: cover;" />
+                  <img
+                    src="mens-collection.png"
+                    alt="Men"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                  />
                 </div>
                 <span class="category-list-name">Men's Collection</span>
               </a>
 
-              <a href="index.html?search=Kids" class="category-list-item gender-list-item">
+              <a
+                href="index.html?search=Kids"
+                class="category-list-item gender-list-item"
+              >
                 <div class="category-list-icon gender-list-icon">
-                  <img src="kids-collection.png" alt="Kids" style="width: 100%; height: 100%; object-fit: cover;" />
+                  <img
+                    src="kids-collection.png"
+                    alt="Kids"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                  />
                 </div>
                 <span class="category-list-name">Kids' Collection</span>
               </a>
@@ -275,7 +361,11 @@
         <div class="footer-col brand-col">
           <img src="logo.png" alt="Swarnalaya Logo" class="footer-logo" />
           <p class="brand-desc">
-            Swarnalaya, Founded in March 2025 is built on a foundation of trust that spans five generations. We honor the "old world" commitment to quality—where every setting is secure and every stone is hand-selected—while embracing the "new world" of sustainable sourcing and avant-garde style.
+            Swarnalaya, Founded in March 2025 is built on a foundation of trust
+            that spans five generations. We honor the "old world" commitment to
+            quality—where every setting is secure and every stone is
+            hand-selected—while embracing the "new world" of sustainable
+            sourcing and avant-garde style.
           </p>
         </div>
 
@@ -297,7 +387,7 @@
           <ul class="contact-details">
             <li>
               <i class="fas fa-map-marker-alt"></i>
-              <span>791C, PJN Road,<br>Villupuram-605 602</span>
+              <span>791C, PJN Road,<br />Villupuram-605 602</span>
             </li>
             <li>
               <i class="fas fa-phone"></i>
@@ -309,7 +399,9 @@
             </li>
           </ul>
           <div class="social-icons">
-            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
             <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
@@ -324,25 +416,91 @@
           <div class="download-badges">
             <!-- App Store Badge -->
             <a href="#" class="download-badge">
-              <svg class="badge-svg" viewBox="0 0 135 40" width="125" height="38">
-                <rect width="135" height="40" rx="6" fill="#000" stroke="#a6a6a6" stroke-width="0.5"/>
-                <path d="M20.5 13.8c-.1-2 1.6-3 1.7-3.1-1-.7-2.1-1-2.4-1-.8-.1-1.6.4-2 .4s-1.1-.4-1.8-.4c-.9 0-1.8.5-2.2 1.3-1 1.7-.3 4.2.7 5.6.5.7 1 1.5 1.7 1.4.7-.1 1-.5 1.8-.5s1.1.4 1.8.4c.7 0 1.2-.7 1.6-1.3.5-.7.7-1.4.7-1.4-.1 0-1.7-.6-1.8-2.5z M18.4 8.9c.4-.5.6-1.1.5-1.7-.5 0-1.1.3-1.5.8-.3.4-.6 1-.5 1.6.6 0 1.1-.2 1.5-.7z" fill="#fff" />
-                <text x="32" y="15" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="7" font-weight="500">Download on the</text>
-                <text x="32" y="27" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">App Store</text>
+              <svg
+                class="badge-svg"
+                viewBox="0 0 135 40"
+                width="125"
+                height="38"
+              >
+                <rect
+                  width="135"
+                  height="40"
+                  rx="6"
+                  fill="#000"
+                  stroke="#a6a6a6"
+                  stroke-width="0.5"
+                />
+                <path
+                  d="M20.5 13.8c-.1-2 1.6-3 1.7-3.1-1-.7-2.1-1-2.4-1-.8-.1-1.6.4-2 .4s-1.1-.4-1.8-.4c-.9 0-1.8.5-2.2 1.3-1 1.7-.3 4.2.7 5.6.5.7 1 1.5 1.7 1.4.7-.1 1-.5 1.8-.5s1.1.4 1.8.4c.7 0 1.2-.7 1.6-1.3.5-.7.7-1.4.7-1.4-.1 0-1.7-.6-1.8-2.5z M18.4 8.9c.4-.5.6-1.1.5-1.7-.5 0-1.1.3-1.5.8-.3.4-.6 1-.5 1.6.6 0 1.1-.2 1.5-.7z"
+                  fill="#fff"
+                />
+                <text
+                  x="32"
+                  y="15"
+                  fill="#fff"
+                  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                  font-size="7"
+                  font-weight="500"
+                >
+                  Download on the
+                </text>
+                <text
+                  x="32"
+                  y="27"
+                  fill="#fff"
+                  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                  font-size="12"
+                  font-weight="700"
+                >
+                  App Store
+                </text>
               </svg>
             </a>
             <!-- Google Play Badge -->
             <a href="#" class="download-badge">
-              <svg class="badge-svg" viewBox="0 0 135 40" width="125" height="38">
-                <rect width="135" height="40" rx="6" fill="#000" stroke="#a6a6a6" stroke-width="0.5"/>
+              <svg
+                class="badge-svg"
+                viewBox="0 0 135 40"
+                width="125"
+                height="38"
+              >
+                <rect
+                  width="135"
+                  height="40"
+                  rx="6"
+                  fill="#000"
+                  stroke="#a6a6a6"
+                  stroke-width="0.5"
+                />
                 <g transform="translate(12, 10) scale(0.8)">
                   <path d="M 0 2.5 L 0 22.5 L 10.5 12.5 Z" fill="#00e5ff" />
                   <path d="M 0 2.5 L 10.5 12.5 L 15.5 7.5 Z" fill="#ff3d00" />
-                  <path d="M 10.5 12.5 L 15.5 17.5 L 15.5 7.5 Z" fill="#ffc107" />
+                  <path
+                    d="M 10.5 12.5 L 15.5 17.5 L 15.5 7.5 Z"
+                    fill="#ffc107"
+                  />
                   <path d="M 0 22.5 L 15.5 17.5 L 10.5 12.5 Z" fill="#4caf50" />
                 </g>
-                <text x="32" y="15" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="7" font-weight="500">GET IT ON</text>
-                <text x="32" y="27" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">Google Play</text>
+                <text
+                  x="32"
+                  y="15"
+                  fill="#fff"
+                  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                  font-size="7"
+                  font-weight="500"
+                >
+                  GET IT ON
+                </text>
+                <text
+                  x="32"
+                  y="27"
+                  fill="#fff"
+                  font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+                  font-size="12"
+                  font-weight="700"
+                >
+                  Google Play
+                </text>
               </svg>
             </a>
           </div>
@@ -356,27 +514,27 @@
       function toggleCategoryDropdown(event) {
         event.preventDefault();
         event.stopPropagation();
-        
-        const catDropdown = document.getElementById('quickCategoryDropdown');
-        const catBtn = document.getElementById('categoryJumpBtn');
-        const occDropdown = document.getElementById('quickOccasionDropdown');
-        const occBtn = document.getElementById('occasionJumpBtn');
-        const genDropdown = document.getElementById('quickGenderDropdown');
-        const genBtn = document.getElementById('genderJumpBtn');
-        
+
+        const catDropdown = document.getElementById("quickCategoryDropdown");
+        const catBtn = document.getElementById("categoryJumpBtn");
+        const occDropdown = document.getElementById("quickOccasionDropdown");
+        const occBtn = document.getElementById("occasionJumpBtn");
+        const genDropdown = document.getElementById("quickGenderDropdown");
+        const genBtn = document.getElementById("genderJumpBtn");
+
         // Close other dropdowns first
-        occDropdown.classList.remove('show');
-        occBtn.classList.remove('active');
-        genDropdown.classList.remove('show');
-        genBtn.classList.remove('active');
-        
-        const isShown = catDropdown.classList.contains('show');
+        occDropdown.classList.remove("show");
+        occBtn.classList.remove("active");
+        genDropdown.classList.remove("show");
+        genBtn.classList.remove("active");
+
+        const isShown = catDropdown.classList.contains("show");
         if (isShown) {
-          catDropdown.classList.remove('show');
-          catBtn.classList.remove('active');
+          catDropdown.classList.remove("show");
+          catBtn.classList.remove("active");
         } else {
-          catDropdown.classList.add('show');
-          catBtn.classList.add('active');
+          catDropdown.classList.add("show");
+          catBtn.classList.add("active");
         }
       }
 
@@ -384,27 +542,27 @@
       function toggleOccasionDropdown(event) {
         event.preventDefault();
         event.stopPropagation();
-        
-        const catDropdown = document.getElementById('quickCategoryDropdown');
-        const catBtn = document.getElementById('categoryJumpBtn');
-        const occDropdown = document.getElementById('quickOccasionDropdown');
-        const occBtn = document.getElementById('occasionJumpBtn');
-        const genDropdown = document.getElementById('quickGenderDropdown');
-        const genBtn = document.getElementById('genderJumpBtn');
-        
+
+        const catDropdown = document.getElementById("quickCategoryDropdown");
+        const catBtn = document.getElementById("categoryJumpBtn");
+        const occDropdown = document.getElementById("quickOccasionDropdown");
+        const occBtn = document.getElementById("occasionJumpBtn");
+        const genDropdown = document.getElementById("quickGenderDropdown");
+        const genBtn = document.getElementById("genderJumpBtn");
+
         // Close other dropdowns first
-        catDropdown.classList.remove('show');
-        catBtn.classList.remove('active');
-        genDropdown.classList.remove('show');
-        genBtn.classList.remove('active');
-        
-        const isShown = occDropdown.classList.contains('show');
+        catDropdown.classList.remove("show");
+        catBtn.classList.remove("active");
+        genDropdown.classList.remove("show");
+        genBtn.classList.remove("active");
+
+        const isShown = occDropdown.classList.contains("show");
         if (isShown) {
-          occDropdown.classList.remove('show');
-          occBtn.classList.remove('active');
+          occDropdown.classList.remove("show");
+          occBtn.classList.remove("active");
         } else {
-          occDropdown.classList.add('show');
-          occBtn.classList.add('active');
+          occDropdown.classList.add("show");
+          occBtn.classList.add("active");
         }
       }
 
@@ -412,50 +570,65 @@
       function toggleGenderDropdown(event) {
         event.preventDefault();
         event.stopPropagation();
-        
-        const catDropdown = document.getElementById('quickCategoryDropdown');
-        const catBtn = document.getElementById('categoryJumpBtn');
-        const occDropdown = document.getElementById('quickOccasionDropdown');
-        const occBtn = document.getElementById('occasionJumpBtn');
-        const genDropdown = document.getElementById('quickGenderDropdown');
-        const genBtn = document.getElementById('genderJumpBtn');
-        
+
+        const catDropdown = document.getElementById("quickCategoryDropdown");
+        const catBtn = document.getElementById("categoryJumpBtn");
+        const occDropdown = document.getElementById("quickOccasionDropdown");
+        const occBtn = document.getElementById("occasionJumpBtn");
+        const genDropdown = document.getElementById("quickGenderDropdown");
+        const genBtn = document.getElementById("genderJumpBtn");
+
         // Close other dropdowns first
-        catDropdown.classList.remove('show');
-        catBtn.classList.remove('active');
-        occDropdown.classList.remove('show');
-        occBtn.classList.remove('active');
-        
-        const isShown = genDropdown.classList.contains('show');
+        catDropdown.classList.remove("show");
+        catBtn.classList.remove("active");
+        occDropdown.classList.remove("show");
+        occBtn.classList.remove("active");
+
+        const isShown = genDropdown.classList.contains("show");
         if (isShown) {
-          genDropdown.classList.remove('show');
-          genBtn.classList.remove('active');
+          genDropdown.classList.remove("show");
+          genBtn.classList.remove("active");
         } else {
-          genDropdown.classList.add('show');
-          genBtn.classList.add('active');
+          genDropdown.classList.add("show");
+          genBtn.classList.add("active");
         }
       }
 
       // Close dropdowns when clicking outside
-      document.addEventListener('click', function(event) {
-        const catDropdown = document.getElementById('quickCategoryDropdown');
-        const catBtn = document.getElementById('categoryJumpBtn');
-        const occDropdown = document.getElementById('quickOccasionDropdown');
-        const occBtn = document.getElementById('occasionJumpBtn');
-        const genDropdown = document.getElementById('quickGenderDropdown');
-        const genBtn = document.getElementById('genderJumpBtn');
-        
-        if (catDropdown && !catDropdown.contains(event.target) && event.target !== catBtn && !catBtn.contains(event.target)) {
-          catDropdown.classList.remove('show');
-          catBtn.classList.remove('active');
+      document.addEventListener("click", function (event) {
+        const catDropdown = document.getElementById("quickCategoryDropdown");
+        const catBtn = document.getElementById("categoryJumpBtn");
+        const occDropdown = document.getElementById("quickOccasionDropdown");
+        const occBtn = document.getElementById("occasionJumpBtn");
+        const genDropdown = document.getElementById("quickGenderDropdown");
+        const genBtn = document.getElementById("genderJumpBtn");
+
+        if (
+          catDropdown &&
+          !catDropdown.contains(event.target) &&
+          event.target !== catBtn &&
+          !catBtn.contains(event.target)
+        ) {
+          catDropdown.classList.remove("show");
+          catBtn.classList.remove("active");
         }
-        if (occDropdown && !occDropdown.contains(event.target) && event.target !== occBtn && !occBtn.contains(event.target)) {
-          occDropdown.classList.remove('show');
-          occBtn.classList.remove('active');
+        if (
+          occDropdown &&
+          !occDropdown.contains(event.target) &&
+          event.target !== occBtn &&
+          !occBtn.contains(event.target)
+        ) {
+          occDropdown.classList.remove("show");
+          occBtn.classList.remove("active");
         }
-        if (genDropdown && !genDropdown.contains(event.target) && event.target !== genBtn && !genBtn.contains(event.target)) {
-          genDropdown.classList.remove('show');
-          genBtn.classList.remove('active');
+        if (
+          genDropdown &&
+          !genDropdown.contains(event.target) &&
+          event.target !== genBtn &&
+          !genBtn.contains(event.target)
+        ) {
+          genDropdown.classList.remove("show");
+          genBtn.classList.remove("active");
         }
       });
     </script>

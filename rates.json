@@ -1,26 +1,26 @@
 {
   "gold22K": {
-    "price": 14200,
-    "change": 130,
-    "direction": "up"
+    "price": 14150,
+    "change": -100,
+    "direction": "down"
   },
   "gold18K": {
-    "price": 11920,
-    "change": 125,
-    "direction": "up"
+    "price": 11930,
+    "change": -70,
+    "direction": "down"
   },
   "silver": {
-    "price": 270,
+    "price": 260,
     "change": 0,
     "direction": "flat"
   },
   "gold24K": {
-    "price": 15492,
-    "change": 142,
-    "direction": "up"
+    "price": 15438,
+    "change": -109,
+    "direction": "down"
   },
-  "lastUpdated": "2026-06-09T05:18:47.615Z",
+  "lastUpdated": "2026-08-11T14:57:16.972Z",
   "updateSource": "MJDTA",
-  "updatetimeText": "09/06/2026 Morning 09:45 AM",
+  "updatetimeText": "11/08/2026 Evening 05:21 PM",
   "status": "success"
 }
